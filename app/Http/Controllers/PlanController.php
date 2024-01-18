@@ -1,0 +1,622 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\support\Facades\Hash;
+use Illuminate\support\Facades\Validator;
+use App\Models\User;
+use App\Models\Plan_type;
+use App\Models\Plan_vision;
+use App\Models\Plan_mission;
+use App\Models\Plan_strategic;
+use App\Models\Plan_taget;
+use App\Models\Plan_kpi;
+use App\Models\Department_sub_sub;
+use App\Models\Plan_control_type;
+use App\Models\Plan_control;
+use App\Models\Plan_control_money;
+use App\Models\Plan_control_obj;
+use PDF;
+use Auth;
+use setasign\Fpdi\Fpdi;
+use App\Models\Budget_year;
+use Illuminate\Support\Facades\File;
+use DataTables;
+use Intervention\Image\ImageManagerStatic as Image;
+
+class PlanController extends Controller
+{
+    public function plan(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan', $data);
+    }
+    public function plan_project(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_project', $data);
+    }
+    public function plan_project_add(Request $request)
+    {
+        $data['budget_year'] = DB::table('budget_year')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_project_add', $data);
+    }
+
+    public function plan_control(Request $request)
+    {
+        $data['startdate'] = $request->startdate;
+        $data['enddate'] = $request->enddate;
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+        $data['department_sub_sub'] = Department_sub_sub::get();
+        $data['plan_control_type'] = Plan_control_type::get();
+        // $data['plan_control'] = Plan_control::get();
+        $data['plan_control'] = DB::connection('mysql')->select('
+            SELECT 
+            plan_control_id,billno,plan_obj,plan_name,plan_reqtotal,pt.plan_control_typename,p.plan_price,p.plan_starttime,p.plan_endtime,p.`status`,s.DEPARTMENT_SUB_SUB_NAME
+            ,p.plan_price_total,p.plan_req_no
+            FROM
+            plan_control p
+            LEFT OUTER JOIN department_sub_sub s ON s.DEPARTMENT_SUB_SUB_ID = p.department
+            LEFT OUTER JOIN plan_control_type pt ON pt.plan_control_type_id = p.plan_type
+            ORDER BY p.plan_control_id DESC
+        ');    
+        return view('plan.plan_control', $data);
+    }
+    public function plan_control_add(Request $request)
+    {
+        $data['startdate'] = $request->startdate;
+        $data['enddate'] = $request->enddate;
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+        $data['plan_control_type'] = Plan_control_type::get();
+        $data['department_sub_sub'] = Department_sub_sub::get();
+        $data['plan_strategic'] = Plan_strategic::get();
+        
+        return view('plan.plan_control_add', $data);
+    }
+    public function plan_control_edit(Request $request,$id)
+    {
+        $data['startdate'] = $request->startdate;
+        $data['enddate'] = $request->enddate;
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+        $data['plan_control'] = Plan_control::where('plan_control_id',$id)->first();
+        $data['department_sub_sub'] = Department_sub_sub::get();
+        $data['plan_control_type'] = Plan_control_type::get();
+        $data['plan_strategic'] = Plan_strategic::get();
+        // $data['plan_control'] = DB::connection('mysql')->select('
+        //     SELECT 
+        //     p.plan_control_id,p.billno,p.plan_obj,p.plan_name,p.plan_reqtotal,pt.plan_control_typename,p.plan_price,p.plan_starttime,p.plan_endtime,p.`status`,s.DEPARTMENT_SUB_SUB_NAME
+        //     FROM
+        //     plan_control p
+        //     LEFT OUTER JOIN department_sub_sub s ON s.DEPARTMENT_SUB_SUB_ID = p.department
+        //     LEFT OUTER JOIN plan_control_type pt ON pt.plan_control_type_id = p.plan_type
+        //     WHERE p.plan_control_id = "'.$id.'"
+        // ');  
+
+        return view('plan.plan_control_edit', $data);
+    }
+    public static function refnumber()
+    {
+        $year = date('Y');
+        $maxnumber = DB::table('plan_control')->max('plan_control_id');
+        if ($maxnumber != '' ||  $maxnumber != null) {
+            $refmax = DB::table('plan_control')->where('plan_control_id', '=', $maxnumber)->first();
+            if ($refmax->billno != '' ||  $refmax->billno != null) {
+                $maxref = substr($refmax->billno, -4) + 1;
+            } else {
+                $maxref = 1;
+            }
+            $ref = str_pad($maxref, 5, "0", STR_PAD_LEFT);
+        } else {
+            $ref = '00001';
+        }
+        $ye = date('Y') + 543;
+        $y = substr($ye, -2);
+        $refnumber = 'PL' . '-' . $ref;
+        return $refnumber;
+    }
+    public function plan_control_save(Request $request)
+    {
+        $add = new Plan_control();
+        $add->billno                = $request->input('billno');
+        $add->plan_name             = $request->input('plan_name');
+        $add->plan_starttime        = $request->input('datepicker1');
+        $add->plan_endtime          = $request->input('datepicker2');
+        $add->plan_price            = $request->input('plan_price');
+        $add->department            = $request->input('department');
+        $add->plan_type             = $request->input('plan_type');
+        $add->user_id               = $request->input('user_id'); 
+        $add->plan_strategic_id     = $request->input('plan_strategic_id');
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_control_update(Request $request)
+    {
+        $id = $request->plan_control_id;
+        $update = Plan_control::find($id);
+        $update->billno                = $request->input('billno');
+        $update->plan_name             = $request->input('plan_name');
+        $update->plan_starttime        = $request->input('datepicker1');
+        $update->plan_endtime          = $request->input('datepicker2');
+        $update->plan_price            = $request->input('plan_price');
+        $update->department            = $request->input('department');
+        $update->plan_type             = $request->input('plan_type');
+        $update->user_id               = $request->input('user_id'); 
+        $update->plan_strategic_id     = $request->input('plan_strategic_id');
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+
+    public function plan_control_destroy(Request $request, $id)
+    {
+        $del = Plan_control::find($id);
+        $del->delete();
+        return response()->json(['status' => '200']);
+    }
+
+    public function plan_control_obj_save(Request $request)
+    {
+        $iduser = Auth::user()->id;
+        $add = new Plan_control_obj();
+        $add->billno                         = $request->input('obj_plan_control_billno');
+        $add->plan_control_id                = $request->input('obj_plan_control_id');
+        $add->plan_control_obj_name          = $request->input('plan_control_obj_name');  
+        $add->user_id                        = $iduser;  
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+
+    function detail_plan(Request $request)
+    {
+        $id = $request->get('id');
+
+        // $detail = DB::table('plan_control_obj')
+        //     ->where('WAREHOUSE_ID', '=', $id)
+        //     ->first();
+
+        $detail = Plan_control::where('plan_control_id', '=', $id)->first();
+        $output =
+        '
+                        <div class="row push" style="font-family: \'Kanit\', sans-serif;">
+                        <input type="hidden"  name="ID" value="' .
+                                $id .
+                                '"/>
+                        <div class="col-sm-10">
+                        <div class="row">
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                            <label >ลงวันที่ :</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group" >
+                            <h1 style="text-align: left;font-family: \'Kanit\', sans-serif; font-size:10px;font-size: 1.0rem;font-weight:normal;color:#778899;">' .
+                                $detail->plan_name .
+                                '</h1>
+                            </div>
+                        </div>
+ 
+
+                        </div>
+  
+            ';
+            $output .=
+            '
+            <table class="table-bordered table-striped table-vcenter js-dataTable-simple" style="width: 100%;">
+            <thead style="background-color: #FFEBCD;">
+                <tr height="30">
+                    <th class="text-font" style="border-color:#F0FFFF;text-align: center;border: 1px solid black;" width="5%">ลำดับ</th>
+                    <th class="text-font" style="border-color:#F0FFFF;text-align: center;border: 1px solid black;">วัตถุประสงค์ /ตัวชี้วัด</th> 
+                </tr >
+            </thead>
+            <tbody> ';
+            $detail_sub = Plan_control_obj::where('plan_control_id', '=', $id)->get();
+                    $count = 1;
+                    foreach ($detail_sub as $item) {
+                        $output .=
+                            '  
+                            <tr height="20">
+                                <td class="text-font" align="center" style="border: 1px solid black;" >'. $count .'</td>
+                                <td class="text-font text-pedding" style="border: 1px solid black;" >'.$item->plan_control_obj_name .'</td> 
+                            </tr>';    
+                        $count++;
+                    }
+            $output .=
+            ' </tbody>
+            </table> 
+            ';  
+            echo $output;
+
+            
+    }
+
+
+
+
+
+
+
+
+
+
+    public function plan_control_moneyedit(Request $request,$id)
+    {
+    //    dd($id);
+        // $data_show = Plan_control::leftJoin('plan_control_money', 'plan_control.plan_control_id', '=', 'plan_control_money.plan_control_id')
+        // ->where('plan_control.plan_control_id',$id)->first();
+        $data_show = Plan_control::where('plan_control_id',$id)->first();
+        // $data_show = Plan_control_money::where('plan_control_id',$ids)->get();
+
+        // $data_show = DB::connection('mysql')->select('
+        //     SELECT 
+ 
+        //     FROM
+        //     plan_control p
+        //     JOIN Plan_control_money s ON s.plan_control_id = p.plan_control_id 
+        //     WHERE p.plan_control_id = "'.$id.'"
+        //     group by p.plan_control_id
+        // ');  
+        // dd($data_show);
+        return response()->json([
+            'status'               => '200', 
+            'data_show'            =>  $data_show,
+        ]);
+    }
+
+    // Plan_control_money
+    public function plan_control_repmoney(Request $request)
+    { 
+        $maxno_ = Plan_control_money::where('plan_control_id',$request->input('update_plan_control_id'))->max('plan_control_money_no');
+        $maxno = $maxno_+1;
+        $add = new Plan_control_money();
+        $add->plan_control_id                = $request->input('update_plan_control_id'); 
+        $add->plan_control_money_no          = $maxno;
+        $add->plan_control_moneydate         = $request->input('plan_control_moneydate');
+        $add->plan_control_moneyprice        = $request->input('plan_control_moneyprice');
+        $add->plan_control_moneyuser_id      = $request->input('plan_control_moneyuser_id');
+        $add->plan_control_moneycomment      = $request->input('plan_control_moneycomment'); 
+        $add->save();
+
+        $planid = $request->input('update_plan_control_id');
+        $check_price = Plan_control::where('plan_control_id',$planid)->first();
+        // $maxno_ = Plan_control::where('plan_control_id',$request->input('update_plan_control_id'))->max('plan_control_money_no');
+
+        $check = Plan_control::where('plan_control_id',$planid)->count();
+        // dd($request->plan_price);
+        if ($check > 0) {
+            Plan_control::where('plan_control_id',$planid)->update([
+                'plan_req_no'        =>  ($check_price->plan_req_no) + 1,
+                'plan_reqtotal'      =>  ($check_price->plan_reqtotal) + ($request->input('plan_control_moneyprice')),
+                'plan_price_total'   =>  ($check_price->plan_price) - (($check_price->plan_reqtotal) + ($request->input('plan_control_moneyprice')))
+            ]);
+        } else {
+             
+        }
+        
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+
+
+    public function plan_development(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_development', $data);
+    }
+    public function plan_procurement(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_procurement', $data);
+    }
+    public function plan_maintenance(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_maintenance', $data);
+    }
+
+    public function plan_type(Request $request)
+    {
+        $data['plan_type'] = Plan_type::get();
+        $data['users'] = User::get();
+
+        return view('plan.plan_type', $data);
+    }
+    public function plan_save(Request $request)
+    {
+        $add = new Plan_type();
+        $add->plan_type_name = $request->input('plan_type_name');
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_edit(Request $request, $id)
+    {
+        $type = Plan_type::find($id);
+
+        return response()->json([
+            'status'     => '200',
+            'type'      =>  $type,
+        ]);
+    }
+    public function plan_update(Request $request)
+    {
+        $id = $request->input('plan_type_id');
+
+        $update = Plan_type::find($id);
+        $update->plan_type_name = $request->input('plan_type_name');
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_destroy(Request $request, $id)
+    {
+        $del = Plan_type::find($id);
+        $del->delete();
+        return response()->json(['status' => '200']);
+    }
+
+    // ********************************************
+
+    public function plan_vision(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['plan_vision'] = Plan_vision::get();
+
+        return view('plan.plan_vision', $data);
+    }
+    public function plan_vision_save(Request $request)
+    {
+        $add = new Plan_vision();
+        $add->plan_vision_name = $request->input('plan_vision_name');
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_vision_edit(Request $request, $id)
+    {
+        $plan = Plan_vision::find($id);
+
+        return response()->json([
+            'status'     => '200',
+            'plan'      =>  $plan,
+        ]);
+    }
+    public function plan_vision_update(Request $request)
+    {
+        $id = $request->input('plan_vision_id');
+
+        $update = Plan_vision::find($id);
+        $update->plan_vision_name = $request->input('plan_vision_name');
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_vision_destroy(Request $request, $id)
+    {
+        $del = Plan_vision::find($id);
+        $del->delete();
+        return response()->json(['status' => '200']);
+    }
+
+    // ******************************************
+
+    public function plan_mission(Request $request)
+    {
+        $data['com_tec'] = DB::table('com_tec')->get();
+        $data['plan_mission'] = Plan_mission::leftjoin('plan_vision','plan_vision.plan_vision_id','=','plan_mission.plan_vision_id')->get();
+        $data['plan_vision'] = Plan_vision::get();
+        return view('plan.plan_mission', $data);
+    }
+    public function plan_mission_save(Request $request)
+    {
+        $add = new Plan_mission();
+        $add->plan_mission_name = $request->input('plan_mission_name');
+        $add->plan_vision_id = $request->input('plan_vision_id');
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_mission_edit(Request $request, $id)
+    {
+        $mission = Plan_mission::find($id);
+
+        return response()->json([
+            'status'     => '200',
+            'mission'      =>  $mission,
+        ]);
+    }
+    public function plan_mission_update(Request $request)
+    {
+        $id = $request->input('editplan_mission_id');
+
+        $update = Plan_mission::find($id);
+        $update->plan_mission_name = $request->input('editplan_mission_name');
+        $update->plan_vision_id = $request->input('editplan_vision_id');
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_mission_destroy(Request $request, $id)
+    {
+        $del = Plan_mission::find($id);
+        $del->delete();
+        return response()->json(['status' => '200']);
+    }
+
+    // ***************************************
+
+    public function plan_strategic(Request $request)
+    {
+        $data['plan_mission'] = Plan_mission::get();
+        $data['plan_strategic'] = Plan_strategic::leftjoin('plan_mission','plan_mission.plan_mission_id','=','plan_strategic.plan_mission_id')->get();
+
+        return view('plan.plan_strategic', $data);
+    }
+    public function plan_strategic_save(Request $request)
+    {
+        $add = new Plan_strategic();
+        $add->plan_mission_id = $request->input('plan_mission_id');
+        $add->plan_strategic_name = $request->input('plan_strategic_name');
+        $add->plan_strategic_startyear = $request->input('plan_strategic_startyear');
+        $add->plan_strategic_endyear = $request->input('plan_strategic_endyear');
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_strategic_update(Request $request)
+    { 
+        $id = $request->input('editplan_strategic_id');
+
+        $update = Plan_strategic::find($id);
+        $update->plan_mission_id = $request->input('editplan_mission_id');
+        $update->plan_strategic_name = $request->input('editplan_strategic_name');
+        $update->plan_strategic_startyear = $request->input('editplan_strategic_startyear');
+        $update->plan_strategic_endyear = $request->input('editplan_strategic_endyear');
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+
+    // ********************************************
+
+    public function plan_taget(Request $request,$id)
+    {
+        $data_plan_strategic = Plan_strategic::where('plan_strategic_id','=',$id)->first();
+        $data['plan_strategic'] = Plan_strategic::leftjoin('plan_mission','plan_mission.plan_mission_id','=','plan_strategic.plan_mission_id')->get();
+        // plan_taget
+        $data['plan_taget'] = Plan_taget::where('plan_strategic_id','=',$id)->get();
+
+        return view('plan.plan_taget', $data,[
+            'data_plan_strategic'       =>       $data_plan_strategic
+        ]);
+    }
+    public function plan_taget_save(Request $request)
+    {
+        $add = new Plan_taget();
+        $add->plan_strategic_id = $request->input('plan_strategic_id');
+        $add->plan_taget_code = $request->input('plan_taget_code');
+        $add->plan_taget_name = $request->input('plan_taget_name'); 
+        $add->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_taget_update(Request $request)
+    { 
+        $id = $request->input('editplan_taget_id');
+
+        $update = Plan_taget::find($id);
+        $update->plan_strategic_id = $request->input('editplan_strategic_id');
+        $update->plan_taget_code = $request->input('editplan_taget_code');
+        $update->plan_taget_name = $request->input('editplan_taget_name'); 
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+
+    // ********************************************
+    public function plan_kpi(Request $request,$strategic_id,$taget_id)
+    {
+        $data_plan_strategic = Plan_strategic::where('plan_strategic_id','=',$strategic_id)->first();
+        // $data['plan_strategic'] = Plan_strategic::leftjoin('plan_mission','plan_mission.plan_mission_id','=','plan_strategic.plan_mission_id')->get();
+        // plan_taget
+        $data_plan_taget = Plan_taget::where('plan_taget_id','=',$taget_id)->first();
+
+        $data['plan_kpi'] = Plan_kpi::get();
+        $data['budget_year'] = Budget_year::get();
+        $data['dep_subsub'] = Department_sub_sub::get();
+        $data['user'] = User::get();
+        $yearnow = date('Y')+543;
+
+        return view('plan.plan_kpi', $data,[
+            'data_plan_strategic'       =>       $data_plan_strategic,
+            'data_plan_taget'           =>       $data_plan_taget,
+            'yearnow'                   =>       $yearnow
+        ]);
+    }
+    public function plan_kpi_save(Request $request)
+    {
+        $add = new Plan_kpi();
+        $add->plan_strategic_id = $request->input('plan_strategic_id');
+        $add->plan_taget_id = $request->input('plan_taget_id');
+        $add->plan_kpi_code = $request->input('plan_kpi_code');
+        $add->plan_kpi_name = $request->input('plan_kpi_name'); 
+        $add->plan_kpi_year = $request->input('leave_year_id'); 
+        $add->save();
+        
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_kpi_update(Request $request)
+    { 
+        $id = $request->input('editplan_kpi_id');
+
+        $update = Plan_kpi::find($id);
+        $update->plan_strategic_id = $request->input('editplan_strategic_id');
+        $update->plan_taget_id = $request->input('editplan_taget_id');
+        $update->plan_kpi_code = $request->input('editplan_kpi_code');
+        $update->plan_kpi_name = $request->input('editplan_kpi_name'); 
+        $update->plan_kpi_year = $request->input('editleave_year_id'); 
+        $update->save();
+
+        return response()->json([
+            'status'     => '200',
+        ]);
+    }
+    public function plan_kpi_destroy(Request $request, $id)
+    {
+        $del = Plan_kpi::find($id);
+        $del->delete();
+        return response()->json(['status' => '200']);
+    }
+     
+}
