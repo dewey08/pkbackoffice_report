@@ -134,12 +134,12 @@
                                             <th class="text-center">pdx</th> 
                                             <th class="text-center">dx0</th>
                                             <th class="text-center">dx1</th>  
-                                            {{-- <th class="text-center">dx2</th>
+                                           <th class="text-center">dx2</th>
                                             <th class="text-center">dx3</th>
                                             <th class="text-center">dx4</th>
                                             <th class="text-center">dx5</th>
                                             <th class="text-center">datereg</th>
-                                            <th class="text-center">timerefer</th>       --}}
+                                            <th class="text-center">timerefer</th>     
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -1,5 +1,5 @@
 @extends('layouts.reportall')
-@section('title', 'PK-BACKOFFice || Report')
+@section('title', 'PK-BACKOFFice || Report-refer')
 
 @section('content')
     <script>
@@ -120,12 +120,16 @@
             <div class="col-xl-12"> 
                     <div class="card cardreport">                 
                             <div class="table-responsive p-4">
-                                <table id="example" class="table table-hover table-sm dt-responsive nowrap"
-                                style=" border-spacing: 0; width: 100%;">
+                                {{-- <table id="example" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> --}}
+                               
+                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    {{-- <table id="example" class="table table-hover table-sm dt-responsive nowrap"
+                                style=" border-spacing: 0; width: 100%;"> --}}
                                     <thead>
                                         <tr>                                          
                                             <th width="5%" class="text-center">ลำดับ</th>
-                                            <th class="text-center" width="5%">refer_date</th> 
+                                            <th class="text-center" width="5%">refer_date</th>  
                                             <th class="text-center">hn</th>
                                             <th class="text-center" >an</th>
                                             <th class="text-center" >ptname</th>
@@ -134,31 +138,34 @@
                                             <th class="text-center">pdx</th> 
                                             <th class="text-center">dx0</th>
                                             <th class="text-center">dx1</th>  
-                                            {{-- <th class="text-center">dx2</th>
+                                           <th class="text-center">dx2</th>
                                             <th class="text-center">dx3</th>
                                             <th class="text-center">dx4</th>
                                             <th class="text-center">dx5</th>
                                             <th class="text-center">datereg</th>
-                                            <th class="text-center">timerefer</th>       --}}
+                                            <th class="text-center">timerefer</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        @foreach ($hos_01 as $item) 
-                                            <tr id="tr_{{$item->vn}}">                                                  
+                                        @foreach ($hos_a as $item) 
+                                            <tr>                                                  
                                                 <td class="text-center" width="5%">{{ $i++ }}</td>                                                 
                                                 <td class="text-center" width="7%">{{$item->refer_date}} </td> 
-                                                <td class="text-center" width="5%">{{ $item->vn }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->hn }}</td> 
                                                 <td class="text-center" width="5%">{{ $item->an }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->hn }}</td>  
-                                                <td class="text-center" width="10%">{{ $item->cid }}</td>  
-                                                <td class="p-2" >{{ $item->ptname }}</td> 
-                                                {{-- <td class="text-center" width="10%">{{ $item->vstdate }}</td>   
-                                                <td class="text-center" style="color:rgb(73, 147, 231)" width="5%">{{ $item->pttype }}</td> 
-                                                <td class="text-center" style="color:rgb(201, 119, 248)" width="5%">{{ $item->hospmain }}</td> 
-                                                <td class="text-center" style="color:rgb(216, 95, 14)" width="5%">{{ $item->subinscl }}</td>  
-                                                <td class="text-center" width="10%">{{ number_format($item->debit_total, 2) }}</td>  --}}
- 
+                                                <td class="text-start" >{{ $item->ptname }}</td>  
+                                                <td class="text-center" width="5%">{{ $item->sexname }}</td> 
+                                                <td class="text-start" >{{ $item->referhos }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->pdx }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx0 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx1 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx2 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx3 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx4 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dx5 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->datereg }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->timerefer }}</td>  
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -171,7 +178,7 @@
 
 @endsection
 @section('footer')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+ 
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
