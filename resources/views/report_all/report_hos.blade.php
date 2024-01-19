@@ -113,7 +113,7 @@
                                                         <table id="example" class="table table-striped table-bordered "
                                                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                             <p class="card-title-desc">1. <a href="{{ url('report_hos_01') }}">(refer) จำนวนผู้ป่วย unplan referout ipd</p></a>
-                                                            <p class="card-title-desc">2. <a href="{{ url('report_hos_01') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย covid IPD >=15ปี</p></a>
+                                                            <p class="card-title-desc">2. <a href="{{ url('report_hos_02') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย covid IPD >=15ปี</p></a>
                                                             <p class="card-title-desc">3. <a href="{{ url('report_hos_01') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p></a>
                                                             <p class="card-title-desc">4. <a href="{{ url('report_hos_01') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย soft skin and soft tissue infection</p></a>
                                                             <p class="card-title-desc">5. <a href="{{ url('report_hos_01') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ.ER</p></a>

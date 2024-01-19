@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac25407525a2fcb8d996e789cb9ca6c5",
+    "content-hash": "77c79124e631c24ea12052452cbf6472",
     "packages": [
         {
             "name": "akaunting/laravel-apexcharts",
@@ -9144,6 +9144,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "10.5.7",
             "source": {
                 "type": "git",
@@ -9154,6 +9155,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e5c5b397a95cb0db013270a985726fcae93e61b8",
                 "reference": "e5c5b397a95cb0db013270a985726fcae93e61b8",
+=======
+            "version": "10.5.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "08f4fa74d5fbfff1ef22abffee47aaedcaea227e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/08f4fa74d5fbfff1ef22abffee47aaedcaea227e",
+                "reference": "08f4fa74d5fbfff1ef22abffee47aaedcaea227e",
+>>>>>>> 15ee3205547e6d8dc7459f73a9e762af514765c1
                 "shasum": ""
             },
             "require": {
@@ -9225,7 +9238,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.7"
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.8"
+>>>>>>> 15ee3205547e6d8dc7459f73a9e762af514765c1
             },
             "funding": [
                 {
@@ -9241,7 +9258,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-01-14T16:40:30+00:00"
+=======
+            "time": "2024-01-19T07:07:27+00:00"
+>>>>>>> 15ee3205547e6d8dc7459f73a9e762af514765c1
         },
         {
             "name": "rector/rector",
@@ -10654,8 +10675,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1.0"
+        "php": "^8.2.4"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

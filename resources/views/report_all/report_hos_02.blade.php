@@ -1,5 +1,5 @@
 @extends('layouts.reportall')
-@section('title', 'PK-BACKOFFice || Report-refer')
+@section('title', 'PK-BACKOFFice || Report-(Died) in hos covid IPD >=15')
 
 @section('content')
     <script>
@@ -92,13 +92,13 @@
 
 
 
-            <form action="{{ url('report_hos_01') }}" method="GET">
+            <form action="{{ url('report_hos_02') }}" method="GET">
                 @csrf
 
             <div class="row"> 
                 <div class="col-md-3">
                     <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                    <p class="card-title-desc">(refer) จำนวนผู้ป่วย unplan referout ipd</p>
+                    <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย covid IPD >=15ปี</p>
                 </div>
                 <div class="col"></div>
                 <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -129,21 +129,21 @@
                                     <thead>
                                         <tr>                                          
                                             <th width="5%" class="text-center">ลำดับ</th>
-                                            <th class="text-center" width="5%">refer_date</th>  
-                                            <th class="text-center">hn</th>
-                                            <th class="text-center" >an</th>
+                                            <th class="text-center" width="5%">hn</th>  
+                                            <th class="text-center">death_date</th>
                                             <th class="text-center" >ptname</th>
-                                            <th class="text-center">sexname</th>
-                                            <th class="text-center">referhos</th>  
-                                            <th class="text-center">pdx</th> 
-                                            <th class="text-center">dx0</th>
-                                            <th class="text-center">dx1</th>  
-                                           <th class="text-center">dx2</th>
-                                            <th class="text-center">dx3</th>
-                                            <th class="text-center">dx4</th>
-                                            <th class="text-center">dx5</th>
-                                            <th class="text-center">datereg</th>
-                                            <th class="text-center">timerefer</th> 
+                                            <th class="text-center" >sexname</th>
+                                            <th class="text-center">age_y</th>
+                                            <th class="text-center">death_diag_1</th>  
+                                            <th class="text-center">death_diag_2</th> 
+                                            <th class="text-center">death_diag_3</th>
+                                            <th class="text-center">death_diag_4</th>  
+                                           <th class="text-center">an</th>
+                                            <th class="text-center">regdate</th>
+                                            <th class="text-center">dchdate</th>
+                                            <th class="text-center">admdate</th>
+                                            <th class="text-center">wardname</th>
+                                            <th class="text-center">doctorname</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,21 +151,21 @@
                                         @foreach ($hos_a as $item) 
                                             <tr>                                                  
                                                 <td class="text-center" width="5%">{{ $i++ }}</td>                                                 
-                                                <td class="text-center" width="7%">{{$item->refer_date}} </td> 
-                                                <td class="text-center" width="5%">{{ $item->hn }}</td> 
+                                                <td class="text-center" width="7%">{{$item->hn}} </td> 
+                                                <td class="text-center" width="5%">{{ $item->death_date }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->ptname }}</td> 
+                                                <td class="text-start" >{{ $item->sexname }}</td>  
+                                                <td class="text-center" width="5%">{{ $item->age_y }}</td> 
+                                                <td class="text-start" >{{ $item->death_diag_1 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->death_diag_2 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->death_diag_3 }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->death_diag_4 }}</td> 
                                                 <td class="text-center" width="5%">{{ $item->an }}</td> 
-                                                <td class="text-start" >{{ $item->ptname }}</td>  
-                                                <td class="text-center" width="5%">{{ $item->sexname }}</td> 
-                                                <td class="text-start" >{{ $item->referhos }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->pdx }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx0 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx1 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx2 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx3 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx4 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->dx5 }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->datereg }}</td> 
-                                                <td class="text-center" width="5%">{{ $item->timerefer }}</td>  
+                                                <td class="text-center" width="5%">{{ $item->regdate }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->dchdate }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->admdate }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->wardname }}</td> 
+                                                <td class="text-center" width="5%">{{ $item->doctorname }}</td>  
                                             </tr>
                                         @endforeach
                                     </tbody>
