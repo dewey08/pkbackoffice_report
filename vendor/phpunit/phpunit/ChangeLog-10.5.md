@@ -2,15 +2,12 @@
 
 All notable changes of the PHPUnit 10.5 release series are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
-<<<<<<< HEAD
-=======
 ## [10.5.8] - 2024-01-19
 
 ### Fixed
 
 * [#5673](https://github.com/sebastianbergmann/phpunit/issues/5673): Confusing error message when migration of a configuration is requested that does not need to be migrated
 
->>>>>>> 15ee3205547e6d8dc7459f73a9e762af514765c1
 ## [10.5.7] - 2024-01-14
 
 ### Fixed
@@ -94,10 +91,7 @@ All notable changes of the PHPUnit 10.5 release series are documented in this fi
 
 * [#5563](https://github.com/sebastianbergmann/phpunit/issues/5563): `createMockForIntersectionOfInterfaces()` does not automatically register mock object for expectation verification
 
-<<<<<<< HEAD
-=======
 [10.5.8]: https://github.com/sebastianbergmann/phpunit/compare/10.5.7...10.5.8
->>>>>>> 15ee3205547e6d8dc7459f73a9e762af514765c1
 [10.5.7]: https://github.com/sebastianbergmann/phpunit/compare/10.5.6...10.5.7
 [10.5.6]: https://github.com/sebastianbergmann/phpunit/compare/10.5.5...10.5.6
 [10.5.5]: https://github.com/sebastianbergmann/phpunit/compare/10.5.4...10.5.5

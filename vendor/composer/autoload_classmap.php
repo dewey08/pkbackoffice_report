@@ -237,6 +237,7 @@ return array(
     'App\\Http\\Controllers\\Report\\SuppliesReportController' => $baseDir . '/app/Http/Controllers/Report/SuppliesReportController.php',
     'App\\Http\\Controllers\\Report\\WarehouseReportController' => $baseDir . '/app/Http/Controllers/Report/WarehouseReportController.php',
     'App\\Http\\Controllers\\ReportguesthouseController' => $baseDir . '/app/Http/Controllers/ReportguesthouseController.php',
+    'App\\Http\\Controllers\\ReportnewshosController' => $baseDir . '/app/Http/Controllers/ReportnewshosController.php',
     'App\\Http\\Controllers\\RongController' => $baseDir . '/app/Http/Controllers/RongController.php',
     'App\\Http\\Controllers\\RpstController' => $baseDir . '/app/Http/Controllers/RpstController.php',
     'App\\Http\\Controllers\\SalaryController' => $baseDir . '/app/Http/Controllers/SalaryController.php',
