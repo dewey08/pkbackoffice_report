@@ -103,7 +103,7 @@ class ReportNewController extends Controller
         $startdate   = $request->startdate;
         $enddate     = $request->enddate;        
         // dd($enddate);
-        $hos_01      = DB::connection('mysql2')->select('
+        $hos_01 = DB::connection('mysql10')->select('
                 SELECT v.refer_date,a.hn,a.an,CONCAT(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,h.name as referhos,
                     a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5,DATEDIFF(v.refer_date,ip.regdate) as datereg,TIMEDIFF(v.refer_time,ip.regtime) as timerefer
                     FROM referout v 
