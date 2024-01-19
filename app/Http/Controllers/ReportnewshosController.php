@@ -102,7 +102,7 @@ class ReportnewshosController extends Controller
     {
         $startdate   = $request->startdate;
         $enddate     = $request->enddate;        
-        // dd($enddate);
+        
         $hos_a = DB::connection('mysql2')->select('
                 SELECT v.refer_date,a.hn,a.an,CONCAT(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,h.name as referhos,
                     a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5,DATEDIFF(v.refer_date,ip.regdate) as datereg,TIMEDIFF(v.refer_time,ip.regtime) as timerefer
@@ -131,7 +131,37 @@ class ReportnewshosController extends Controller
         ]);
     }
     
-    
+    public function report_hos_02(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,
+                d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,d.an,a.regdate,a.dchdate,a.admdate,w.name as wardname,CONCAT(t.pname,t.fname," ",t.lname) as doctorname
+                 from death d  
+                 left outer join patient p on p.hn=d.hn 
+                 left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4)
+                 left outer join icd101 i1 on i1.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                 left outer join doctor t on t.code=d.death_cert_doctor 
+                 LEFT OUTER JOIN an_stat a on a.an=d.an
+                 LEFT OUTER JOIN ward w on w.ward=a.ward
+                 left outer join sex s on s.code=p.sex 
+                 where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                 and (SELECT i.code BETWEEN "J120" and "J189" or i.code in ("J690"))
+                 and i1.code in ("U071","U072")
+                 and d.death_place="1" 
+                 and a.age_y >= "15"
+                 group by d.hn 
+                 order by d.death_date  
+        ');
+ 
+        return view('report_all.report_hos_02',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'        =>     $hos_a,             
+        ]);
+    }
     
  
 }
