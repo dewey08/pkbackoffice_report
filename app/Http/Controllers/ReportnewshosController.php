@@ -163,5 +163,561 @@ class ReportnewshosController extends Controller
         ]);
     }
     
+    public function report_hos_03(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,d.death_diag_1
+                ,d.death_diag_2,d.death_diag_3,d.death_diag_4,t.name,a.regdate,a.dchdate,a.admdate
+                ,w1.name as firstward,w.name as wardname
+                 from death d  
+                 left outer join patient p on p.hn=d.hn 
+                 left outer join an_stat a on a.an=d.an
+                 left outer join ipt ip on ip.an=d.an  
+                 left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                 left outer join doctor t on t.code=d.death_cert_doctor
+                 left outer join ward w on w.ward=a.ward
+                 left outer join ward w1 on w1.ward=ip.first_ward 
+                 left outer join sex s on s.code=p.sex
+                 where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                 and d.an<>"" and d.death_place="1" 
+                 and (w.name<>w1.name)
+                 group by d.hn 
+                 order by d.death_date  
+        ');
+ 
+        return view('report_all.report_hos_03',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_04(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,
+                d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,d.an,a.regdate,a.dchdate,a.admdate,w.name as wardname,CONCAT(t.pname,t.fname," ",t.lname) as doctorname
+                from death d  
+                left outer join patient p on p.hn=d.hn 
+                left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                left outer join doctor t on t.code=d.death_cert_doctor 
+                LEFT OUTER JOIN an_stat a on a.an=d.an
+                LEFT OUTER JOIN ward w on w.ward=a.ward
+                left outer join sex s on s.code=p.sex 
+                where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                AND (SELECT i.code BETWEEN "M7260" AND "M7269" OR i.code3 in ("L03")
+                OR i.code in ("E105","E115","E125","E135","E145") )
+                and d.death_place="1" 
+                group by d.hn 
+                order by d.death_date   
+        ');
+ 
+        return view('report_all.report_hos_04',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_05(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT pt.hn,d.an,concat(pt.pname,pt.fname,"  ",pt.lname) as ptname,s.name as sexname,YEAR(d.death_date)-YEAR(pt.birthday) as age ,d.death_date,d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,d.death_diag_other,dr.name as doctorname
+                from death d    
+                left outer join patient pt on pt.hn = d.hn  
+                left outer join doctor dr on dr.code=d.death_cert_doctor 
+                left outer join sex s on s.code=pt.sex
+                where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                AND d.death_place="1" 
+                and d.an=""  
+                group by d.hn
+                order by d.death_date   
+        ');
+ 
+        return view('report_all.report_hos_05',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_06(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,t.name,a.regdate,dchdate,a.admdate,w.name as wardname
+                from death d  
+                left outer join patient p on p.hn=d.hn 
+                left outer join an_stat a on a.an=d.an 
+                left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                left outer join doctor t on t.code=d.death_cert_doctor
+                left outer join ward w on w.ward=a.ward 
+                left outer join sex s on s.code=p.sex
+                where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                and d.an<>"" and d.death_place="1" 
+                group by d.hn 
+                order by d.death_date   
+        ');
+ 
+        return view('report_all.report_hos_06',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_07(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND (SELECT i.code BETWEEN "O800" and "O849")
+                group by a.an  
+        ');
+ 
+        return view('report_all.report_hos_07',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_08(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                left outer join sex s on s.code=p.sex 
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND i1.code = "O364"
+                AND i.code in ("O244")
+                group by a.an 
+                ORDER BY a.regdate  
+        ');
+ 
+        return view('report_all.report_hos_08',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_09(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                left outer join sex s on s.code=p.sex 
+                where a.dchdate between  "'. $startdate.'" AND "'. $enddate.'"
+                AND i1.code = "O364"
+                group by a.an 
+                ORDER BY a.regdate  
+        ');
+ 
+        return view('report_all.report_hos_09',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_10(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND (SELECT i.code = "O244")
+                group by a.an  
+        ');
+ 
+        return view('report_all.report_hos_10',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_11(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                left outer join icd101 i1 on i1.code in (a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                where a.dchdate between ""'. $startdate.'" AND "'. $enddate.'"
+                AND (SELECT i.code BETWEEN "J120" and "J189" or i.code in ("J690"))
+                and i1.code in ("U071","U072")
+                AND a.age_y >= "15"
+                group by a.an   
+        ');
+ 
+        return view('report_all.report_hos_11',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_12(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                 from an_stat a 
+                 left outer join ipt t on t.an=a.an 
+                 left outer join dchstts d on d.dchstts=t.dchstts 
+                 left outer join patient p on p.hn=a.hn
+                 left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                 left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                 where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                 AND (SELECT i1.code BETWEEN "U071" and "U072")
+                 AND i.code in ("9604","9670","9671","9672")
+                 AND a.age_y >= "15"
+                 group by a.an    
+        ');
+ 
+        return view('report_all.report_hos_12',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_13(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                left outer join sex s on s.code=p.sex 
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND i1.code BETWEEN "P210" AND "P210"
+                group by a.an 
+                ORDER BY a.regdate    
+        ');
+ 
+        return view('report_all.report_hos_13',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_14(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,b.an as lastan,b.dchdate as lastdate,a.regdate,a.age_y,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.lastvisit,a.admdate 
+                from an_stat a 
+                left outer join an_stat b on a.hn=b.hn and a.pdx=b.pdx and a.an>b.an 
+                left outer join ipt i on i.an=b.an 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)  
+                LEFT OUTER JOIN sex s on s.code=p.sex
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                and i1.code BETWEEN "J440" AND "J449"
+                and a.lastvisit <= 30
+                and ((to_days(a.regdate))-(to_days(b.dchdate)))<=30
+                and i.dchstts = 02 
+                group by a.hn
+        ');
+ 
+        return view('report_all.report_hos_14',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_15(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND (SELECT i1.code BETWEEN "O720" and "O723")
+                AND (SELECT i1.code in ("R571") or i1.code in ("R578"))
+                group by a.an 
+        ');
+ 
+        return view('report_all.report_hos_15',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_16(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                 from an_stat a 
+                 left outer join ipt t on t.an=a.an 
+                 left outer join dchstts d on d.dchstts=t.dchstts 
+                 left outer join patient p on p.hn=a.hn
+                 left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                 left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                 where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                 AND (SELECT i1.code BETWEEN "J120" and "J189" or i1.code in ("J690"))
+                 AND i.code in ("9604","9670","9671","9672")
+                 AND a.age_y >= "15"
+                 group by a.an  
+        ');
+ 
+        return view('report_all.report_hos_16',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_17(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT  a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                 from an_stat a 
+                 left outer join ipt t on t.an=a.an 
+                 left outer join dchstts d on d.dchstts=t.dchstts 
+                 left outer join patient p on p.hn=a.hn
+                 left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                 left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                 where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                 AND (SELECT i1.code BETWEEN "J120" and "J189" or i1.code in ("J690"))
+                 AND i.code in ("9604","9670","9671","9672")
+                 AND a.age_y < "15"
+                 group by a.an  
+        ');
+ 
+        return view('report_all.report_hos_17',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_18(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                from an_stat a 
+                left outer join ipt t on t.an=a.an 
+                left outer join dchstts d on d.dchstts=t.dchstts 
+                left outer join patient p on p.hn=a.hn
+                left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                AND (SELECT i1.code BETWEEN "O720" and "O723")
+                group by a.an
+        ');
+ 
+        return view('report_all.report_hos_18',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_19(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT COUNT(ipt.an) as totIPDAN
+                FROM ipt
+                WHERE ipt.dchdate BETWEEN "'. $startdate.'" AND "'. $enddate.'" 
+        ');
+ 
+        return view('report_all.report_hos_19',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_20(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT op.hn,op.vstdate,concat(p.pname,p.fname," ",p.lname) as ptname,year(op.vstdate)-year(p.birthday) as age
+                ,n.name as ctname,op.sum_price,d.name as doctor,op.icode
+                 from opitemrece op 
+                 left outer join patient p on p.hn=op.hn 
+                 left outer join doctor d on d.code=op.doctor 
+                 left outer join nondrugitems n on n.icode=op.icode 
+                 where op.vstdate between "'. $startdate.'" AND "'. $enddate.'" 
+                 and op.qty > "0" 
+                 and op.sum_price <> "0" 
+                 and op.icode between "3009139" and "3009198" 
+                 and op.icode not in ("3009152","3009153","3009154") 
+                 group by op.vn,op.hn,op.an 
+                 order by op.vstdate 
+        ');
+ 
+        return view('report_all.report_hos_20',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_21(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT v.vn,v.hn,v.vstdate,concat(p.pname,p.fname," ",p.lname) as ptname,v.age_y,lo.lab_order_result
+                from vn_stat v 
+                left outer join patient p on p.hn=v.hn 
+                left outer join lab_head lh on lh.vn=v.vn
+                left outer join lab_order lo on lo.lab_order_number=lh.lab_order_number
+                LEFT OUTER JOIN icd101 i on i.code in (v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5)
+                LEFT OUTER JOIN icd9cm1 ii on ii.code in (v.op0,v.op1,v.op2,v.op3,v.op4,v.op5)
+                where v.vstdate between "'. $startdate.'" AND "'. $enddate.'" 
+                AND i.code = "N185"
+                AND ii.code in ("3995","5498")
+                and lo.lab_items_code = "1277" 
+                and lo.lab_order_result < 6
+                group by v.hn 
+                order by v.vstdate
+        ');
+ 
+        return view('report_all.report_hos_21',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_22(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT v.vn,v.hn,v.vstdate,concat(p.pname,p.fname," ",p.lname) as ptname,v.age_y,lo.lab_order_result
+                from vn_stat v 
+                left outer join patient p on p.hn=v.hn 
+                left outer join lab_head lh on lh.vn=v.vn
+                left outer join lab_order lo on lo.lab_order_number=lh.lab_order_number
+                LEFT OUTER JOIN icd101 i on i.code in (v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5)
+                where v.vstdate between "'. $startdate.'" AND "'. $enddate.'"
+                AND i.code = "N185"
+                and lo.lab_items_code = "1277" 
+                and lo.lab_order_result < 6
+                group by v.hn 
+                order by v.vstdate
+        ');
+ 
+        return view('report_all.report_hos_22',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
+
+    public function report_hos_23(Request $request)
+    {
+        $startdate   = $request->startdate;
+        $enddate     = $request->enddate;        
+        
+        $hos_a = DB::connection('mysql2')->select('
+                SELECT v.an,v.hn,v.dchdate,v.age_y,concat(pt.pname,pt.fname,"  ",pt.lname) as fullname,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5,d.name as doctorname,w.name as wardname
+                from an_stat v 
+                left outer join patient pt on pt.hn=v.hn 
+                left outer join doctor d on d.code=v.dx_doctor 
+                left outer join icd101 i on i.code in (pdx,dx0,dx1,dx2,dx3,dx4,dx5) 
+                LEFT OUTER JOIN ward w on w.ward=v.ward 
+                where v.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                and i.code between "I460" and "I469" 
+                group by v.an 
+                order by v.dchdate
+        ');
+ 
+        return view('report_all.report_hos_23',[
+            'startdate'     =>     $startdate,
+            'enddate'       =>     $enddate,
+            'hos_a'         =>     $hos_a,             
+        ]);
+    }
  
 }
