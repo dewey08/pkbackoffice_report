@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0
+class ComposerStaticInit11cd2da85b30c6516c817e263ff2665b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -237,11 +237,11 @@ class ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
         ),
         'Whoops\\' => 
         array (
@@ -425,8 +425,8 @@ class ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -937,6 +937,7 @@ class ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0
         'App\\Http\\Controllers\\Report\\SuppliesReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Report/SuppliesReportController.php',
         'App\\Http\\Controllers\\Report\\WarehouseReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Report/WarehouseReportController.php',
         'App\\Http\\Controllers\\ReportguesthouseController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportguesthouseController.php',
+        'App\\Http\\Controllers\\ReportnewshosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportnewshosController.php',
         'App\\Http\\Controllers\\RongController' => __DIR__ . '/../..' . '/app/Http/Controllers/RongController.php',
         'App\\Http\\Controllers\\RpstController' => __DIR__ . '/../..' . '/app/Http/Controllers/RpstController.php',
         'App\\Http\\Controllers\\SalaryController' => __DIR__ . '/../..' . '/app/Http/Controllers/SalaryController.php',
@@ -9692,10 +9693,10 @@ class ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0033bc2c62e76c1049f468db4acbe1a0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit11cd2da85b30c6516c817e263ff2665b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit11cd2da85b30c6516c817e263ff2665b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit11cd2da85b30c6516c817e263ff2665b::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit11cd2da85b30c6516c817e263ff2665b::$classMap;
 
         }, null, ClassLoader::class);
     }
