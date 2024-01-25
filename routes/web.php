@@ -2891,9 +2891,12 @@ Route::match(['get','post'],'env_vendor_edit/{id}',[App\Http\Controllers\EnvCont
 Route::match(['get','post'],'env_vendor_update',[App\Http\Controllers\EnvController::class, 'env_env_vendor_update'])->name('env.env_vendor_update');//อัพเดท
 Route::match(['get','post'],'env_vendor_destroy/{id}',[App\Http\Controllers\EnvController::class, 'env_env_vendor_destroy'])->name('env.env_vendor_destroy');//ลบข้อมูล
 
+ 
 // ************** Report ****************************
 Route::match(['get','post'],'report_db',[App\Http\Controllers\ReportNewController::class, 'report_db'])->name('re.report_db');
 Route::match(['get','post'],'report_hos',[App\Http\Controllers\ReportNewController::class, 'report_hos'])->name('re.report_hos');
+Route::match(['get','post'],'report_hos_new/{id}',[App\Http\Controllers\ReportNewController::class, 'report_hos_new'])->name('re.report_hos_new');
+
 Route::match(['get','post'],'report_hos_01',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_01'])->name('re.report_hos_01');
 Route::match(['get','post'],'report_hos_02',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_02'])->name('re.report_hos_02');
 Route::match(['get','post'],'report_hos_03',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_03'])->name('re.report_hos_03');
@@ -2917,5 +2920,17 @@ Route::match(['get','post'],'report_hos_20',[App\Http\Controllers\ReportnewshosC
 Route::match(['get','post'],'report_hos_21',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_21'])->name('re.report_hos_21');
 Route::match(['get','post'],'report_hos_22',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_22'])->name('re.report_hos_22');
 Route::match(['get','post'],'report_hos_23',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_23'])->name('re.report_hos_23');
+Route::match(['get','post'],'report_hos_24',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_24'])->name('re.report_hos_24');
+Route::match(['get','post'],'report_hos_25',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_25'])->name('re.report_hos_25');
+Route::match(['get','post'],'report_hos_26',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_26'])->name('re.report_hos_26');
+Route::match(['get','post'],'report_hos_27',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_27'])->name('re.report_hos_27');
+Route::match(['get','post'],'report_hos_28',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_28'])->name('re.report_hos_28');
+Route::match(['get','post'],'report_hos_29',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_29'])->name('re.report_hos_29');
+Route::match(['get','post'],'report_hos_30',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_30'])->name('re.report_hos_30');
+Route::match(['get','post'],'report_hos_31',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_31'])->name('re.report_hos_31');
+Route::match(['get','post'],'report_hos_32',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_32'])->name('re.report_hos_32');
+Route::match(['get','post'],'report_hos_33',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_33'])->name('re.report_hos_33');
+Route::match(['get','post'],'report_hos_34',[App\Http\Controllers\ReportnewshosController::class, 'report_hos_34'])->name('re.report_hos_34');
+
 
 });

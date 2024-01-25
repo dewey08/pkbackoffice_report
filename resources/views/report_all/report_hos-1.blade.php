@@ -112,7 +112,7 @@
                                                     <div class="table-responsive">
                                                         <table id="example" class="table table-striped table-bordered "
                                                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                            {{-- <p class="card-title-desc">1. <a href="{{ url('report_hos_01') }}">(refer) จำนวนผู้ป่วย unplan referout ipd</p></a>
+                                                            <p class="card-title-desc">1. <a href="{{ url('report_hos_01') }}">(refer) จำนวนผู้ป่วย unplan referout ipd</p></a>
                                                             <p class="card-title-desc">2. <a href="{{ url('report_hos_02') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย covid IPD >=15ปี</p></a>
                                                             <p class="card-title-desc">3. <a href="{{ url('report_hos_03') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p></a>
                                                             <p class="card-title-desc">4. <a href="{{ url('report_hos_04') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย soft skin and soft tissue infection</p></a>
@@ -145,31 +145,30 @@
                                                             <p class="card-title-desc">31. <a href="{{ url('report_hos_31') }}">จำนวนผู้ป่วย ผ่าตัด upper abdominal</p></a>
                                                             <p class="card-title-desc">32. <a href="{{ url('report_hos_32') }}">จำนวนผู้ป่วยที่มารับบริการใน IPD ทั้งหมด (HN)</p></a>
                                                             <p class="card-title-desc">33. <a href="{{ url('report_hos_33') }}">จำนวนผู้ป่วยที่มีศักยภาพดูแลได้ IPD</p></a>
-                                                            <p class="card-title-desc">34. <a href="{{ url('report_hos_34') }}">ประชากรในอำเภอภูเขียว มีค่า BMI > 25</p></a> --}}
-                                                            <thead>
+                                                            <p class="card-title-desc">34. <a href="{{ url('report_hos_34') }}">ประชากรในอำเภอภูเขียว มีค่า BMI > 25</p></a>
+                                                            {{-- <thead>
                                                                 <tr>
                                                                     <th class="text-center">ลำดับ</th> 
-                                                                    <th class="text-center">ชื่อรายงาน</th> 
-                                                                    <th class="text-center">active</th> 
+                                                                    <th class="text-center">STMDoc</th> 
+                                                                    <th class="text-center">total</th> 
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <?php 
-                                                                    $number = 0;
-                                                                    $total1 = 0; ?>
-                                                                @foreach ($report_hos as $item)
+                                                                <?php $number = 0;
+                                                                $total1 = 0; ?>
+                                                                @foreach ($ucs_ti as $item)
                                                                     <?php $number++; ?>
                                 
                                                                     <tr height="20">
                                                                         <td class="text-font" style="text-align: center;" width="4%" style="color:rgb(248, 12, 12)">{{ $number }}</td>
                                                                         <td class="text-start" style="color:rgb(34, 90, 243);font-size:15px">  
-                                                                            <a href="{{url('report_hos_new/'.$item->report_hos_id)}}" target="_blank"> {{ $item->report_hos_name }}</a>  
+                                                                            <a href="{{url('upstm_ucs_ti_detail/'.$item->STMDoc)}}" target="_blank"> {{ $item->STMDoc }}</a>  
                                                                         </td>  
-                                                                        <td class="text-end" style="color:rgb(10, 151, 85);font-size:15px" width="10%">{{ $item->active}}</td>
+                                                                        <td class="text-end" style="color:rgb(10, 151, 85);font-size:15px" width="30%">{{ number_format($item->total, 2) }}</td>
                                                                     </tr>
                                                                 @endforeach
                                 
-                                                            </tbody> 
+                                                            </tbody>  --}}
                                                         </table>
                                                     </div>
                                                 </div> 

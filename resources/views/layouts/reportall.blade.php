@@ -312,8 +312,17 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                                 </li>
                                  
                             </ul>
+
+                            
                         </li>
-  
+
+                        {{-- <ul class="sub-menu" aria-expanded="true"> 
+                            <li><a href="javascript: void(0);" class="has-arrow">ตั้งค่า</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li><a href="{{ url('report_setting') }}">ตั้งค่ารายงาน</a> </li>
+                                </ul>
+                            </li>                             
+                        </ul>  --}}
 
                     </ul>
                 </div>
