@@ -127,14 +127,14 @@
                                                             <th width="5%" class="text-center">ลำดับ</th>
                                                             <th class="text-center" width="5%">refer_date</th>  
                                                             <th class="text-center">hn</th>
-                                                            <th class="text-center" >an</th>
-                                                            <th class="text-center" >ptname</th>
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ptname</th>
                                                             <th class="text-center">sexname</th>
                                                             <th class="text-center">referhos</th>  
                                                             <th class="text-center">pdx</th> 
                                                             <th class="text-center">dx0</th>
                                                             <th class="text-center">dx1</th>  
-                                                        <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx2</th>
                                                             <th class="text-center">dx3</th>
                                                             <th class="text-center">dx4</th>
                                                             <th class="text-center">dx5</th>
@@ -150,9 +150,9 @@
                                                                 <td class="text-center" width="7%">{{$item->refer_date}} </td> 
                                                                 <td class="text-center" width="5%">{{ $item->hn }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item->an }}</td> 
-                                                                <td class="text-start" >{{ $item->ptname }}</td>  
+                                                                <td class="text-start"  width="5%">{{ $item->ptname }}</td>  
                                                                 <td class="text-center" width="5%">{{ $item->sexname }}</td> 
-                                                                <td class="text-start" >{{ $item->referhos }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item->referhos }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item->pdx }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item->dx0 }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item->dx1 }}</td> 
@@ -170,6 +170,7 @@
                                         </div> 
                                     </div>
                                 </div>
+                                
                         @elseif ($id == 2)
                                 <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
                                     @csrf 
@@ -205,14 +206,14 @@
                                                             <th width="5%" class="text-center">ลำดับ</th>
                                                             <th class="text-center" width="5%">hn</th>  
                                                             <th class="text-center">death_date</th>
-                                                            <th class="text-center" >ptname</th>
-                                                            <th class="text-center" >sexname</th>
+                                                            <th class="text-center">ptname</th>
+                                                            <th class="text-center">sexname</th>
                                                             <th class="text-center">age_y</th>
                                                             <th class="text-center">death_diag_1</th>  
                                                             <th class="text-center">death_diag_2</th> 
                                                             <th class="text-center">death_diag_3</th>
                                                             <th class="text-center">death_diag_4</th>  
-                                                        <th class="text-center">an</th>
+                                                            <th class="text-center">an</th>
                                                             <th class="text-center">regdate</th>
                                                             <th class="text-center">dchdate</th>
                                                             <th class="text-center">admdate</th>
@@ -228,9 +229,9 @@
                                                                 <td class="text-center" width="7%">{{$item2->hn}} </td> 
                                                                 <td class="text-center" width="5%">{{ $item2->death_date }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item2->ptname }}</td> 
-                                                                <td class="text-start" >{{ $item2->sexname }}</td>  
+                                                                <td class="text-start"  width="5%">{{ $item2->sexname }}</td>  
                                                                 <td class="text-center" width="5%">{{ $item2->age_y }}</td> 
-                                                                <td class="text-start" >{{ $item2->death_diag_1 }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item2->death_diag_1 }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item2->death_diag_2 }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item2->death_diag_3 }}</td> 
                                                                 <td class="text-center" width="5%">{{ $item2->death_diag_4 }}</td> 
@@ -248,6 +249,7 @@
                                         </div> 
                                     </div>
                                 </div>
+
                         @elseif ($id == 3)
                                 <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
                                     @csrf 
@@ -277,19 +279,60 @@
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">death_date</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx2</th> 
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>                                            
+                                                            <th class="text-center">แพทย์</th>
+                                                            <th class="text-center">regdate</th>
+                                                            <th class="text-center">dchdate</th>
+                                                            <th class="text-center">admdate</th>
+                                                            <th class="text-center">firstward</th>
+                                                            <th class="text-center">wardname</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item3) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item3->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item3->death_date }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item3->ptname }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item3->sexname }}</td>                                                
+                                                                <td class="text-center" width="3%">{{ $item3->death_diag_1 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item3->death_diag_2 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item3->death_diag_3 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item3->death_diag_4 }}</td> 
+                                                                <td class="text-start"  width="4%">{{ $item3->name }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item3->regdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item3->dchdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item3->admdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item3->firstward }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item3->wardname }}</td>  
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
+                                
                         @elseif ($id == 4)
                                 <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p>
+                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย soft skin and soft tissue infection</p>
                                         </div>
                                         <div class="col"></div>
                                         <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -311,8 +354,48 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">death_date</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx2</th> 
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>                                            
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">regdate</th>
+                                                            <th class="text-center">dchdate</th>
+                                                            <th class="text-center">admdate</th>
+                                                            <th class="text-center">wardname</th>
+                                                            <th class="text-center">doctorname</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item4) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{$item4->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item4->death_date }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item4->ptname }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item4->sexname }}</td>                                                
+                                                                <td class="text-center" width="3%">{{ $item4->death_diag_1 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item4->death_diag_2 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item4->death_diag_3 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item4->death_diag_4 }}</td> 
+                                                                <td class="text-start"  width="4%">{{ $item4->an }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item4->regdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item4->dchdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item4->admdate }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item4->wardname }}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item4->doctorname }}</td>  
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
@@ -324,7 +407,7 @@
                                     <div class="row"> 
                                         <div class="col-md-3">
                                             <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p>
+                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ.ER</p>
                                         </div>
                                         <div class="col"></div>
                                         <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -346,8 +429,42 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="3%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">age</th>
+                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx2</th> 
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx_other</th>
+                                                            <th class="text-center">doctorname</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item5) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="3%">{{$item5->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item5->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item5->ptname }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item5->sexname }}</td>
+                                                                <td class="text-center"  width="4%">{{ $item5->age }}</td>                                                
+                                                                <td class="text-center" width="3%">{{ $item5->death_diag_1 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item5->death_diag_2 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item5->death_diag_3 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item5->death_diag_4 }}</td>
+                                                                <td class="text-center" width="5%">{{ $item5->death_diag_other }}</td>
+                                                                <td class="text-start"  width="5%">{{ $item5->doctorname }}</td>  
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
@@ -359,7 +476,7 @@
                                     <div class="row"> 
                                         <div class="col-md-3">
                                             <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p>
+                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ.IPD</p>
                                         </div>
                                         <div class="col"></div>
                                         <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -381,21 +498,129 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">death_date</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx2</th> 
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">name</th>
+                                                            <th class="text-center">regdate</th>
+                                                            <th class="text-center">dchdate</th>
+                                                            <th class="text-center">admdate</th>
+                                                            <th class="text-center">wardname</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item6) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item6->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item6->death_date}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item6->ptname }}</td> 
+                                                                <td class="text-center" width="5%">{{ $item6->sexname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item6->death_diag_1 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item6->death_diag_2 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item6->death_diag_3 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item6->death_diag_4 }}</td>
+                                                                <td class="text-start"  width="4%">{{ $item6->name}}</td> 
+                                                                <td class="text-center" width="5%">{{ $item6->regdate }}</td>
+                                                                <td class="text-start"  width="5%">{{ $item6->dchdate }}</td>
+                                                                <td class="text-center" width="5%">{{ $item6->admdate }}</td>
+                                                                <td class="text-start"  width="5%">{{ $item6->wardname }}</td>  
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>   
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 7)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">	Delivery (O800-O849) AN</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">age_y</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item7) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="3%">{{$item7->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item7->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item7->ptname }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item7->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item7->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item7->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item7->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item7->dx2}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item7->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item7->dx4}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item7->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item7->name}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
                         @elseif ($id == 8)
                                 <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
                                             <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p>
+                                            <p class="card-title-desc">จำนวน DFIU (O364) with GDM (O244) IPD</p>
                                         </div>
                                         <div class="col"></div>
                                         <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -417,21 +642,58 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">sexname</th>
+                                                            <th class="text-center">age_y</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">dctype</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item8) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item8->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item8->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item8->ptname }}</td>
+                                                                <td class="text-center" width="5%">{{ $item8->sexname}}</td>
+                                                                <td class="text-center" width="5%">{{ $item8->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item8->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item8->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item8->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item8->dx2}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item8->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item8->dx4}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item8->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item8->dctype}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>  
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 9)
-                        @elseif ($id == 10)
                                 <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
                                             <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
-                                            <p class="card-title-desc">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p>
+                                            <p class="card-title-desc">จำนวน DFIU (O364) IPD</p>
                                         </div>
                                         <div class="col"></div>
                                         <div class="col-md-1 text-end mt-2">วันที่</div>
@@ -453,17 +715,1120 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">dctype</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item9) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item9->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item9->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item9->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item9->sexname}}</td>
+                                                                <td class="text-center" width="3%">{{ $item9->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item9->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item9->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item9->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item9->dx2}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item9->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item9->dx4}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item9->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item9->dctype}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>  
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 10)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน GDM IPD ทั้งหมด : GDM (O244) IPD AN</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item10) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item10->hn}} </td> 
+                                                                <td class="text-center" width="3%">{{ $item10->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item10->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item10->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item10->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item10->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item10->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item10->dx2}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item10->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item10->dx4}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item10->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item10->name}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 11)
-
-                        @else
-                            
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Pneumonia with covid IPD >=15ปี</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item11) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="3%">{{ $item11->hn}} </td> 
+                                                                <td class="text-center" width="3%">{{ $item11->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item11->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item11->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item11->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item11->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item11->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item11->dx2}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item11->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item11->dx4}}</td>
+                                                                <td class="text-start"  width="3%">{{ $item11->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item11->name}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 12)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Respiratory failure with covid IPD >=15ปี</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">name</th>
+                                                            <th class="text-center">op0</th> 
+                                                            <th class="text-center">op1</th>
+                                                            <th class="text-center">op2</th>
+                                                            <th class="text-center">op3</th>
+                                                            <th class="text-center">op4</th>
+                                                            <th class="text-center">op5</th>
+                                                            <th class="text-center">op6</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item12) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="3%">{{ $item12->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item12->an}}</td> 
+                                                                <td class="text-start"  width="4%">{{ $item12->ptname }}</td>
+                                                                <td class="text-center" width="2%">{{ $item12->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->dx2}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->dx4}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->dx5}}</td>
+                                                                <td class="text-center" width="4%">{{ $item12->name}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->op0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->op1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->op2}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->op3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item12->op4}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->op5}}</td>
+                                                                <td class="text-center" width="3%">{{ $item12->op6}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 13)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="3%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th>
+                                                            <th class="text-center">เพศ</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">pdx</th>  
+                                                            <th class="text-center">dx0</th> 
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item13) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="3%">{{ $item13->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item13->an}}</td> 
+                                                                <td class="text-start"  width="5%">{{ $item13->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item13->sexname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item13->age_y}}</td>
+                                                                <td class="text-center" width="3%">{{ $item13->pdx}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item13->dx0}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item13->dx1}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item13->dx2}}</td>
+                                                                <td class="text-center" width="3%">{{ $item13->dx3}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item13->dx4}}</td>
+                                                                <td class="text-center" width="3%">{{ $item13->dx5}}</td>
+                                                                <td class="text-center" width="5%">{{ $item13->dctype}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 14)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวนการ readmit ในผู้ป่วย COPD ใน 1 เดือน</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="5%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center" width="5%">hn</th>  
+                                                            <th class="text-center">an</th>
+                                                            <th class="text-center">lastan</th>
+                                                            <th class="text-center">lastdate</th>
+                                                            <th class="text-center">regdate</th>
+                                                            <th class="text-center">age_y</th>  
+                                                            <th class="text-center">ptname</th> 
+                                                            <th class="text-center">sexname</th>
+                                                            <th class="text-center">lastvisit</th>
+                                                            <th class="text-center">admdate</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item14) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
+                                                                <td class="text-center" width="5%">{{ $item14->hn}} </td> 
+                                                                <td class="text-center" width="2%">{{ $item14->an}}</td> 
+                                                                <td class="text-center" width="5%">{{ $item14->lastan }}</td>
+                                                                <td class="text-center" width="5%">{{ $item14->lastdate }}</td>
+                                                                <td class="text-center" width="5%">{{ $item14->regdate}}</td>
+                                                                <td class="text-center" width="3%">{{ $item14->age_y}}</td> 
+                                                                <td class="text-start"  width="3%">{{ $item14->ptname}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item14->sexname}}</td> 
+                                                                <td class="text-center" width="3%">{{ $item14->lastvisit}}</td>
+                                                                <td class="text-center" width="4%">{{ $item14->admdate}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 15)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 16)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 17)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 18)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 19)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 20)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 21)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 22)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 23)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 24)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 25)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 26)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 27)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 28)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 29)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 30)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 31)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 32)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 33)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 34)
+                                <form action="{{ url('report_hos_new/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน โรงพยาบาล</h5>
+                                            <p class="card-title-desc">จำนวน Severe Birth asphyxia</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @else 
+                            ("กรุณาเลือกรายงาน")
                         @endif                
                              
                     

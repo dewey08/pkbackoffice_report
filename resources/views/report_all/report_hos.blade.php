@@ -110,8 +110,7 @@
                                                 <div class="card p-4 cardreport">
                                                     <h4 class="card-title" style="color:rgb(10, 151, 85)">ตัวชี้วัดสำคัญใน โรงพยาบาล</h4>
                                                     <div class="table-responsive">
-                                                        <table id="example" class="table table-striped table-bordered "
-                                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                        <table id="example" class="table table-striped table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                             {{-- <p class="card-title-desc">1. <a href="{{ url('report_hos_01') }}">(refer) จำนวนผู้ป่วย unplan referout ipd</p></a>
                                                             <p class="card-title-desc">2. <a href="{{ url('report_hos_02') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย covid IPD >=15ปี</p></a>
                                                             <p class="card-title-desc">3. <a href="{{ url('report_hos_03') }}">(Died) จำนวนผู้ป่วยที่เสียชีวิตใน รพ ด้วย IPD unexpected dead</p></a>

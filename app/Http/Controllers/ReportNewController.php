@@ -174,7 +174,264 @@ class ReportNewController extends Controller
                     group by d.hn 
                     order by d.death_date  
             ');
-        } else {
+        
+        }elseif($id == '3'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,d.death_diag_1
+                    ,d.death_diag_2,d.death_diag_3,d.death_diag_4,t.name,a.regdate,a.dchdate,a.admdate
+                    ,w1.name as firstward,w.name as wardname
+                    from death d  
+                    left outer join patient p on p.hn=d.hn 
+                    left outer join an_stat a on a.an=d.an
+                    left outer join ipt ip on ip.an=d.an  
+                    left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                    left outer join doctor t on t.code=d.death_cert_doctor
+                    left outer join ward w on w.ward=a.ward
+                    left outer join ward w1 on w1.ward=ip.first_ward 
+                    left outer join sex s on s.code=p.sex
+                    where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                    and d.an<>"" and d.death_place="1" 
+                    and (w.name<>w1.name)
+                    group by d.hn 
+                    order by d.death_date  
+            ');
+        
+        }elseif($id == '4'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,
+                    d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,d.an,a.regdate,a.dchdate,a.admdate,w.name as wardname,CONCAT(t.pname,t.fname," ",t.lname) as doctorname
+                    from death d  
+                    left outer join patient p on p.hn=d.hn 
+                    left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                    left outer join doctor t on t.code=d.death_cert_doctor 
+                    LEFT OUTER JOIN an_stat a on a.an=d.an
+                    LEFT OUTER JOIN ward w on w.ward=a.ward
+                    left outer join sex s on s.code=p.sex 
+                    where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i.code BETWEEN "M7260" AND "M7269" OR i.code3 in ("L03")
+                    OR i.code in ("E105","E115","E125","E135","E145") )
+                    and d.death_place="1" 
+                    group by d.hn 
+                    order by d.death_date  
+            ');
+
+        }elseif($id == '5'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT pt.hn,d.an,concat(pt.pname,pt.fname,"  ",pt.lname) as ptname,s.name as sexname,YEAR(d.death_date)-YEAR(pt.birthday) as age ,d.death_date,d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,d.death_diag_other,dr.name as doctorname
+                    from death d    
+                    left outer join patient pt on pt.hn = d.hn  
+                    left outer join doctor dr on dr.code=d.death_cert_doctor 
+                    left outer join sex s on s.code=pt.sex
+                    where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                    AND d.death_place="1" 
+                    and d.an=""  
+                    group by d.hn
+                    order by d.death_date  
+            ');
+
+        }elseif($id == '6'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4,t.name,a.regdate,dchdate,a.admdate,w.name as wardname
+                    from death d  
+                    left outer join patient p on p.hn=d.hn 
+                    left outer join an_stat a on a.an=d.an 
+                    left outer join icd101 i on i.code in (d.death_diag_1,d.death_diag_2,d.death_diag_3,d.death_diag_4) 
+                    left outer join doctor t on t.code=d.death_cert_doctor
+                    left outer join ward w on w.ward=a.ward 
+                    left outer join sex s on s.code=p.sex
+                    where d.death_date between "'. $startdate.'" AND "'. $enddate.'"
+                    and d.an<>"" and d.death_place="1" 
+                    group by d.hn 
+                    order by d.death_date  
+            ');
+
+        }elseif($id == '7'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i.code BETWEEN "O800" and "O849")
+                    group by a.an
+            ');
+
+        }elseif($id == '8'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join sex s on s.code=p.sex 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND i1.code = "O364"
+                    AND i.code in ("O244")
+                    group by a.an 
+                    ORDER BY a.regdate
+            ');
+
+        }elseif($id == '9'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join sex s on s.code=p.sex 
+                    where a.dchdate between  "'. $startdate.'" AND "'. $enddate.'"
+                    AND i1.code = "O364"
+                    group by a.an 
+                    ORDER BY a.regdate 
+            ');
+
+        }elseif($id == '10'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i.code = "O244")
+                    group by a.an 
+            ');
+
+        }elseif($id == '11'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                    left outer join icd101 i1 on i1.code in (a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i.code BETWEEN "J120" and "J189" or i.code in ("J690"))
+                    and i1.code in ("U071","U072")
+                    AND a.age_y >= "15"
+                    group by a.an 
+            ');
+
+        }elseif($id == '12'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i1.code BETWEEN "U071" and "U072")
+                    AND i.code in ("9604","9670","9671","9672")
+                    AND a.age_y >= "15"
+                    group by a.an 
+            ');
+
+        }elseif($id == '13'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name as dctype
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join sex s on s.code=p.sex 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND i1.code BETWEEN "P210" AND "P210"
+                    group by a.an 
+                    ORDER BY a.regdate
+            ');
+
+        }elseif($id == '14'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,b.an as lastan,b.dchdate as lastdate,a.regdate,a.age_y,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.lastvisit,a.admdate 
+                    from an_stat a 
+                    left outer join an_stat b on a.hn=b.hn and a.pdx=b.pdx and a.an>b.an 
+                    left outer join ipt i on i.an=b.an 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)  
+                    LEFT OUTER JOIN sex s on s.code=p.sex
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    and i1.code BETWEEN "J440" AND "J449"
+                    and a.lastvisit <= 30
+                    and ((to_days(a.regdate))-(to_days(b.dchdate)))<=30
+                    and i.dchstts = 02 
+                    group by a.hn
+            ');
+
+        }elseif($id == '15'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i1.code BETWEEN "O720" and "O723")
+                    AND (SELECT i1.code in ("R571") or i1.code in ("R578"))
+                    group by a.an 
+            ');
+
+        }elseif($id == '16'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                    AND (SELECT i1.code BETWEEN "J120" and "J189" or i1.code in ("J690"))
+                    AND i.code in ("9604","9670","9671","9672")
+                    AND a.age_y >= "15"
+                    group by a.an
+            ');
+
+        }elseif($id == '17'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT  a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    ,a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6 
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    left outer join icd9cm1 i on i.code in (a.op0,a.op1,a.op2,a.op3,a.op4,a.op5,a.op6) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                    AND (SELECT i1.code BETWEEN "J120" and "J189" or i1.code in ("J690"))
+                    AND i.code in ("9604","9670","9671","9672")
+                    AND a.age_y < "15"
+                    group by a.an  
+            ');
+
+        }elseif($id == '18'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                    AND (SELECT i1.code BETWEEN "O720" and "O723")
+                    group by a.an 
+            ');
+
+        }
+        
+        else {
             # code...
         }
         
