@@ -429,6 +429,32 @@ class ReportNewController extends Controller
                     group by a.an 
             ');
 
+        }elseif($id == '19'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                    AND (SELECT i1.code BETWEEN "O720" and "O723")
+                    group by a.an 
+            ');
+
+        }elseif($id == '20'){
+            $data['datashow'] = DB::connection('mysql2')->select('
+                    SELECT a.hn,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5,d.name
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join dchstts d on d.dchstts=t.dchstts 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
+                    where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"  
+                    AND (SELECT i1.code BETWEEN "O720" and "O723")
+                    group by a.an 
+            ');
+
         }
         
         else {
