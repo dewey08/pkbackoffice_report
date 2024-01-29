@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Html\HasAuthorizations;
 
 /**
@@ -17,7 +16,6 @@ use Yajra\DataTables\Html\HasAuthorizations;
 class Field extends Fluent
 {
     use HasAuthorizations;
-    use Macroable;
 
     /**
      * Field type.

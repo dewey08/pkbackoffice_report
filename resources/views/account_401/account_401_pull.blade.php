@@ -104,9 +104,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card cardacc">
-                    <div class="card-body">
-                         
-                      
+                    <div class="card-body">    
                         <div class="row mb-3">
                             {{-- <div class="col-md-4">
                                 <h4 class="card-title">Detail Account</h4>
@@ -147,7 +145,7 @@
                                             <th class="text-center">pttype</th> 
                                             <th class="text-center">spsch</th>  
                                             <th class="text-center">ลูกหนี้</th>  
-                                            <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>  
+                                            {{-- <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>   --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -172,7 +170,7 @@
                                                 <td class="text-center" style="color:rgb(73, 147, 231)" width="5%">{{ $item->pttype }}</td>                                                 
                                                 <td class="text-center" style="color:rgb(216, 95, 14)" width="5%">{{ $item->subinscl }}</td> 
                                                 <td class="text-center" width="10%">{{ number_format($item->debit_total, 2) }}</td> 
-                                                <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td> 
+                                                {{-- <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td>  --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -418,7 +416,8 @@
             $('.Destroystamp').on('click', function(e) {
                 // alert('oo');
                 var allValls = [];
-                $(".sub_destroy:checked").each(function () {
+                // $(".sub_destroy:checked").each(function () {
+                $(".sub_chk:checked").each(function () {
                     allValls.push($(this).attr('data-id'));
                 });
                 if (allValls.length <= 0) {
@@ -458,7 +457,8 @@
                                         data: 'ids='+join_selected_values,
                                         success:function(data){ 
                                                 if (data.status == 200) {
-                                                    $(".sub_destroy:checked").each(function () {
+                                                    // $(".sub_destroy:checked").each(function () {
+                                                    $(".sub_chk:checked").each(function () {
                                                         $(this).parents("tr").remove();
                                                     });
                                                     Swal.fire({

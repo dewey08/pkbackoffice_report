@@ -427,33 +427,16 @@ class Account209Controller extends Controller
             'data'          =>     $data, 
         ]);
     }
-    // public function account_pkucs217_stmnull_all(Request $request,$months,$year)
-    // {
-    //     $datenow = date('Y-m-d');
-    //     $startdate = $request->startdate;
-    //     $enddate = $request->enddate;
-    //     // dd($id);
-    //     $data['users'] = User::get();
-    //     $mototal = $months + 1;
-    //     $datashow = DB::connection('mysql')->select('
-    //             SELECT au.tranid,a.vn,a.an,a.hn,a.cid,a.ptname,a.vstdate,a.dchdate,a.debit_total,au.dmis_money2,au.total_approve,a.income_group,au.inst,au.ip_paytrue,au.STMdoc
-    //                 from acc_1102050101_217 a
-    //                 LEFT JOIN acc_stm_ucs au ON au.an = a.an
-    //                 WHERE a.status ="N"
-    //                 AND month(a.dchdate) < "'.$mototal.'"
-    //                 and year(a.dchdate) = "'.$year.'"
-    //                 AND au.ip_paytrue IS NULL
-    //                 GROUP BY a.an
-
-    //         ');
-    //     return view('account_217.account_pkucs217_stmnull_all', $data, [
-    //         'startdate'         =>     $startdate,
-    //         'enddate'           =>     $enddate,
-    //         'datashow'          =>     $datashow,
-    //         'months'            =>     $months,
-    //         'year'              =>     $year,
-    //     ]);
-    // }
+    public function account_209_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
+        ]);
+    }
  
 
  }

@@ -169,7 +169,7 @@
                                                         LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
                                                         where month(a.vstdate) = "'.$item->months.'"
                                                         AND year(a.vstdate) = "'.$item->year.'"
-                                                        AND Total_amount <> ""
+                                                        AND Total_amount <> ""   AND am.HDflag IN("COC")
                                                 ');                                           
                                                 foreach ($sumapprove_ as $key => $value3) {
                                                     $sum_stm = $value3->Total_amount; 
@@ -183,7 +183,7 @@
                                                         LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
                                                         where month(a.vstdate) = "'.$item->months.'"
                                                         AND year(a.vstdate) = "'.$item->year.'"
-                                                        AND Total_amount IS NULL
+                                                        AND Total_amount IS NULL AND am.HDflag IN("COC")
                                                 ');                                           
                                                 foreach ($yokpai_data as $key => $value4) {
                                                     $sum_yokpai = $value4->debit_total; 
@@ -336,7 +336,7 @@
                                                     from acc_1102050101_4011 a
                                                     LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
                                                     WHERE a.vstdate BETWEEN "'.$startdate.'" AND "'.$enddate.'" 
-                                                    AND am.Total_amount <> ""
+                                                    AND am.Total_amount <> "" AND am.HDflag IN("COC")
                                             ');                                           
                                             foreach ($sumapprove_ as $key => $value3) {
                                                 $sum_stm = $value3->Total_amount; 
@@ -349,7 +349,7 @@
                                                     from acc_1102050101_4011 a
                                                     LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
                                                     WHERE a.vstdate BETWEEN "'.$startdate.'" AND "'.$enddate.'" 
-                                                    AND Total_amount IS NULL
+                                                    AND Total_amount IS NULL AND am.HDflag IN("COC")
                                             ');                                           
                                             foreach ($yokpai_data as $key => $value4) {
                                                 $sum_yokpai = $value4->debit_total; 

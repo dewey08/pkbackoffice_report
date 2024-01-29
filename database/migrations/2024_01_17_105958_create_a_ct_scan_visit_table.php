@@ -27,6 +27,7 @@ return new class extends Migration
                 $table->string('unitprice')->nullable();//  
                 $table->string('sum_price')->nullable();//   
                 $table->string('user_id')->nullable();// 
+                $table->longText('cc')->nullable();// 
                 $table->enum('active', ['N', 'Y', 'W'])->default('N');  
                 $table->timestamps();
             });

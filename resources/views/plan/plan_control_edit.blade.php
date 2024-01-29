@@ -160,7 +160,7 @@ $refnumber = PlanController::refnumber();
                                                 </div>
                                             </div>
                                             <div class="col-md-3 ">
-                                                <label for="">งบประมาณ </label>
+                                                <label for="">งบประมาณ (ใส่เฉพาะตัวเลข ไม่ใส่เครื่องหมาย ,)</label>
                                                 <div class="form-group">
                                                     <input id="plan_price" class="form-control form-control-sm" name="plan_price" value="{{ $plan_control->plan_price }}">
                                                 </div>
@@ -203,11 +203,11 @@ $refnumber = PlanController::refnumber();
                                                 <div class="form-group">
                                                     <select name="department" id="department" class="form-control form-control-sm" style="width: 100%">
                                                     
-                                                        @foreach ($department_sub_sub as $item)
-                                                        @if ($plan_control->department == $item->DEPARTMENT_SUB_SUB_ID)
-                                                        <option value="{{$item->DEPARTMENT_SUB_SUB_ID}}" selected>{{$item->DEPARTMENT_SUB_SUB_NAME}}</option>
+                                                        @foreach ($department_sub as $item)
+                                                        @if ($plan_control->department == $item->DEPARTMENT_SUB_ID)
+                                                        <option value="{{$item->DEPARTMENT_SUB_ID}}" selected>{{$item->DEPARTMENT_SUB_NAME}}</option>
                                                         @else
-                                                        <option value="{{$item->DEPARTMENT_SUB_SUB_ID}}">{{$item->DEPARTMENT_SUB_SUB_NAME}}</option>
+                                                        <option value="{{$item->DEPARTMENT_SUB_ID}}">{{$item->DEPARTMENT_SUB_NAME}}</option>
                                                         @endif
                                                             
                                                         @endforeach

@@ -84,25 +84,28 @@
             @csrf
             <div class="row mt-3"> 
                 <div class="col-md-3">
-                    <h4 class="card-title">Detail 1102050101.3099</h4>
+                    <h4 class="card-title" style="color:rgb(10, 151, 85)">Detail 1102050101.3099</h4>
                     <p class="card-title-desc">รายละเอียดข้อมูล ผัง 1102050101.3099</p>
                 </div>
                 <div class="col"></div>
                 <div class="col-md-1 text-end mt-2">วันที่</div>
-                <div class="col-md-4 text-end">
+                <div class="col-md-5 text-end">
                    
                     <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                        <input type="text" class="form-control" name="startdate" id="datepicker" placeholder="Start Date"
+                        <input type="text" class="form-control cardacc" name="startdate" id="datepicker" placeholder="Start Date"
                             data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
                             data-date-language="th-th" value="{{ $startdate }}" required/>
-                        <input type="text" class="form-control" name="enddate" placeholder="End Date" id="datepicker2"
+                        <input type="text" class="form-control cardacc" name="enddate" placeholder="End Date" id="datepicker2"
                             data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
                             data-date-language="th-th" value="{{ $enddate }}" required/>  
-                   
-                    <button type="submit" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-info">
+                            <button type="submit" class="ladda-button me-2 btn-pill btn btn-primary cardacc" data-style="expand-left">
+                                <span class="ladda-label"> <i class="fa-solid fa-magnifying-glass text-white me-2"></i>ค้นหา</span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+                    {{-- <button type="submit" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-info">
                         <i class="fa-solid fa-magnifying-glass text-info me-2"></i>
                         ค้นหา
-                    </button>
+                    </button> --}}
                 </div>
                 </div>
             </div>
@@ -110,7 +113,7 @@
         <div class="row"> 
             @foreach ($datashow as $item)   
             <div class="col-xl-4 col-md-6">
-                <div class="main-card mb-3 card shadow" style="background-color: rgb(246, 235, 247)"> 
+                <div class="card cardacc" style="background-color: rgb(246, 235, 247)"> 
 
                     @if ($startdate == '') 
                         <div class="grid-menu-col">

@@ -1,6 +1,22 @@
 @extends('layouts.accountpk')
 @section('title', 'PK-BACKOFFice || ACCOUNT')
 @section('content')
+<script>
+    function TypeAdmin() {
+        window.location.href = '{{ route('index') }}';
+    }
+</script>
+<?php
+if (Auth::check()) {
+    $type = Auth::user()->type;
+    $iduser = Auth::user()->id;
+} else {
+    echo "<body onload=\"TypeAdmin()\"></body>";
+    exit();
+}
+$url = Request::url();
+$pos = strrpos($url, '/') + 1;
+?>
     <style>
         #button {
             display: block;
@@ -48,29 +64,43 @@
         }
     </style>
 
-    <div class="tabs-animation">
+<div class="tabs-animation"> 
+    <div class="row text-center">
+        <div id="overlay">
+            <div class="cv-spinner">
+                <span class="spinner"></span>
+            </div>
+        </div>
+    </div>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">Detail ที่ไม่มีในรายการ STM</h4>
 
-        <div class="row text-center">
-            <div id="overlay">
-                <div class="cv-spinner">
-                    <span class="spinner"></span>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Detail ที่ไม่มีในรายการ STM</a></li>
+                            <li class="breadcrumb-item active">1102050101.2166</li>
+                        </ol>
+                    </div>
+
                 </div>
             </div>
-
         </div>
+        <!-- end page title -->
+    </div> <!-- container-fluid -->
 
-        <div class="row ms-3 me-3 mt-2">
-            <div class="col-md-12">
-                <div class="main-card mb-3 card">
-                    <div class="card-header">
-                        รายละเอียด 1102050101.3099 ที่ไม่มีในรายการ STM
-                        <div class="btn-actions-pane-right">
-                            {{-- <button type="button" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-danger PulldataAll" >
-                                <i class="fa-solid fa-arrows-rotate text-danger me-2"></i>
-                                Sync Data All 
-                            </button> --}}
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card cardacc">
                     <div class="card-body"> 
                         {{-- <table id="example" class="table table-striped table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;"> --}}

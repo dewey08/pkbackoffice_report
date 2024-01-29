@@ -205,7 +205,7 @@ class Stringable implements JsonSerializable, ArrayAccess
      *
      * @param  int  $mode
      * @param  string  $encoding
-     * @return static
+     * @return string
      */
     public function convertCase(int $mode = MB_CASE_FOLD, ?string $encoding = 'UTF-8')
     {
@@ -788,33 +788,13 @@ class Stringable implements JsonSerializable, ArrayAccess
     }
 
     /**
-     * Convert the given string to proper case.
+     * Convert the given string to title case.
      *
      * @return static
      */
     public function title()
     {
         return new static(Str::title($this->value));
-    }
-
-    /**
-     * Convert the given string to proper case for each word.
-     *
-     * @return static
-     */
-    public function headline()
-    {
-        return new static(Str::headline($this->value));
-    }
-
-    /**
-     * Convert the given string to APA-style title case.
-     *
-     * @return static
-     */
-    public function apa()
-    {
-        return new static(Str::apa($this->value));
     }
 
     /**
@@ -827,6 +807,16 @@ class Stringable implements JsonSerializable, ArrayAccess
     public function transliterate($unknown = '?', $strict = false)
     {
         return new static(Str::transliterate($this->value, $unknown, $strict));
+    }
+
+    /**
+     * Convert the given string to title case for each word.
+     *
+     * @return static
+     */
+    public function headline()
+    {
+        return new static(Str::headline($this->value));
     }
 
     /**
@@ -1281,12 +1271,11 @@ class Stringable implements JsonSerializable, ArrayAccess
     /**
      * Get the underlying string value as an integer.
      *
-     * @param  int  $base
      * @return int
      */
-    public function toInteger($base = 10)
+    public function toInteger()
     {
-        return intval($this->value, $base);
+        return intval($this->value);
     }
 
     /**

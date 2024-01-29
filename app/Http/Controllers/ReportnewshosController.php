@@ -392,7 +392,7 @@ class ReportnewshosController extends Controller
                 left outer join patient p on p.hn=a.hn
                 left outer join icd101 i on i.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
                 left outer join icd101 i1 on i1.code in (a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5) 
-                where a.dchdate between "'. $startdate.'" AND "'. $enddate.'"
+                where a.dchdate between ""'. $startdate.'" AND "'. $enddate.'"
                 AND (SELECT i.code BETWEEN "J120" and "J189" or i.code in ("J690"))
                 and i1.code in ("U071","U072")
                 AND a.age_y >= "15"

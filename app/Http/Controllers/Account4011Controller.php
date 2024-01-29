@@ -221,13 +221,13 @@ class Account4011Controller extends Controller
                 ,sum(if(op.icode IN("3001412","3001417"),sum_price,0)) as debit_toa
                 ,sum(if(op.icode IN("3010829","3011068","3010864","3010861","3010862","3010863","3011069","3011012","3011070"),sum_price,0)) as debit_refer
                 ,vp.max_debt_amount
-                from hos.ovst o
-                left join hos.vn_stat v on v.vn=o.vn
-                left join hos.patient pt on pt.hn=o.hn
-                LEFT JOIN hos.visit_pttype vp on vp.vn = v.vn
-                LEFT JOIN hos.pttype ptt on o.pttype=ptt.pttype
-                LEFT JOIN hos.pttype_eclaim e on e.code=ptt.pttype_eclaim_id
-                LEFT JOIN hos.opitemrece op ON op.vn = o.vn
+                from ovst o
+                left join vn_stat v on v.vn=o.vn
+                left join patient pt on pt.hn=o.hn
+                LEFT JOIN visit_pttype vp on vp.vn = v.vn
+                LEFT JOIN pttype ptt on o.pttype=ptt.pttype
+                LEFT JOIN pttype_eclaim e on e.code=ptt.pttype_eclaim_id
+                LEFT JOIN opitemrece op ON op.vn = o.vn
                 WHERE o.vstdate BETWEEN "' . $startdate . '" AND "' . $enddate . '"
                 AND vp.pttype IN(SELECT pttype FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050101.4011")
                 
@@ -405,7 +405,7 @@ class Account4011Controller extends Controller
                 from acc_1102050101_4011 U1
                 LEFT JOIN acc_stm_ti_total am on am.hn = U1.hn AND am.vstdate = U1.vstdate
                 WHERE month(U1.vstdate) = "'.$months.'" AND year(U1.vstdate) = "'.$year.'" 
-                AND am.Total_amount is not null 
+                AND am.Total_amount is not null AND am.HDflag IN("COC")
                 group by U1.vn
         ');
        
@@ -426,7 +426,7 @@ class Account4011Controller extends Controller
                 from acc_1102050101_4011 U1
                 LEFT JOIN acc_stm_ti_total am on am.hn = U1.hn AND am.vstdate = U1.vstdate
                 WHERE month(U1.vstdate) = "'.$months.'" AND year(U1.vstdate) = "'.$year.'" 
-                AND am.Total_amount is null 
+                AND am.Total_amount is null AND am.HDflag IN("COC")
                 GROUP BY U1.vn
         ');
        
@@ -492,6 +492,16 @@ class Account4011Controller extends Controller
             'data'          =>  $data,
             'startdate'     =>  $startdate,
             'enddate'       =>  $enddate
+        ]);
+    }
+    public function account_4011_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
 

@@ -145,7 +145,7 @@
                                                 }
                                                 // ตั้งลูกหนี้
                                                 $datasum_ = DB::select('
-                                                    SELECT sum(debit_total) as debit_total,count(DISTINCT an) as Cvit
+                                                    SELECT sum(debit_total) as debit_total,count(an) as Cvit
                                                     from acc_1102050101_4022
                                                     where month(dchdate) = "'.$item->months.'"
                                                     AND year(dchdate) = "'.$item->year.'"; 
@@ -158,12 +158,12 @@
                                                 
                                             // STM
                                             $sumapprove_ = DB::select('
-                                                    SELECT sum(am.Total_amount) as Total_amount,count(DISTINCT a.an) as Countvisit
+                                                    SELECT sum(U2.Total_amount) as Total_amount,count(a.an) as Countvisit
                                                         from acc_1102050101_4022 a
-                                                        LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
+                                                        LEFT JOIN acc_stm_ti_total U2 on U2.hn = a.hn AND U2.vstdate = a.vstdate
                                                         where month(a.dchdate) = "'.$item->months.'"
-                                                        AND year(a.dchdate) = "'.$item->year.'"
-                                                        AND Total_amount <> ""
+                                                        AND year(a.dchdate) = "'.$item->year.'" AND U2.HDflag IN("CIC")
+                                                        AND U2.Total_amount <> ""
                                                 ');                                           
                                                 foreach ($sumapprove_ as $key => $value3) {
                                                     $sum_stm = $value3->Total_amount; 
@@ -172,12 +172,12 @@
 
                                                 // Yokpai
                                             $yokpai_data = DB::select('
-                                                    SELECT sum(a.debit_total) as debit_total,count(DISTINCT a.an) as Countvisit
+                                                    SELECT sum(a.debit_total) as debit_total,count(a.an) as Countvisit
                                                         from acc_1102050101_4022 a
-                                                        LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
+                                                        LEFT JOIN acc_stm_ti_total U2 on U2.hn = a.hn AND U2.vstdate = a.vstdate
                                                         where month(a.dchdate) = "'.$item->months.'"
-                                                        AND year(a.dchdate) = "'.$item->year.'"
-                                                        AND Total_amount IS NULL
+                                                        AND year(a.dchdate) = "'.$item->year.'" AND U2.HDflag IN("CIC")
+                                                        AND U2.Total_amount IS NULL
                                                 ');                                           
                                                 foreach ($yokpai_data as $key => $value4) {
                                                     $sum_yokpai = $value4->debit_total; 
@@ -314,7 +314,7 @@
                                             }
                                             // ตั้งลูกหนี้
                                             $datasum_ = DB::select('
-                                                SELECT sum(debit_total) as debit_total,count(DISTINCT an) as Cvit
+                                                SELECT sum(debit_total) as debit_total,count(an) as Cvit
                                                 FROM acc_1102050101_4022
                                                 WHERE dchdate BETWEEN "'.$startdate.'" AND "'.$enddate.'"; 
                                                 
@@ -326,11 +326,12 @@
                                             
                                         // STM
                                         $sumapprove_ = DB::select('
-                                                SELECT sum(am.Total_amount) as Total_amount,count(DISTINCT a.an) as Countvisit
+                                                SELECT sum(U2.Total_amount) as Total_amount,count(a.an) as Countvisit
                                                     from acc_1102050101_4022 a
-                                                    LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
+                                                    LEFT JOIN acc_stm_ti_total U2 on U2.hn = a.hn AND U2.vstdate = a.vstdate
                                                     WHERE a.dchdate BETWEEN "'.$startdate.'" AND "'.$enddate.'" 
-                                                    AND am.Total_amount <> ""
+                                                    AND U2.HDflag IN("CIC")
+                                                    AND U2.Total_amount <> ""
                                             ');                                           
                                             foreach ($sumapprove_ as $key => $value3) {
                                                 $sum_stm = $value3->Total_amount; 
@@ -339,11 +340,12 @@
 
                                             // Yokpai
                                         $yokpai_data = DB::select('
-                                                SELECT sum(a.debit_total) as debit_total,count(DISTINCT a.an) as Countvisit
+                                                SELECT sum(a.debit_total) as debit_total,count(a.an) as Countvisit
                                                     from acc_1102050101_4022 a
-                                                    LEFT JOIN acc_stm_ti_total am on am.hn = a.hn AND am.vstdate = a.vstdate
+                                                    LEFT JOIN acc_stm_ti_total U2 on U2.hn = a.hn AND U2.vstdate = a.vstdate
                                                     WHERE a.dchdate BETWEEN "'.$startdate.'" AND "'.$enddate.'" 
-                                                    AND Total_amount IS NULL
+                                                    AND U2.HDflag IN("CIC")
+                                                    AND U2.Total_amount IS NULL
                                             ');                                           
                                             foreach ($yokpai_data as $key => $value4) {
                                                 $sum_yokpai = $value4->debit_total; 

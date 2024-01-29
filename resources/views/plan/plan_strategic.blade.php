@@ -203,7 +203,7 @@ $pos = strrpos($url, '/') + 1;
                                                     <div class="modal-footer">
                                                         <div class="col-md-12 text-end">
                                                             <div class="form-group">
-                                                                <button type="button" id="updateBtn"
+                                                                <button type="button" id="UpdateBTN"
                                                                     class="btn btn-primary btn-sm">
                                                                     <i class="fa-solid fa-floppy-disk me-2"></i>
                                                                     แก้ไขข้อมูล
@@ -361,12 +361,13 @@ $pos = strrpos($url, '/') + 1;
                     });
                 });
 
-                $('#updateBtn').click(function() {
+                $('#UpdateBTN').click(function() {
                     var editplan_strategic_id = $('#editplan_strategic_id').val(); 
                     var editplan_mission_id = $('#editplan_mission_id').val();
                     var editplan_strategic_name = $('#editplan_strategic_name').val();
                     var editplan_strategic_startyear = $('#editplan_strategic_startyear').val();
                     var editplan_strategic_endyear = $('#editplan_strategic_endyear').val();
+                    alert(editplan_strategic_id);
                     $.ajax({
                         url: "{{ route('p.plan_strategic_update') }}",
                         type: "POST",

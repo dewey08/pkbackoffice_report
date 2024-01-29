@@ -386,13 +386,13 @@ class Account216Controller extends Controller
 
             SELECT s.tranid,a.vn,a.an,a.hn,a.cid,a.ptname,a.vstdate,a.dchdate,s.dmis_money2
             ,a.income_group,s.inst,s.hc,s.hc_drug,s.ae,s.ae_drug,s.STMdoc,a.debit_total,s.ip_paytrue as STM202
-            ,s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs as stm216
+            ,s.hc_drug + s.hc + s.ae_drug + s.inst + s.ae as stm216
             ,s.total_approve STM_TOTAL
             from acc_1102050101_216 a
             LEFT JOIN acc_stm_ucs s ON s.hn = a.hn AND s.vstdate = a.vstdate
             WHERE month(a.vstdate) = "'.$months.'" and year(a.vstdate) = "'.$year.'"
             
-            AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae+s.fs <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs <> "")
+            AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae <> "")
             group by a.vn
         ');
         // AND s.rep IS NOT NULL
@@ -415,12 +415,12 @@ class Account216Controller extends Controller
 
         $data = DB::select('
                 SELECT s.tranid,a.vn,a.an,a.hn,a.cid,a.ptname,a.vstdate,a.dchdate,a.debit_total,s.dmis_money2,s.total_approve,a.income_group,s.inst,s.ip_paytrue
-                ,s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs as stm216
+                ,s.hc_drug + s.hc + s.ae_drug + s.inst + s.ae  as stm216
                 from acc_1102050101_216 a
                 LEFT JOIN acc_stm_ucs s ON s.hn = a.hn AND s.vstdate = a.vstdate
                 WHERE a.status ="N"
                 AND month(a.vstdate) = "'.$months.'" and year(a.vstdate) = "'.$year.'"
-                AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae+s.fs < 1 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs is null)
+                AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae < 1 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae is null)
                 
                 group by a.vn
         ');
@@ -444,12 +444,12 @@ class Account216Controller extends Controller
 
             SELECT s.tranid,a.vn,a.an,a.hn,a.cid,a.ptname,a.vstdate,a.dchdate,s.dmis_money2
             ,a.income_group,s.inst,s.hc,s.hc_drug,s.ae,s.ae_drug,s.STMdoc,a.debit_total,s.ip_paytrue as STM202
-            ,s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs as stm216
+            ,s.hc_drug+ s.hc+ s.ae_drug+s.inst + s.ae as stm216
             ,s.total_approve STM_TOTAL
             from acc_1102050101_216 a
             LEFT JOIN acc_stm_ucs s ON s.hn = a.hn AND s.vstdate = a.vstdate
             WHERE a.vstdate between "'.$startdate.'" and "'.$enddate.'"
-            AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae+s.fs <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs <> "")
+            AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae <> "")
            
             group by a.vn
         ');
@@ -487,12 +487,12 @@ class Account216Controller extends Controller
 
         $data = DB::select('
                 SELECT s.tranid,a.vn,a.an,a.hn,a.cid,a.ptname,a.vstdate,a.dchdate,a.debit_total,s.dmis_money2,s.total_approve,a.income_group,s.inst,s.ip_paytrue
-                ,s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs as stm216
+                ,s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae as stm216
                 from acc_1102050101_216 a
                 LEFT JOIN acc_stm_ucs s ON s.hn = a.hn AND s.vstdate = a.vstdate
                 WHERE a.status ="N"
                 AND a.vstdate between "'.$startdate.'" and  "'.$enddate.'" 
-                AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae+s.fs <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae+s.fs is null)
+                AND (s.hc_drug+ s.hc+s.ae_drug+s.inst+s.ae <> 0 OR s.hc_drug+ s.hc+ s.ae_drug+s.inst+s.ae is null)
                 
                 group by a.vn
         '); 
@@ -502,6 +502,16 @@ class Account216Controller extends Controller
             'startdate'         =>     $startdate,
             'enddate'           =>     $enddate,
             'data'              =>     $data, 
+        ]);
+    }
+    public function account_216_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
 

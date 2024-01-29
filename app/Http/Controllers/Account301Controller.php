@@ -293,8 +293,10 @@ class Account301Controller extends Controller
             SELECT v.vn,ifnull(o.an,"") as an,o.hn,pt.cid
                     ,concat(pt.pname,pt.fname," ",pt.lname) as ptname
                     ,v.vstdate ,o.vsttime ,v.hospmain,op.income as income_group                     
-                    ,ptt.pttype_eclaim_id ,vp.pttype ,e.code as acc_code
-                    ,e.ar_opd as account_code ,e.name as account_name
+                    ,ptt.pttype_eclaim_id ,vp.pttype 
+                    ,e.code as acc_code
+                    ,e.ar_opd as account_code 
+                    ,e.name as account_name
                     ,v.income,v.uc_money,v.discount_money,v.paid_money,v.rcpt_money
                     ,v.rcpno_list as rcpno
                     ,v.income-v.discount_money-v.rcpt_money as debit
@@ -317,7 +319,9 @@ class Account301Controller extends Controller
             and (o.an="" or o.an is null)
             GROUP BY v.vn
         ');
-
+        // ,e.code as acc_code
+        // ,e.ar_opd as account_code 
+        // ,e.name as account_name
         // AND v.hospmain = "10702"
 
         foreach ($acc_debtor as $key => $value) {

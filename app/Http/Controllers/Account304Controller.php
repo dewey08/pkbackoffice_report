@@ -211,13 +211,13 @@ class Account304Controller extends Controller
                     ,sum(if(op.icode IN("1560016","1540073","1530005","1540048","1620015","1600012","1600015"),sum_price,0)) as debit_drug
                     ,sum(if(op.icode IN ("3001412","3001417"),sum_price,0)) as debit_toa
                     ,sum(if(op.icode IN ("3010829","3010726 "),sum_price,0)) as debit_refer
-                    from hos.ipt ip
-                    LEFT JOIN hos.an_stat a ON ip.an = a.an
-                    LEFT JOIN hos.patient pt on pt.hn=a.hn
-                    LEFT JOIN hos.pttype ptt on a.pttype=ptt.pttype 
-                    LEFT JOIN hos.ipt_pttype ipt ON ipt.an = a.an
-                    LEFT JOIN hos.opitemrece op ON ip.an = op.an
-                    LEFT JOIN hos.vn_stat v on v.vn = a.vn
+                    from ipt ip
+                    LEFT JOIN an_stat a ON ip.an = a.an
+                    LEFT JOIN patient pt on pt.hn=a.hn
+                    LEFT JOIN pttype ptt on a.pttype=ptt.pttype 
+                    LEFT JOIN ipt_pttype ipt ON ipt.an = a.an
+                    LEFT JOIN opitemrece op ON ip.an = op.an
+                    LEFT JOIN vn_stat v on v.vn = a.vn
                     WHERE a.dchdate BETWEEN "' . $startdate . '" AND "' . $enddate . '" 
                     AND ipt.pttype IN (SELECT pttype FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050101.304")
                     GROUP BY a.an;
@@ -266,7 +266,7 @@ class Account304Controller extends Controller
                                 'ptname'             => $value->ptname,
                                 'pttype'             => $value->pttype,
                                 'vstdate'            => $value->vstdate,
-                                'regdate'            => $value->admdate,
+                                'rxdate'             => $value->admdate,
                                 'dchdate'            => $value->dchdate,
                                 // 'acc_code'           => $value->code,
                                 'account_code'       => $value->account_code,

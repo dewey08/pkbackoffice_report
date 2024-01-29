@@ -109,14 +109,14 @@ class Account3099Controller extends Controller
         $end = (''.$yearnew.'-09-30'); 
 
         // $data_trimart = DB::table('acc_trimart')->limit(3)->orderBy('acc_trimart_id','desc')->get();
-        if ($acc_trimart_id == '') {
-            $data_trimart = DB::table('acc_trimart')->limit(3)->orderBy('acc_trimart_id','desc')->get();
-            $trimart = DB::table('acc_trimart')->orderBy('acc_trimart_id','desc')->get();
-        } else {
-            // $data_trimart = DB::table('acc_trimart')->whereBetween('dchdate', [$startdate, $enddate])->orderBy('acc_trimart_id','desc')->get();
-            $data_trimart = DB::table('acc_trimart')->where('acc_trimart_id','=',$acc_trimart_id)->orderBy('acc_trimart_id','desc')->get();
-            $trimart = DB::table('acc_trimart')->orderBy('acc_trimart_id','desc')->get();
-        }
+        // if ($acc_trimart_id == '') {
+        //     $data_trimart = DB::table('acc_trimart')->limit(3)->orderBy('acc_trimart_id','desc')->get();
+        //     $trimart = DB::table('acc_trimart')->orderBy('acc_trimart_id','desc')->get();
+        // } else {
+        //     // $data_trimart = DB::table('acc_trimart')->whereBetween('dchdate', [$startdate, $enddate])->orderBy('acc_trimart_id','desc')->get();
+        //     $data_trimart = DB::table('acc_trimart')->where('acc_trimart_id','=',$acc_trimart_id)->orderBy('acc_trimart_id','desc')->get();
+        //     $trimart = DB::table('acc_trimart')->orderBy('acc_trimart_id','desc')->get();
+        // }
         if ($startdate == '') {
             $datashow = DB::select('
                     SELECT month(a.vstdate) as months,year(a.vstdate) as year,l.MONTH_NAME
@@ -158,9 +158,9 @@ class Account3099Controller extends Controller
         return view('account_3099.account_pkti3099_dash',[
             'startdate'        =>  $startdate,
             'enddate'          =>  $enddate,
-            'trimart'          =>  $trimart,
-            'leave_month_year' =>  $leave_month_year,
-            'data_trimart'     =>  $data_trimart,
+            // 'trimart'          =>  $trimart,
+            // 'leave_month_year' =>  $leave_month_year,
+            // 'data_trimart'     =>  $data_trimart,
             'datashow'         =>  $datashow,
         ]);
     }
@@ -221,13 +221,13 @@ class Account3099Controller extends Controller
                 ,sum(if(op.icode IN("3001412","3001417"),sum_price,0)) as debit_toa
                 ,sum(if(op.icode IN("3010829","3011068","3010864","3010861","3010862","3010863","3011069","3011012","3011070"),sum_price,0)) as debit_refer
                 ,vp.max_debt_amount
-                from hos.ovst o
-                left join hos.vn_stat v on v.vn=o.vn
-                left join hos.patient pt on pt.hn=o.hn
-                LEFT JOIN hos.visit_pttype vp on vp.vn = v.vn
-                LEFT JOIN hos.pttype ptt on o.pttype=ptt.pttype
-                LEFT JOIN hos.pttype_eclaim e on e.code=ptt.pttype_eclaim_id
-                LEFT JOIN hos.opitemrece op ON op.vn = o.vn
+                from ovst o
+                left join vn_stat v on v.vn=o.vn
+                left join patient pt on pt.hn=o.hn
+                LEFT JOIN visit_pttype vp on vp.vn = v.vn
+                LEFT JOIN pttype ptt on o.pttype=ptt.pttype
+                LEFT JOIN pttype_eclaim e on e.code=ptt.pttype_eclaim_id
+                LEFT JOIN opitemrece op ON op.vn = o.vn
                 WHERE o.vstdate BETWEEN "' . $startdate . '" AND "' . $enddate . '"
                 AND vp.pttype IN (SELECT pttype FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050101.3099")
                 AND v.income-v.discount_money-v.rcpt_money <> 0
@@ -437,6 +437,16 @@ class Account3099Controller extends Controller
             'data'          =>  $data,
             'startdate'     =>  $startdate,
             'enddate'       =>  $enddate
+        ]);
+    }
+    public function account_3099_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
 

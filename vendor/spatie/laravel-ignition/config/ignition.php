@@ -89,8 +89,9 @@ return [
     | Solution Providers
     |--------------------------------------------------------------------------
     |
-    | List of solution providers that should be loaded. You may specify additional 
-    | providers as fully qualified class names. 
+    | You may specify a list of solution providers (as fully qualified class
+    | names) that should be loaded. Ignition will ignore these classes
+    | and possible solutions provided by them will never be displayed.
     |
     */
 

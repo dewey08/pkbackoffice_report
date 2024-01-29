@@ -141,7 +141,7 @@
         <div class="row">
            
             <div class="col-md-4">
-                <h4 class="card-title">Detail</h4>
+                <h4 class="card-title" >Detail</h4>
                 <p class="card-title-desc">รายละเอียดข้อมูล ทวงหนี้</p>
             </div>
             <div class="col"></div>
@@ -230,8 +230,7 @@
                                         @if ($item->debit_total == "0") 
                                             <td class="text-end" width="6%" style="font-size:12px;color: rgb(11, 96, 222)">{{ number_format($item->sumtotal_amount, 2) }}</td> 
                                             <td class="text-end" width="6%" style="font-size:12px;color: rgb(11, 202, 84)">{{ number_format($item->debit_total, 2) }}</td>
-                                        @else    
-                                            {{-- <td class="text-end" width="6%" style="font-size:12px;color: rgb(17, 180, 159)">{{ number_format($item->sumtotal_amount, 2) }}</td>     --}}
+                                        @else   
                                             <td class="text-end" width="6%" style="font-size:12px;color: rgb(17, 180, 159)">0.00</td>                                  
                                             <td class="text-end" width="6%" style="font-size:12px;color: rgb(245, 25, 25)">{{ number_format($item->debit_total, 2) }}</td>
                                         @endif
@@ -254,17 +253,19 @@
                                                     <label for="" style="font-size:12px;color: rgb(184, 84, 241)">Print</label>
                                                 </button>                                                
                                             </td> 
-                                        <td class="text-center" width="6%">                                            
-                                            <a class="dropdown-item menu btn-icon btn-sm btn-shadow btn-dashed btn btn-outline-info" href="javascript:void(0)"
-                                                onclick="acc_107_debt_outbook({{ $item->acc_1102050102_107_id }})"
-                                                data-bs-toggle="tooltip" data-bs-toggle="custom-tooltip"
-                                                data-bs-placement="top" title="ออกจดหมาย">
-                                                <i class="fa-solid fa-envelope ms-2 me-2" style="font-size:12px;color: rgb(111, 144, 252)"></i>
-                                                <label for="" style="font-size:12px;color: rgb(111, 144, 252)">ออกจดหมาย</label>
-                                            </a>
-                                        </td> 
+
+                                            <td class="text-center" width="6%">                                            
+                                                <a class="dropdown-item menu btn-icon btn-sm btn-shadow btn-dashed btn btn-outline-info" href="javascript:void(0)"
+                                                    onclick="acc_107_debt_outbook({{ $item->acc_1102050102_107_id }})"
+                                                    data-bs-toggle="tooltip" data-bs-toggle="custom-tooltip"
+                                                    data-bs-placement="top" title="ออกจดหมาย">
+                                                    <i class="fa-solid fa-envelope ms-2 me-2" style="font-size:12px;color: rgb(111, 144, 252)"></i>
+                                                    <label for="" style="font-size:12px;color: rgb(111, 144, 252)">ออกจดหมาย</label>
+                                                </a>
+                                            </td> 
 
                                         @endif
+                                        
                                         <td class="text-center" width="5%">
                                             <i class="fa-solid fa-envelope me-3" style="font-size:12px;color: rgb(11, 222, 110))">  </i>
                                             <label for="" style="font-size:12px;color: rgb(245, 25, 25)">{{$check_count}}</label>
@@ -329,8 +330,8 @@
                                     <td class="text-center" width="4%">{{ $item->pttype }}</td>
                                     <td class="text-center" width="4%">{{ $item->pttype_nhso }}</td>
                                     <td class="text-end" width="6%" style="font-size:12px;color: rgb(245, 63, 30)">{{ number_format($item->income, 2) }}</td> 
-                                        <td class="text-end" style="font-size:12px;color: rgb(30, 148, 245)">{{ number_format($item->debit, 2) }}</td> 
-                                        <td class="text-end" style="color: rgb(207, 19, 198)">{{ number_format($item->paid_money, 2) }}</td> 
+                                    <td class="text-end" style="font-size:12px;color: rgb(30, 148, 245)">{{ number_format($item->debit, 2) }}</td> 
+                                    <td class="text-end" style="color: rgb(207, 19, 198)">{{ number_format($item->paid_money, 2) }}</td> 
                                            
                                             
                                             @if ($item->debit_total == "0") 
@@ -357,28 +358,19 @@
                                                             
                                                         @endif 
                                                         <label for="" style="font-size:12px;color: rgb(184, 84, 241)">Print</label>
-                                                    </button>
-                                                    
+                                                    </button> 
+                                                </td>  
+                                                <td class="text-center" width="6%"> 
+                                                    <a class="dropdown-item menu btn-icon btn-sm btn-shadow btn-dashed btn btn-outline-info" href="javascript:void(0)"
+                                                        onclick="acc_107_debt_outbook({{ $item->acc_1102050102_107_id }})"
+                                                        data-bs-toggle="tooltip" data-bs-toggle="custom-tooltip"
+                                                        data-bs-placement="top" title="ออกจดหมาย">
+                                                        <i class="fa-solid fa-envelope ms-2 me-2" style="font-size:12px;color: rgb(111, 144, 252)"></i>
+                                                        <label for="" style="font-size:12px;color: rgb(111, 144, 252)">ออกจดหมาย</label>
+                                                    </a>
                                                 </td> 
-                                        
 
-
-
-
-
-
-                                        <td class="text-center" width="6%">
-                                            
-                                            <a class="dropdown-item menu btn-icon btn-sm btn-shadow btn-dashed btn btn-outline-info" href="javascript:void(0)"
-                                                onclick="acc_107_debt_outbook({{ $item->acc_1102050102_107_id }})"
-                                                data-bs-toggle="tooltip" data-bs-toggle="custom-tooltip"
-                                                data-bs-placement="top" title="ออกจดหมาย">
-                                                <i class="fa-solid fa-envelope ms-2 me-2" style="font-size:12px;color: rgb(111, 144, 252)"></i>
-                                                <label for="" style="font-size:12px;color: rgb(111, 144, 252)">ออกจดหมาย</label>
-                                            </a>
-                                        </td> 
-
-                                        @endif
+                                            @endif
                                         <td class="text-center" width="5%">
                                             <i class="fa-solid fa-envelope me-3" style="font-size:12px;color: rgb(11, 222, 110))">  </i>
                                             <label for="" style="font-size:12px;color: rgb(245, 25, 25)">{{$check_count}}</label>

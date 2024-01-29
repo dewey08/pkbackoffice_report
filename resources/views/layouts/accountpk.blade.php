@@ -95,6 +95,10 @@
         font-size:13px;
         height: 13px;
     }
+    .card_pink{
+        border-radius: 3em 3em 3em 3em;
+        box-shadow: 0 0 10px pink;
+    }
     /* .myTable thead tr{
     background-color: #b56fca;
     color: #ffffff;
@@ -251,7 +255,7 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
         <div class="vertical-menu">
             {{-- <div class="vertical-menu" style="background-color: rgb(128, 216, 209)"> --}}
             {{-- <div data-simplebar class="h-100"> --}}
-                {{-- <div data-simplebar class="h-100 nom6"> --}}
+                <div data-simplebar class="h-100 nom6">
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
@@ -660,6 +664,8 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                                         <li><a href="{{ url('upstm_ucs_opd216') }}">UCS OPD 216</a></li>
                                         <li><a href="{{ url('upstm_ucs_ipd217') }}">UCS IPD 217</a></li>
                                         <li><a href="{{ url('upstm_ucs_ti') }}">UCS ไต 2166</a></li>
+                                        <li><a href="{{ url('upstm_ofc_ti') }}">OFC ไต 4011</a></li>
+                                        <li><a href="{{ url('upstm_ofc_ti_ipd') }}">OFC ไต 4022</a></li>
                                         <li><a href="{{ url('upstm_ofc_opd') }}">OFC OPD 401</a></li>
                                         <li><a href="{{ url('upstm_ofc_ipd') }}">OFC IPD 402</a></li>
                                         <li><a href="{{ url('upstm_lgo_opd') }}">LGO OPD 801</a></li>
@@ -778,7 +784,7 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                     </ul>
                 </div>
                 <!-- Sidebar -->
-            {{-- </div> --}}
+            </div>
         </div>
         <!-- Left Sidebar End -->
 

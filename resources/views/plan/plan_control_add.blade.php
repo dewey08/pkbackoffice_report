@@ -159,7 +159,7 @@ $refnumber = PlanController::refnumber();
                                                 </div>
                                             </div>
                                             <div class="col-md-3 ">
-                                                <label for="">งบประมาณ </label>
+                                                <label for="">งบประมาณ (ใส่เฉพาะตัวเลข ไม่ใส่เครื่องหมาย ,)</label>
                                                 <div class="form-group">
                                                     <input id="plan_price" class="form-control form-control-sm" name="plan_price" >
                                                 </div>
@@ -169,9 +169,11 @@ $refnumber = PlanController::refnumber();
                                                 <div class="form-group">
                                                     <select name="plan_type" id="plan_type" class="form-control form-control-sm" style="width: 100%"> 
                                                         @foreach ($plan_control_type as $item2)
-                                                        <option value="{{$item2->plan_control_type_id}}">{{$item2->plan_control_typename}}</option>
-                                               
-                                                       
+                                                        @if ($id == $item2->plan_control_type_id)
+                                                             <option value="{{$item2->plan_control_type_id}}" selected>{{$item2->plan_control_typename}}</option>
+                                                        @else
+                                                            <option value="{{$item2->plan_control_type_id}}">{{$item2->plan_control_typename}}</option>
+                                                        @endif 
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -193,11 +195,11 @@ $refnumber = PlanController::refnumber();
                                                 <label for="">กลุ่มงาน </label>
                                                 <div class="form-group">
                                                     <select name="department" id="department" class="form-control form-control-sm" style="width: 100%">
-                                                        @foreach ($department_sub_sub as $item)
-                                                        @if ($iddep == $item->DEPARTMENT_SUB_SUB_ID)
-                                                        <option value="{{$item->DEPARTMENT_SUB_SUB_ID}}" selected>{{$item->DEPARTMENT_SUB_SUB_NAME}}</option>
+                                                        @foreach ($department_sub as $item)
+                                                        @if ($iddep == $item->DEPARTMENT_SUB_ID)
+                                                        <option value="{{$item->DEPARTMENT_SUB_ID}}" selected>{{$item->DEPARTMENT_SUB_NAME}}</option>
                                                         @else
-                                                        <option value="{{$item->DEPARTMENT_SUB_SUB_ID}}">{{$item->DEPARTMENT_SUB_SUB_NAME}}</option>
+                                                        <option value="{{$item->DEPARTMENT_SUB_ID}}">{{$item->DEPARTMENT_SUB_NAME}}</option>
                                                         @endif
                                                             
                                                         @endforeach
@@ -230,7 +232,7 @@ $refnumber = PlanController::refnumber();
                                             <button type="button" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-info" id="Insertdata">
                                                 <i class="pe-7s-diskette btn-icon-wrapper"></i>Save 
                                             </button>
-                                            <a href="{{ url('plan_control') }}" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-danger me-2">
+                                            <a href="{{ url('plan_control_sub/'.$id) }}" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-danger me-2">
                                                 <i class="fa-solid fa-xmark me-2"></i>
                                                 Back
                                             </a>

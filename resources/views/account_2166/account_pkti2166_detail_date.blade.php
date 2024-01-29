@@ -64,30 +64,45 @@ $pos = strrpos($url, '/') + 1;
         }
     </style>
 
-    <div class="tabs-animation">
+<div class="tabs-animation"> 
+    <div class="row text-center">
+        <div id="overlay">
+            <div class="cv-spinner">
+                <span class="spinner"></span>
+            </div>
+        </div>
+    </div>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">Detail</h4>
 
-        <div class="row text-center">
-            <div id="overlay">
-                <div class="cv-spinner">
-                    <span class="spinner"></span>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Detail</a></li>
+                            <li class="breadcrumb-item active">1102050101.2166</li>
+                        </ol>
+                    </div>
+
                 </div>
             </div>
-
         </div>
+        <!-- end page title -->
+    </div> <!-- container-fluid -->
 
-        <div class="row ms-3 me-3 mt-2">
-            <div class="col-md-12">
-                <div class="main-card mb-3 card">
-                    <div class="card-header">
-                    รายละเอียด 1102050101.2166
-                        {{-- <div class="btn-actions-pane-right">
-                            <button type="button" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-danger PulldataAll" >
-                                <i class="fa-solid fa-arrows-rotate text-danger me-2"></i>
-                                Sync Data All 
-                            </button>
-                        </div> --}}
-                    </div>
-                    <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card cardacc">
+                
+                <div class="card-body">
                         {{-- <input type="hidden" name="months" id="months" value="{{$months}}"> --}}
                         {{-- <input type="hidden" name="year" id="year" value="{{$year}}"> --}}
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
@@ -123,9 +138,9 @@ $pos = strrpos($url, '/') + 1;
                                             <td class="p-2" >{{ $item->ptname }}</td>  
                                             <td class="text-center" width="10%">{{ $item->vstdate }}</td>    
                                             <td class="text-center" width="10%">{{ $item->pttype }}</td>  
-                                            <td class="text-center" width="10%">{{ number_format($item->income, 2) }}</td> 
-                                            <td class="text-center" width="10%">{{ number_format($item->rcpt_money, 2) }}</td> 
-                                            <td class="text-end" style="color:rgb(73, 147, 231)" width="7%"> {{ number_format($item->debit_total, 2) }}</td>  
+                                            <td class="text-center" style="color:rgb(73, 147, 231)" width="10%">{{ number_format($item->income, 2) }}</td> 
+                                            <td class="text-center" style="color:rgb(250, 160, 58)" width="10%">{{ number_format($item->rcpt_money, 2) }}</td> 
+                                            <td class="text-end" style="color:rgb(12, 161, 12)" width="7%"> {{ number_format($item->debit_total, 2) }}</td>  
                                         </tr>
                                         <?php
                                         $total1 = $total1 + $item->income;

@@ -107,7 +107,7 @@
                                     <div class="tab-pane fade show active" id="v-pills-ucs" role="tabpanel" aria-labelledby="v-pills-ucs-tab">
                                         <div class="row"> 
                                             <div class="col-md-6">
-                                                <div class="card p-4 card-ucs">
+                                                <div class="card p-4 card_pink">
                                                     <h4 class="card-title" style="color:rgb(10, 151, 85)">STM DETAIL UCS OPD 2166</h4>
                                                     <div class="table-responsive">
                                                         <table id="example" class="table table-striped table-bordered "

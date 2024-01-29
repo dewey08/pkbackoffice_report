@@ -139,6 +139,90 @@
                 }
             })
         }
+
+        function subkpi_destroy(plan_control_id)
+        {
+            Swal.fire({
+                title: 'ต้องการลบใช่ไหม?',
+                text: "ข้อมูลนี้จะถูกลบไปเลย !!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ใช่, ลบเดี๋ยวนี้ !',
+                cancelButtonText: 'ไม่, ยกเลิก'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('subkpi_destroy')}}" +'/'+ plan_control_id,  
+                    type:'DELETE',
+                    data:{
+                        _token : $("input[name=_token]").val()
+                    },
+                    success:function(response)
+                    {          
+                        Swal.fire({
+                            title: 'ลบข้อมูล!',
+                            text: "You Delet data success",
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#06D177',
+                            // cancelButtonColor: '#d33',
+                            confirmButtonText: 'เรียบร้อย'
+                        }).then((result) => {
+                            if (result.isConfirmed) {                  
+                            $("#sid"+plan_control_id).remove();     
+                            window.location.reload(); 
+                            //   window.location = "/person/person_index"; //     
+                            }
+                        }) 
+                    }
+                })        
+                }
+            })
+        }
+
+        function subobj_destroy(plan_control_id)
+        {
+            Swal.fire({
+                title: 'ต้องการลบใช่ไหม?',
+                text: "ข้อมูลนี้จะถูกลบไปเลย !!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ใช่, ลบเดี๋ยวนี้ !',
+                cancelButtonText: 'ไม่, ยกเลิก'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('subobj_destroy')}}" +'/'+ plan_control_id,  
+                    type:'DELETE',
+                    data:{
+                        _token : $("input[name=_token]").val()
+                    },
+                    success:function(response)
+                    {          
+                        Swal.fire({
+                            title: 'ลบข้อมูล!',
+                            text: "You Delet data success",
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#06D177',
+                            // cancelButtonColor: '#d33',
+                            confirmButtonText: 'เรียบร้อย'
+                        }).then((result) => {
+                            if (result.isConfirmed) {                  
+                            $("#sid"+plan_control_id).remove();     
+                            window.location.reload(); 
+                            //   window.location = "/person/person_index"; //     
+                            }
+                        }) 
+                    }
+                })        
+                }
+            })
+        }
     </script>
     <?php
     if (Auth::check()) {
@@ -184,7 +268,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">ทะเบียนควบคุมแผนงานโครงการ</a></li>
-                                <li class="breadcrumb-item active">เพิ่มทะเบียน</li>
+                                <li class="breadcrumb-item active">ทะเบียน</li>
                             </ol>
                         </div>
         
@@ -192,560 +276,181 @@
                 </div>
             </div> 
         </div> 
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card cardplan">
-                    {{-- <div class="card-header ">
-                        ทะเบียนควบคุมแผนงานโครงการ
-                        <div class="btn-actions-pane-right">
-                            <a href="{{ url('plan_control_add') }}"
-                                class="btn-icon btn-shadow btn-dashed btn btn-sm btn-outline-info">
-                                <i class="fa-solid fa-folder-plus text-info me-2"></i>
-                                เพิ่มทะเบียน
-                            </a> 
-                        </div>
-
-                    </div> --}}
-                    <div class="card-body p-3">
-                        <div class="row mb-3"> 
-                            <div class="col"></div>
-                            <div class="col-md-2 text-end">
-                                <a href="{{ url('plan_control_add') }}" class="ladda-button me-2 btn-pill btn btn-primary cardacc Savestamp">
-                                    <i class="fa-solid fa-folder-plus me-2"></i>
-                                    เพิ่มทะเบียน
-                                </a>
-                                {{-- <button type="button" class="ladda-button me-2 btn-pill btn btn-danger cardacc Destroystamp" data-url="{{url('account_401_destroy_all')}}">
-                                    <i class="fa-solid fa-trash-can me-2"></i>
-                                    ลบ
-                                </button>  --}}
+        <div class="row"> 
+            <div class="col-xl-6">
+                <div class="row"> 
+                    <div class="col"></div>
+                    <div class="col-xl-6">
+                        <a href="{{url('plan_control_sub')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/cpso.png') }}" height="100px" width="100px" class="rounded-circle me-3"> 
+                                    คปสอ.ภูเขียว
+                                </div>
                             </div>
-                        </div>
-                        {{-- <div class="table-responsive">                             --}}
-                            {{-- <table id="example" class="table table-sm dt-responsive nowrap" style=" border-spacing: 0; width: 100%;">  --}}
-                                <table id="example" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr style="font-size: 13px">
-                                        <th width="5%" class="text-center">ลำดับ</th>
-                                        <th class="text-center"> แผนงาน/โครงการ</th> 
-                                        <th class="text-center">งบประมาณ</th> 
-                                        <th class="text-center">เบิก</th> 
-                                        <th class="text-center">คงเหลือ</th> 
-                                        <th width="10%" class="text-center">จัดการ</th> 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    @foreach ($plan_control as $va)
-                                       
-                                        <tr id="sid{{ $va->plan_control_id }}">
-                                            <td class="text-center" width="4%">{{ $i++ }}</td>
-                                            {{-- <td class="text-start">{{$va->plan_name}}</td> --}}
-                                            <td class="text-start">   
-                                                <?php 
-                                                    $data_sub_ = DB::connection('mysql')->select('
-                                                        SELECT * from plan_control_obj  
-                                                        WHERE plan_control_id = "'.$va->plan_control_id.'"'); 
-                                                ?>
-                                                  {{-- <div id="headingTwo" class="b-radius-0 card-header">  --}}
-                                                <div id="headingTwo" class="b-radius-0"> 
-                                                        <button type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne2{{ $va->plan_control_id }}" aria-expanded="false"
-                                                            aria-controls="collapseTwo" class="text-start m-0 p-0 btn btn-link btn-block">
-                                                            <h6 style="color: rgb(66, 63, 63)">{{ $va->plan_name }} <label for="" style="color: red">วัตถุประสงค์/ตัวชี้วัด</label></h6> 
-                                                        </button> 
-                                                </div>
-                                                
-                                                <div data-parent="#accordion" id="collapseOne2{{ $va->plan_control_id }}" class="collapse">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            @foreach ($data_sub_ as $itemsub)
-                                                                <div class="col-md-12 mb-2">
-                                                                    @if ($itemsub->plan_control_obj_name != '')
-                                                                        <button type="button" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary" onclick="sub_destroy({{ $va->plan_control_id }})">
-                                                                            {{$itemsub->plan_control_obj_name}} 
-                                                                        </button>
-                                                                    @else                                                                    
-                                                                    @endif 
-                                                                </div> 
-                                                            @endforeach 
-                                                        </div>
-                                                    </div>
-                                                </div> 
-                                            </td> 
-                                            <td class="text-center" width="8%">{{ number_format($va->plan_price, 2) }}</td>
-                                            <td class="text-center" width="5%">{{$va->plan_req_no}}</td>
-                                            <td class="text-center" width="8%">{{ number_format($va->plan_price_total, 2) }}</td>
-                                            <td width="5%">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-outline-primary dropdown-toggle menu btn-sm"
-                                                        type="button" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">ทำรายการ</button>
-                                                    <ul class="dropdown-menu">
-                                                            <button type="button" class="dropdown-item menu btn btn-outline-info btn-sm ojectModal_"  value="{{ $va->plan_control_id }}" data-bs-toggle="tooltip" data-bs-placement="left" title="เพิ่มวัตถุประสงค์/ตัวชี้วัด"> 
-                                                                <i class="fa-brands fa-bitcoin me-3 mb-1" style="font-size:17px;color: rgb(34, 148, 255)"></i> 
-                                                                <label for=""
-                                                                style="color: rgb(34, 148, 255);font-size:13px">เพิ่มวัตถุประสงค์/ตัวชี้วัด</label>
-                                                            </button>
-                                                           
-                                                            <button type="button" class="dropdown-item menu btn btn-outline-info btn-sm MoneyModal_"  value="{{ $va->plan_control_id }}" data-bs-toggle="tooltip" data-bs-placement="left" title="เบิกเงิน"> 
-                                                                <i class="fa-brands fa-bitcoin me-3 mb-1" style="font-size:17px;color: rgb(20, 199, 190)"></i> 
-                                                                <label for=""
-                                                                style="color: rgb(20, 199, 190);font-size:13px">เบิกเงิน</label>
-                                                            </button> 
-                                                        <a type="button" href="{{ url('plan_control_edit/' . $va->plan_control_id) }}"
-                                                            class="dropdown-item menu btn btn-outline-warning btn-sm" data-bs-toggle="tooltip"
-                                                            data-bs-placement="left" title="แก้ไข">
-                                                            <i class="fa-solid fa-pen-to-square me-3 mb-1" style="color: rgb(252, 185, 0);font-size:13px"></i>
-                                                                <label for=""
-                                                                style="color: rgb(252, 185, 0);font-size:13px">แก้ไข</label>
-                                                        </a>
-                                                       
-                                                            <a class="dropdown-item menu btn btn-outline-danger btn-sm" href="javascript:void(0)"
-                                                                onclick="plan_control_destroy({{ $va->plan_control_id}})"
-                                                                data-bs-toggle="tooltip" data-bs-placement="left"
-                                                                data-bs-custom-class="custom-tooltip" title="ลบ">
-                                                                <i class="fa-solid fa-trash-can me-3 mb-1"></i>
-                                                                <label for=""
-                                                                    style="color: rgb(255, 2, 2);font-size:13px">ลบ</label>
-                                                            </a>
-                                                    </ul>
-                                                  </div>
-                                               
-                                            </td>
-             
-                                        </tr>
- 
-                                        <div class="modal fade" id="UpdateModal{{ $va->plan_control_id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="myExtraLargeModalLabel">
-                                                            แก้ไขทะเบียนควบคุมแผนงานโครงการ</h5>
-                                                        <h6 class="mt-2">{{ $va->billno }} </h6>
-                                                        <input id="billno" class="form-control form-control-sm"
-                                                            name="billno" type="hidden" value="{{ $va->billno }}">
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12 ">
-                                                                <label for="">ชื่อโครงการ</label>
-                                                                <div class="form-group">
-                                                                    <input id="plan_name"
-                                                                        class="form-control form-control-sm"
-                                                                        name="plan_name">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-md-3 ">
-                                                                <label for="">ระยะเวลา วันที่</label>
-                                                                <div class="form-group"> 
-                                                                    <div class="input-daterange input-group"
-                                                                        id="datepicker1" data-date-format="dd M, yyyy"
-                                                                        data-date-autoclose="true"
-                                                                        data-provide="datepicker"
-                                                                        data-date-container='#datepicker1'>
-                                                                        <input type="text" class="form-control"
-                                                                            name="startdate" id="startdate"
-                                                                            placeholder="Start Date"
-                                                                            data-date-container='#datepicker1'
-                                                                            data-provide="datepicker"
-                                                                            data-date-autoclose="true" autocomplete="off"
-                                                                            data-date-language="th-th"
-                                                                            value="{{ $datenow }}" required />
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 ">
-                                                                <label for="">ถึง </label>
-                                                                <div class="form-group">
-                                                                    {{-- <input id="plan_endtime" class="form-control form-control-sm" name="plan_endtime"> --}}
-                                                                    <div class="input-daterange input-group"
-                                                                        id="datepicker1" data-date-format="dd M, yyyy"
-                                                                        data-date-autoclose="true"
-                                                                        data-provide="datepicker"
-                                                                        data-date-container='#datepicker1'>
-
-                                                                        <input type="text" class="form-control"
-                                                                            name="enddate" placeholder="End Date"
-                                                                            id="enddate"
-                                                                            data-date-container='#datepicker1'
-                                                                            data-provide="datepicker"
-                                                                            data-date-autoclose="true" autocomplete="off"
-                                                                            data-date-language="th-th"
-                                                                            value="{{ $datenow }}" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 ">
-                                                                <label for="">งบประมาณ </label>
-                                                                <div class="form-group">
-                                                                    <input id="edit_plan_price"
-                                                                        class="form-control form-control-sm"
-                                                                        name="plan_price">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 ">
-                                                                <label for="">แหล่งงบ </label>
-                                                                <div class="form-group">
-                                                                    <select name="edit_plan_type" id="edit_plan_type"
-                                                                        class="form-control form-control-sm"
-                                                                        style="width: 100%">
-                                                                        @foreach ($plan_control_type as $item2)
-                                                                            <option
-                                                                                value="{{ $item2->plan_control_type_id }}">
-                                                                                {{ $item2->plan_control_typename }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-md-8 ">
-                                                                <label for="">กลุ่มงาน </label>
-                                                                <div class="form-group">
-                                                                    <select name="department" id="department"
-                                                                        class="form-control form-control-sm"
-                                                                        style="width: 100%">
-                                                                        {{-- <option value="">=เลือก=</option> --}}
-                                                                        @foreach ($department_sub_sub as $item)
-                                                                            @if ($iddep == $item->DEPARTMENT_SUB_SUB_ID)
-                                                                                <option
-                                                                                    value="{{ $item->DEPARTMENT_SUB_SUB_ID }}"
-                                                                                    selected>
-                                                                                    {{ $item->DEPARTMENT_SUB_SUB_NAME }}
-                                                                                </option>
-                                                                            @else
-                                                                                <option
-                                                                                    value="{{ $item->DEPARTMENT_SUB_SUB_ID }}">
-                                                                                    {{ $item->DEPARTMENT_SUB_SUB_NAME }}
-                                                                                </option>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4 ">
-                                                                <label for="">ผู้รับผิดชอบ </label>
-                                                                <div class="form-group">
-                                                                    <select name="user_id" id="user_id"
-                                                                        class="form-control form-control-sm"
-                                                                        style="width: 100%">
-                                                                        @foreach ($users as $item3)
-                                                                            <option value="{{ $item3->id }}">
-                                                                                {{ $item3->fname }} {{ $item3->lname }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <div class="col-md-12 text-end">
-                                                            <div class="form-group">
-                                                                <button type="button" id="SaveBtn"
-                                                                    class="btn-icon btn-shadow btn-dashed btn btn-sm btn-outline-info">
-                                                                    <i class="fa-solid fa-floppy-disk me-2"></i>
-                                                                    บันทึกข้อมูล
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="btn-icon btn-shadow btn-dashed btn btn-sm btn-outline-danger"
-                                                                    data-bs-dismiss="modal"><i
-                                                                        class="fa-solid fa-xmark me-2"></i>Close</button>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    @endforeach
-                                </tbody>
-                            </table>
-                     
+                        </a>
                     </div>
+                    <div class="col"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ojectModalModal" tabindex="-1"
-        role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            {{-- <div class="modal-dialog modal-dialog-slideout"> --}}
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>เพิ่มวัตถุประสงค์/ตัวชี้วัด</h2>
-                    
-                </div>
-                <input id="obj_plan_control_billno" class="form-control form-control-sm" name="obj_plan_control_billno" type="hidden" >
-                <input id="obj_plan_control_id" class="form-control form-control-sm" name="obj_plan_control_id" type="hidden" >
-
-                <div class="modal-body">
-                    <div class="row mt-3">
-                                    
-                        <div class="col-md-2 text-end mt-2"> 
-                            <p for="">วัตถุประสงค์/ตัวชี้วัด</p> 
-                        </div>
-                        <div class="col-md-9 "> 
-                            <div class="form-group">
-                                <input id="plan_control_obj_name" class="form-control form-control-sm" name="plan_control_obj_name">
+                {{-- <div class="row"> 
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_sub/1')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/cpso.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    PP
+                                </div>
                             </div>
-                        </div>
-                        <div class="col"></div>                  
+                        </a>
                     </div>
-
-               
-                        <div id="details"></div>
-                 
-                    
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_sub/2')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/cpso.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    UC
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_sub/3')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/cpso.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    อปท
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_sub/4')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/cpso.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    อื่น ๆ
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>     --}}
+                <div class="row"> 
+                    @foreach ($plan_strategic as $item)
+                        <div class="col-xl-12">
+                            <a href="{{url('plan_control_sub/'.$item->plan_strategic_id)}}" target="_blank">
+                                <div class="card cardplan"> 
+                                    <div class="card-body p-3">
+                                        <img src="{{ asset('images/cpso.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                        {{$item->plan_strategic_name}}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach                    
                 </div>  
-
-                <div class="modal-footer">
-                   
-                        <button type="button" id="SaveObjectBtn"
-                            class="btn-icon btn-shadow btn-dashed btn btn-outline-info me-2"> 
-                            <i class="pe-7s-diskette btn-icon-wrapper me-2"></i>
-                            Save
-                        </button>
-                        <button type="button"
-                            class="btn-icon btn-shadow btn-dashed btn btn-outline-danger"
-                            data-bs-dismiss="modal"><i
-                                class="fa-solid fa-xmark me-2"></i>Close
-                        </button>  
-              
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="MoneyModal" tabindex="-1"
-        role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        {{-- <div class="modal-dialog modal-lg"> --}}
-            <div class="modal-dialog modal-dialog-slideout">
-            <div class="modal-content">
-                <div class="modal-header">
-                    
-                    <div class="row">
-                        <div class="col-md-7 text-start"><h2>เบิกเงินทะเบียนควบคุมแผนงานโครงการ</h2> </div>
-                        <div class="col"></div>
-                        <div class="col-md-3 text-end">
-                            {{-- <button class="btn-icon btn-shadow btn-dashed btn btn-outline-success"> 
-                                ครั้งที่  {{$maxno}} 
-                            </button> --}}
-                        </div>
-                    </div>
                 
-                </div>
-                <input id="plan_control_money_no" class="form-control form-control-sm" name="plan_control_money_no" type="hidden" >
-                <input id="update_plan_control_id" class="form-control form-control-sm" name="update_plan_control_id" type="hidden" >
-
-                <div class="modal-body">
-                    <div class="row mt-5">
-                        <div class="col-md-2 text-end mt-2"> 
-                            <p for="">วันที่</p>
-                             
-                        </div>
-                        <div class="col-md-3"> 
-                            <input type="text" id="plan_control_moneydate" class="form-control" data-toggle="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-provide="datepicker" data-date-language="th-th" autocomplete="off" value="{{ $datenow }}">
-           
-                        </div>
-                        <div class="col-md-1 text-start"><i class="fa-solid fa-calendar-days mt-2"></i> </div>
-                        <div class="col-md-2 text-end mt-2"> 
-                            <p for="">ยอดเบิก</p>
-                             
-                        </div>
-                        <div class="col-md-3 "> 
-                            <div class="form-group">
-                                <input id="plan_control_moneyprice"
-                                    class="form-control form-control-sm"
-                                    name="plan_control_moneyprice">
-                            </div>
-                        </div>
-                        <div class="col-md-1 text-start mt-2"> <p for="">บาท</p> </div>
-                      
-                    </div>
-                     <div class="row mt-2">
-                        <div class="col-md-2 text-end"> <p for="">ผู้เบิก </p> </div>
-                        <div class="col-md-10"> 
-                            <div class="form-group">
-                                <select name="plan_control_moneyuser_id" id="plan_control_moneyuser_id"
-                                    class="form-control"
-                                    style="width: 100%">
-                                    @foreach ($users as $item3)
-                                    @if ($iduser == $item3->id)
-                                        <option value="{{ $item3->id }}" selected> {{ $item3->fname }} {{ $item3->lname }} </option>
-                                    @else
-                                        <option value="{{ $item3->id }}"> {{ $item3->fname }} {{ $item3->lname }} </option>
-                                    @endif 
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                     </div>
-
-                     <div class="row mt-2">
-                        <div class="col-md-2 text-end"> <p for="">หมายเหตุ </p> </div>
-                        <div class="col-md-10"> 
-                            <textarea name="plan_control_moneycomment" id="plan_control_moneycomment" class="form-control form-control-sm" rows="4"></textarea>
-                        </div>
-                    </div>
-                  
-                </div>
-
-                <div class="modal-footer">
-                    <div class="col-md-12 text-end">
-                        <div class="form-group">
-                            <button type="button" id="SaveMoneyBtn"
-                                class="btn-icon btn-shadow btn-dashed btn btn-outline-info me-2">
-                                {{-- <i class="fa-solid fa-floppy-disk me-2"></i> --}}
-                                <i class="pe-7s-diskette btn-icon-wrapper me-2"></i>
-                                Save
-                            </button>
-                            <button type="button"
-                                class="btn-icon btn-shadow btn-dashed btn btn-outline-danger"
-                                data-bs-dismiss="modal"><i
-                                    class="fa-solid fa-xmark me-2"></i>Close</button>
-
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-
-    <!--  Modal content for the insert example -->
-    <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myExtraLargeModalLabel">เพิ่มทะเบียนควบคุมแผนงานโครงการ</h5>
-                    <h6 class="mt-2">{{ $refnumber }} </h6>
-                    <input id="billno" class="form-control form-control-sm" name="billno" type="hidden"
-                        value="{{ $refnumber }}">
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <label for="">ชื่อโครงการ</label>
-                            <div class="form-group">
-                                <input id="plan_name" class="form-control form-control-sm" name="plan_name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-3 ">
-                            <label for="">ระยะเวลา วันที่</label>
-                            <div class="form-group">
-                                {{-- <input id="plan_starttime" class="form-control form-control-sm" name="plan_starttime"> --}}
-                                <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy"
-                                    data-date-autoclose="true" data-provide="datepicker"
-                                    data-date-container='#datepicker1'>
-                                    <input type="text" class="form-control" name="startdate" id="startdate"
-                                        placeholder="Start Date" data-date-container='#datepicker1'
-                                        data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                        data-date-language="th-th" value="{{ $datenow }}" required />
-
+            <div class="col-xl-6">
+                <div class="row"> 
+                    <div class="col"></div>
+                    <div class="col-xl-6">
+                        <a href="{{url('plan_control_subhos')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="100px" width="100px" class="rounded-circle me-3"> 
+                                Hospital
+                                    
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 ">
-                            <label for="">ถึง </label>
-                            <div class="form-group">
-                                {{-- <input id="plan_endtime" class="form-control form-control-sm" name="plan_endtime"> --}}
-                                <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy"
-                                    data-date-autoclose="true" data-provide="datepicker"
-                                    data-date-container='#datepicker1'>
-
-                                    <input type="text" class="form-control" name="enddate" placeholder="End Date"
-                                        id="enddate" data-date-container='#datepicker1' data-provide="datepicker"
-                                        data-date-autoclose="true" autocomplete="off" data-date-language="th-th"
-                                        value="{{ $datenow }}" />
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row"> 
+                    @foreach ($plan_strategic as $item)
+                    <div class="col-xl-12">
+                        <a href="{{url('plan_control_sub/'.$item->plan_strategic_id)}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    {{$item->plan_strategic_name}}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 ">
-                            <label for="">งบประมาณ </label>
-                            <div class="form-group">
-                                <input id="plan_price" class="form-control form-control-sm" name="plan_price">
-                            </div>
-                        </div>
-                        <div class="col-md-3 ">
-                            <label for="">แหล่งงบ </label>
-                            <div class="form-group">
-                                <select name="plan_type" id="plan_type" class="form-control form-control-sm"
-                                    style="width: 100%">
-                                    @foreach ($plan_control_type as $item2)
-                                        <option value="{{ $item2->plan_control_type_id }}">
-                                            {{ $item2->plan_control_typename }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
+                        </a>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-8 ">
-                            <label for="">กลุ่มงาน </label>
-                            <div class="form-group">
-                                <select name="department" id="department" class="form-control form-control-sm"
-                                    style="width: 100%">
-                                    {{-- <option value="">=เลือก=</option> --}}
-                                    @foreach ($department_sub_sub as $item)
-                                        @if ($iddep == $item->DEPARTMENT_SUB_SUB_ID)
-                                            <option value="{{ $item->DEPARTMENT_SUB_SUB_ID }}" selected>
-                                                {{ $item->DEPARTMENT_SUB_SUB_NAME }}</option>
-                                        @else
-                                            <option value="{{ $item->DEPARTMENT_SUB_SUB_ID }}">
-                                                {{ $item->DEPARTMENT_SUB_SUB_NAME }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                @endforeach     
+                    {{-- <div class="col-xl-3">
+                        <a href="{{url('plan_control_subhos_pp')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    PP
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-4 ">
-                            <label for="">ผู้รับผิดชอบ </label>
-                            <div class="form-group">
-                                <select name="user_id" id="user_id" class="form-control form-control-sm"
-                                    style="width: 100%">
-                                    @foreach ($users as $item3)
-                                        <option value="{{ $item3->id }}">{{ $item3->fname }} {{ $item3->lname }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                        </a>
+                    </div>
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_subhos_uc')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    UC
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-
-                <div class="modal-footer">
-                    <div class="col-md-12 text-end">
-                        <div class="form-group">
-                            <button type="button" id="SaveBtn"
-                                class="btn-icon btn-shadow btn-dashed btn btn-sm btn-outline-info">
-                                <i class="fa-solid fa-floppy-disk me-2"></i>
-                                บันทึกข้อมูล
-                            </button>
-                            <button type="button" class="btn-icon btn-shadow btn-dashed btn btn-sm btn-outline-danger"
-                                data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-2"></i>Close</button>
-
-                        </div>
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_subhos_lgo')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    อปท
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-            </div>
+                    <div class="col-xl-3">
+                        <a href="{{url('plan_control_subhos_orther')}}" target="_blank">
+                            <div class="card cardplan"> 
+                                <div class="card-body p-3">
+                                    <img src="{{ asset('images/hos.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                    อื่น ๆ
+                                </div>
+                            </div>
+                        </a>
+                    </div> --}}
+                </div> 
+            </div> 
         </div>
+        {{-- <div class="row">
+            <div class="col"></div>
+            <div class="col-xl-4">
+                <a href="{{url('plan_control_sub')}}" target="_blank">
+                    <div class="card cardplan"> 
+                        <div class="card-body p-3">
+                            <img src="{{ asset('images/cpso.png') }}" height="100px" width="100px" class="rounded-circle me-3"> 
+                            คปสอ.ภูเขียว
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-4">
+                <a href="{{url('plan_control_subhos')}}" target="_blank">
+                    <div class="card cardplan"> 
+                        <div class="card-body p-3">
+                            <img src="{{ asset('images/hos.png') }}" height="100px" width="100px" class="rounded-circle me-3"> 
+                        Hospital
+                            
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col"></div>
+        </div> --}}
     </div>
 
+  
+ 
 @endsection
 @section('footer')
     <script>
@@ -941,40 +646,34 @@
                 });
             });
 
-            $(document).on('click', '.ojectModal_', function() {
-                var plan_control_id = $(this).val();
-                // $('#plan_control_moneydate').datepicker();
-                // alert(plan_control_id);
-                $('#ojectModalModal').modal('show');
+            $(document).on('click', '.kpiModal_', function() {
+                var plan_control_id = $(this).val(); 
+                $('#kpiModalModal').modal('show');
                 
                 $.ajax({
                     type: "GET",
                     url: "{{ url('plan_control_moneyedit') }}" + '/' + plan_control_id,
                     success: function(data) { 
-                        $('#obj_plan_control_id').val(data.data_show.plan_control_id)
-                        $('#obj_plan_control_billno').val(data.data_show.billno)
+                        $('#kpi_plan_control_id').val(data.data_show.plan_control_id)
+                        $('#kpi_billno').val(data.data_show.billno)
                     },
                 });
             });
-            $('#SaveObjectBtn').click(function() { 
-                var plan_control_obj_name    = $('#plan_control_obj_name').val();
-                var obj_plan_control_id      = $('#obj_plan_control_id').val();
-                var obj_plan_control_billno  = $('#obj_plan_control_billno').val();
-
-                // var plan_control_obj_name    = $('#plan_control_obj_name').val();
-                // var obj_plan_control_id      = $('#plan_control_id').val();
-                // var obj_plan_control_billno  = $('#billno').val();
-                // alert(obj_plan_control_id);
+            $('#SaveKpiBtn').click(function() { 
+                var plan_control_kpi_name    = $('#plan_control_kpi_name').val();
+                var kpi_plan_control_id      = $('#kpi_plan_control_id').val();
+                var kpi_billno               = $('#kpi_billno').val();
+                // alert(kpi_billno);
                 $.ajax({
-                    url: "{{ route('p.plan_control_obj_save') }}",
+                    url: "{{ route('p.plan_control_kpi_save') }}",
                     type: "POST",
                     dataType: 'json',
-                    data: { obj_plan_control_id, plan_control_obj_name,obj_plan_control_billno},
+                    data: { kpi_plan_control_id, plan_control_kpi_name,kpi_billno},
                     success: function(data) {
                         if (data.status == 200) {
                             Swal.fire({
-                                title: 'เพิ่มวัถุประสงค์และตัวชี้วัดสำเร็จ',
-                                text: "You Insert success",
+                                title: 'เพิ่มตัวชี้วัดสำเร็จ',
+                                text: "You Insert KPI success",
                                 icon: 'success',
                                 showCancelButton: false,
                                 confirmButtonColor: '#06D177',
@@ -996,6 +695,58 @@
                     },
                 });
             });
+
+            $(document).on('click', '.ojectModal_', function() {
+                var plan_control_id = $(this).val(); 
+                $('#ObjModalModal').modal('show');
+                
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('plan_control_moneyedit') }}" + '/' + plan_control_id,
+                    success: function(data) { 
+                        $('#obj_plan_control_id').val(data.data_show.plan_control_id)
+                        $('#obj_billno').val(data.data_show.billno)
+                    },
+                });
+            });
+            $('#SaveObjectBtn').click(function() { 
+                var plan_control_obj_name    = $('#plan_control_obj_name').val();
+                var obj_plan_control_id      = $('#obj_plan_control_id').val();
+                var obj_billno               = $('#obj_billno').val();
+                alert(obj_billno);
+                $.ajax({
+                    url: "{{ route('p.plan_control_obj_save') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    data: { obj_plan_control_id, plan_control_obj_name,obj_billno},
+                    success: function(data) {
+                        if (data.status == 200) {
+                            Swal.fire({
+                                title: 'เพิ่มวัตถุประสงค์สำเร็จ',
+                                text: "You Insert Obj success",
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#06D177',
+                                confirmButtonText: 'เรียบร้อย'
+                            }).then((result) => {
+                                if (result
+                                    .isConfirmed) {
+                                    console.log(
+                                        data);
+
+                                    window.location
+                                        .reload();
+                                }
+                            })
+                        } else {
+
+                        }
+
+                    },
+                });
+            });
+
+            
 
 
         });

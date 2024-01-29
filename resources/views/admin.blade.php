@@ -45,7 +45,7 @@
 
         <div class="row">
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(236, 188, 198)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -62,8 +62,9 @@
                                             <a href="{{ url('person/person_index') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-user-tie font-size-25"
-                                                        style="color: rgb(234, 157, 172)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-user-tie font-size-25"
+                                                        style="color: rgb(234, 157, 172)"></i> --}}
+                                                        <img src="{{ asset('images/user.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -75,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(199, 181, 240)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -92,9 +93,9 @@
                                             <a href="{{ url('otone') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                  
-                                                    <i class="fa-solid fa-3x fa-clock-rotate-left font-size-25"
-                                                        style="color: rgb(171, 149, 223)"></i>
+                                                    <img src="{{ asset('images/otnew.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                                    {{-- <i class="fa-solid fa-3x fa-clock-rotate-left font-size-25"
+                                                        style="color: rgb(171, 149, 223)"></i> --}}
                                                 </button>
                                             </a>
                                         </div>
@@ -106,7 +107,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(152, 226, 224)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -123,9 +124,9 @@
                                             <a href="{{ url('time_dashboard') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-
-                                                    <i class="fa-solid fa-3x fa-clock font-size-25 ms-2"
-                                                        style="color: rgb(119, 218, 215)"></i>
+                                                    <img src="{{ asset('images/time.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                                    {{-- <i class="fa-solid fa-3x fa-clock font-size-25 ms-2"
+                                                        style="color: rgb(119, 218, 215)"></i> --}}
                                                 </button>
                                             </a>
                                         </div>
@@ -137,7 +138,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(245, 176, 250)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -152,8 +153,9 @@
                                             <a href="{{ url('book/bookmake_index') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-book-open-reader font-size-25"
-                                                        style="color: rgb(194, 137, 199)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-book-open-reader font-size-25"
+                                                        style="color: rgb(194, 137, 199)"></i> --}}
+                                                        <img src="{{ asset('images/document.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -200,7 +202,7 @@
 
 
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(247, 217, 217)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -217,8 +219,9 @@
                                             <a href="{{ url('plan') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-clipboard font-size-25"
-                                                        style="color: rgb(248, 182, 182)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-clipboard font-size-25"
+                                                        style="color: rgb(248, 182, 182)"></i> --}}
+                                                        <img src="{{ asset('images/plan2.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -261,7 +264,7 @@
                 </div>
             </div> --}}
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(255, 222, 161)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -278,8 +281,9 @@
                                             <a href="{{ url('supplies/supplies_index') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-paste font-size-25 ms-2"
-                                                        style="color: rgb(252, 212, 138)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-paste font-size-25 ms-2"
+                                                        style="color: rgb(252, 212, 138)"></i> --}}
+                                                        <img src="{{ asset('images/list1.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -291,7 +295,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(171, 175, 173)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -308,8 +312,9 @@
                                             <a href="{{ url('computer/com_staff_calenda') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-computer font-size-25 "
-                                                        style="color: rgb(143, 145, 144)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-computer font-size-25 "
+                                                        style="color: rgb(143, 145, 144)"></i> --}}
+                                                        <img src="{{ asset('images/computer.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -321,7 +326,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(170, 167, 250)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -338,8 +343,9 @@
                                             <a href="{{ url('medical/med_calenda') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-notes-medical font-size-25"
-                                                        style="color: rgb(137, 134, 236)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-notes-medical font-size-25"
+                                                        style="color: rgb(137, 134, 236)"></i> --}}
+                                                        <img src="{{ asset('images/medical.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -384,7 +390,7 @@
 
 
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(145, 220, 231)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -401,8 +407,10 @@
                                             <a href="{{ url('warehouse/warehouse_index') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-warehouse font-size-25"
-                                                        style="color: rgb(107, 189, 202)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-warehouse font-size-25"
+                                                        style="color: rgb(107, 189, 202)"></i> --}}
+                                                        {{-- <img src="{{ asset('images/warehouse.png') }}" height="70px" width="70px" class="rounded-circle me-3">  --}}
+                                                        <img src="{{ asset('images/store.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -501,7 +509,7 @@
             </div> --}}
 
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(252, 177, 210)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -518,8 +526,9 @@
                                             <a href="{{ url('account_info') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-money-check-dollar font-size-25"
-                                                        style="color: rgb(223, 136, 173)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-money-check-dollar font-size-25"
+                                                        style="color: rgb(223, 136, 173)"></i> --}}
+                                                        <img src="{{ asset('images/finace.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -531,7 +540,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-2 card shadow-lg rounded-pill" style="background-color: pink">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -548,8 +557,9 @@
                                             <a href="{{ url('account_pk_dash') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-file-invoice-dollar font-size-26"
-                                                        style="color: pink"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-file-invoice-dollar font-size-26"
+                                                        style="color: pink"></i> --}}
+                                                        <img src="{{ asset('images/accountnew.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -563,7 +573,7 @@
 
 
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill"
                     style="background-color: rgba(235, 104, 247, 0.781)">
                     <div class="grid-menu-col">
@@ -581,7 +591,9 @@
                                             <a href="{{ url('p4p') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-p fa-3x text-danger font-size-25 ms-3"></i>
+                                                    {{-- <i class="fa-solid fa-p fa-3x text-danger font-size-25 ms-3"></i> --}}
+                                                    <img src="{{ asset('images/clipboard.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
+                                                    
                                                 </button>
                                             </a>
                                         </div>
@@ -623,7 +635,7 @@
                 </div>
             </div> --}}
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(93, 218, 114)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -640,8 +652,9 @@
                                             <a href="{{ url('env_dashboard') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-hand-holding-droplet font-size-25"
-                                                        style="color: rgb(90, 197, 215)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-hand-holding-droplet font-size-25"
+                                                        style="color: rgb(90, 197, 215)"></i> --}}
+                                                        <img src="{{ asset('images/env.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                                 </span>
                                             </a>
@@ -687,7 +700,7 @@
 
 
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(209, 180, 255)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -704,8 +717,9 @@
                                             <a href="{{ url('prenatal_care') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-person-breastfeeding font-size-25"
-                                                        style="color: rgb(209, 180, 255)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-person-breastfeeding font-size-25"
+                                                        style="color: rgb(209, 180, 255)"></i> --}}
+                                                        <img src="{{ asset('images/pediatrics.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -717,7 +731,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill"
                     style="background-color: rgba(30, 187, 148, 0.74)">
                     <div class="grid-menu-col">
@@ -735,8 +749,9 @@
                                             <a href="{{ url('medicine_salt') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-square-person-confined font-size-25 "
-                                                        style="color: rgba(22, 145, 114, 0.74)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-square-person-confined font-size-25 "
+                                                        style="color: rgba(22, 145, 114, 0.74)"></i> --}}
+                                                        <img src="{{ asset('images/thai_medical.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                                 </span>
                                             </a>
@@ -778,7 +793,7 @@
 
            
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill" style="background-color: rgb(247, 198, 176)">
                     <div class="grid-menu-col">
                         <div class="g-0 row">
@@ -795,8 +810,9 @@
                                             <a href="{{ url('pkclaim_info') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill">
-                                                    <i class="fa-solid fa-3x fa-sack-dollar font-size-25 ms-2"
-                                                        style="color: rgb(245, 180, 150)"></i>
+                                                    {{-- <i class="fa-solid fa-3x fa-sack-dollar font-size-25 ms-2"
+                                                        style="color: rgb(245, 180, 150)"></i> --}}
+                                                        <img src="{{ asset('images/claim2.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -871,7 +887,7 @@
                 </div> 
             </div> --}}
             
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill"
                     style="background-color: rgba(23, 189, 147, 0.74)">
                     <div class="grid-menu-col">
@@ -889,8 +905,8 @@
                                             <a href="{{ url('ct_rep') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill"> 
-                                                        <i class="fa-regular fa-heart fa-3x font-size-25" style="color: rgba(23, 189, 147, 0.74)"></i>
-                                                      
+                                                        {{-- <i class="fa-regular fa-heart fa-3x font-size-25" style="color: rgba(23, 189, 147, 0.74)"></i> --}}
+                                                        <img src="{{ asset('images/ct_scan_2.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>
@@ -902,7 +918,7 @@
                 </div> 
             </div>
 
-            <div class="col-xl-4 col-md-4">
+            <div class="col-xl-3 col-md-3">
                 <div class="main-card mb-3 card shadow-lg rounded-pill"
                     style="background-color: rgba(209, 180, 255, 0.74)">
                     <div class="grid-menu-col">
@@ -913,14 +929,15 @@
                                         <div class="flex-grow-1">
                                             <p class="text-start font-size-13 mb-2">PK-BACKOFFice</p>
                                             <a href="" target="_blank">
-                                                <h5 class="text-start mb-2">รายงานและตัวชี้วัดสำคัญ</h5>
+                                                <h5 class="text-start mb-2">REPORT ALL</h5>
                                             </a>
                                         </div>
                                         <div class="avatar ms-2">
                                             <a href="{{ url('report_db') }}" target="_blank">
                                                 <button
                                                     class="btn-icon btn-shadow btn-dashed btn btn-outline-info avatar-title bg-white text-primary rounded-pill"> 
-                                                        <i class="fa-solid fa-chart-line fa-3x font-size-25" style="color: rgba(209, 180, 255, 0.74)"></i> 
+                                                        {{-- <i class="fa-solid fa-chart-line fa-3x font-size-25" style="color: rgba(209, 180, 255, 0.74)"></i>  --}}
+                                                        <img src="{{ asset('images/report.png') }}" height="70px" width="70px" class="rounded-circle me-3"> 
                                                 </button>
                                             </a>
                                         </div>

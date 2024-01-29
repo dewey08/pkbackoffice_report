@@ -195,7 +195,7 @@
         
                 <!-- ========== Left Sidebar Start ========== -->
                 <div class="vertical-menu ">
-                    {{-- <div data-simplebar class="h-100">  --}}
+                    <div data-simplebar class="h-100"> 
                         <!--- Sidemenu -->
                         <div id="sidebar-menu">
                             <!-- Left Menu Start -->
@@ -264,7 +264,7 @@
                             </ul>
                         </div>
                         <!-- Sidebar -->
-                    {{-- </div> --}}
+                    </div>
                 </div>
                  <!-- ============================================================== -->
         <!-- Start right Content here -->

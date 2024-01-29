@@ -215,7 +215,7 @@
                                             <th class="text-center">สิทธิ์</th>  
                                             <th class="text-center">spsch</th> 
                                             {{-- <th class="text-center">xray_price</th>  --}}
-                                            <th class="text-center">CXR ONLY</th> 
+                                            <th class="text-center">CXR+CT</th> 
                                             <th class="text-center">ค่าใช้จ่ายรวม</th> 
                                             <th class="text-center">สถานะ</th> 
                                             <th class="text-center">STMdoc</th> 
@@ -324,27 +324,29 @@
 
                                                                     <hr class="mt-4">
                                                                     <div class="row mt-4 mb-4" style="font-size:15px;color:rgb(11, 150, 80)">  
-                                                                        <div class="col"></div>
+                                                                        {{-- <div class="col"></div> --}}
                                                                         <div class="col-md-1 text-center" >vn</div>
                                                                         <div class="col-md-1 text-center" >hn</div>
                                                                         <div class="col-md-1 text-center" >vstdate</div> 
-                                                                        <div class="col-md-5 text-center" >รายการ</div>   
+                                                                        <div class="col-md-3 text-center" >รายการ</div>  
+                                                                        <div class="col-md-4 text-center" >CC</div>   
                                                                         <div class="col-md-1 text-center">unitprice</div>
                                                                         <div class="col-md-1 text-center">sum_price </div> 
-                                                                        <div class="col"></div>
+                                                                        {{-- <div class="col"></div> --}}
                                                                     </div>
                                                                     <?php $iv = 1; ?>
                                                                     @foreach ($data_sub_visit as $v_s)
                                                                     <hr>
                                                                         <div class="row" style="font-size:12px;height: 12px;">   
-                                                                            <div class="col"></div>
+                                                                            {{-- <div class="col"></div> --}}
                                                                             <div class="col-md-1 text-start">{{ $v_s->vn}}</div>
                                                                             <div class="col-md-1 text-start">{{ $v_s->hn}}</div>
                                                                             <div class="col-md-1 text-start">{{ $v_s->vstdate}}</div>   
-                                                                            <div class="col-md-5 text-start">{{ $v_s->xray_list}}</div> 
+                                                                            <div class="col-md-3 text-start">{{ $v_s->xray_list}}</div> 
+                                                                            <div class="col-md-4 text-start">{{ $v_s->cc}}</div> 
                                                                             <div class="col-md-1 text-start">{{ number_format($v_s->unitprice, 2)}}</div> 
                                                                             <div class="col-md-1 text-center">{{ number_format($v_s->sum_price, 2) }}</div> 
-                                                                            <div class="col"></div>
+                                                                            {{-- <div class="col"></div> --}}
                                                                         </div>
                                                                     @endforeach 
                                                                     <hr>

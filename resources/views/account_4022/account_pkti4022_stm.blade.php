@@ -100,8 +100,9 @@
                                     <th class="text-center">an</th>
                                     <th class="text-center">hn</th>
                                     <th class="text-center">cid</th>
+                                    <th class="text-center">invno</th>
                                     <th class="text-center">ptname</th>
-                                    <th class="text-center">vstdate</th> 
+                                    <th class="text-center">rxdate</th> 
                                     <th class="text-center">dchdate</th> 
                                     <th class="text-center">pttype</th>   
                                     <th class="text-center">ลูกหนี้</th> 
@@ -119,8 +120,9 @@
                                         <td class="text-center" width="10%">{{ $item->an }}</td>
                                         <td class="text-center" width="5%">{{ $item->hn }}</td>
                                         <td class="text-center" width="10%">{{ $item->cid }}</td>
+                                        <td class="text-center" width="5%">{{ $item->invno }}</td>
                                         <td class="p-2">{{ $item->ptname }}</td>
-                                        <td class="text-center" width="7%">{{ $item->vstdate }}</td>
+                                        <td class="text-center" width="7%">{{ $item->rxdate }}</td>
                                         <td class="text-center" width="7%">{{ $item->dchdate }}</td>
                                         <td class="text-center" width="5%">{{ $item->pttype }}</td>
                                         

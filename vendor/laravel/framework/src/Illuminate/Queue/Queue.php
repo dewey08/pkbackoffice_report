@@ -107,7 +107,7 @@ abstract class Queue
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new InvalidPayloadException(
-                'Unable to JSON encode payload. Error ('.json_last_error().'): '.json_last_error_msg(), $value
+                'Unable to JSON encode payload. Error code: '.json_last_error(), $value
             );
         }
 
@@ -142,7 +142,7 @@ abstract class Queue
             'uuid' => (string) Str::uuid(),
             'displayName' => $this->getDisplayName($job),
             'job' => 'Illuminate\Queue\CallQueuedHandler@call',
-            'maxTries' => $this->getJobTries($job) ?? null,
+            'maxTries' => $job->tries ?? null,
             'maxExceptions' => $job->maxExceptions ?? null,
             'failOnTimeout' => $job->failOnTimeout ?? false,
             'backoff' => $this->getJobBackoff($job),
@@ -176,27 +176,6 @@ abstract class Queue
     {
         return method_exists($job, 'displayName')
                         ? $job->displayName() : get_class($job);
-    }
-
-    /**
-     * Get the maximum number of attempts for an object-based queue handler.
-     *
-     * @param  mixed  $job
-     * @return mixed
-     */
-    public function getJobTries($job)
-    {
-        if (! method_exists($job, 'tries') && ! isset($job->tries)) {
-            return;
-        }
-
-        if (isset($job->tries)) {
-            return $job->tries;
-        }
-
-        if (method_exists($job, 'tries') && ! is_null($job->tries())) {
-            return $job->tries();
-        }
     }
 
     /**

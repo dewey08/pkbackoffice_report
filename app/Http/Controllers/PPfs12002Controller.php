@@ -169,16 +169,17 @@ class PPfs12002Controller extends Controller
                         LEFT OUTER JOIN vn_stat v on v.vn = o.vn 
                         LEFT OUTER JOIN pttype pt on pt.pttype = v.pttype
                         WHERE o.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'" 
-                        AND o.icode in(select icode from s_drugitems where nhso_adp_code in("12001","12002")) 
-                       
-                        AND v.pttype ="p1"
+                        AND o.icode in(select icode from s_drugitems where nhso_adp_code in("12002")) 
+                        AND v.age_y between 35 and 59
+                        AND v.pttype IN("p1","91")
                         AND length(p.cid)=13 
                         GROUP BY o.hn    
                 ');    
                 // AND p.nationality="99"             
                 foreach ($data_main_ as $key => $value) {    
-                    $check_authen = Check_authen::where('cid',$value->cid)->where('vstdate',$value->vstdate)->count();
-                    if ($check_authen > 0) {
+                    //เช็ค Authen
+                    // $check_authen = Check_authen::where('cid',$value->cid)->where('vstdate',$value->vstdate)->count();
+                    // if ($check_authen > 0) {
                         D_12002::insert([
                             'vn'                => $value->vn,
                             'hn'                => $value->hn,
@@ -189,9 +190,8 @@ class PPfs12002Controller extends Controller
                             'icode'             => $value->icode,
                             'sum_price'         => $value->sum_price 
                         ]);
-                    } else {
-                        # code...
-                    }   
+                    // } else { 
+                    // }   
                     $check = D_claim::where('vn',$value->vn)->where('nhso_adp_code','12002')->count();
                     if ($check > 0) {
                         # code...

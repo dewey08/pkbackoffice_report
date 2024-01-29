@@ -170,10 +170,6 @@ trait InteractsWithDockerComposeServices
     {
         if (! file_exists($path = $this->laravel->basePath('phpunit.xml'))) {
             $path = $this->laravel->basePath('phpunit.xml.dist');
-
-            if (! file_exists($path)) {
-                return;
-            }
         }
 
         $phpunit = file_get_contents($path);

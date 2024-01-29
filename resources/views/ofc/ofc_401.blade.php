@@ -1172,8 +1172,8 @@ $pos = strrpos($url, '/') + 1;
                                                     $(this).parents("tr").remove();
                                                 });
                                                 Swal.fire({
-                                                    title: 'ตั้งลูกหนี้สำเร็จ',
-                                                    text: "You Debtor data success",
+                                                    title: 'ประมวลผลสำเร็จ',
+                                                    text: "You Process data success",
                                                     icon: 'success',
                                                     showCancelButton: false,
                                                     confirmButtonColor: '#06D177',

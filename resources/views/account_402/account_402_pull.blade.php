@@ -137,19 +137,21 @@
                                           
                                             <th width="5%" class="text-center">ลำดับ</th> 
                                             <th width="5%" class="text-center"><input type="checkbox" class="dcheckbox" name="stamp" id="stamp"> </th> 
-                                            <th class="text-center" width="5%">vn</th> 
+                                            {{-- <th class="text-center" width="5%">vn</th>  --}}
                                             <th class="text-center">an</th>
                                             <th class="text-center" >hn</th>
                                             <th class="text-center" >cid</th>
                                             <th class="text-center">ptname</th>
                                             <th class="text-center">Adjrw</th> 
                                             <th class="text-center">Adjrw*9000</th>
-                                            <th class="text-center">vstdate</th>  
+                                            {{-- <th class="text-center">vstdate</th>   --}}
                                             <th class="text-center">dchdate</th> 
                                             <th class="text-center">pttype</th> 
                                             <th class="text-center">spsch</th>  
-                                            <th class="text-center">ลูกหนี้</th>  
-                                            <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>  
+                                            <th class="text-center">debit</th>  
+                                            <th class="text-center">ฟอกเลือด</th>
+                                            <th class="text-center">ลูกหนี้</th>
+                                            {{-- <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>   --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,19 +168,21 @@
                                                 @endif
                                                 {{-- <td class="text-center" width="5%"><input type="checkbox" class="dcheckbox sub_chk" data-id="{{$item->acc_debtor_id}}"> </td>  --}}
 
-                                                <td class="text-center" width="5%">{{ $item->vn }}</td> 
+                                                {{-- <td class="text-center" width="5%">{{ $item->vn }}</td>  --}}
                                                 <td class="text-center" width="5%">{{ $item->an }}</td> 
                                                 <td class="text-center" width="5%">{{ $item->hn }}</td>  
                                                 <td class="text-center" width="10%">{{ $item->cid }}</td>  
                                                 <td class="p-2" >{{ $item->ptname }}</td> 
                                                 <td class="text-center" width="7%">{{ $item->adjrw }}</td>
                                                 <td class="text-center" width="7%">{{ $item->total_adjrw_income }}</td>
-                                                <td class="text-center" width="7%">{{ $item->vstdate }}</td>   
+                                                {{-- <td class="text-center" width="7%">{{ $item->vstdate }}</td>    --}}
                                                 <td class="text-center" width="7%">{{ $item->dchdate }}</td> 
                                                 <td class="text-center" style="color:rgb(73, 147, 231)" width="5%">{{ $item->pttype }}</td>                                                 
                                                 <td class="text-center" style="color:rgb(216, 95, 14)" width="5%">{{ $item->subinscl }}</td>  
-                                                <td class="text-end" width="10%">{{ number_format($item->debit_total, 2) }}</td> 
-                                                <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td> 
+                                                <td class="text-center" width="10%">{{ number_format($item->debit, 2) }}</td> 
+                                                <td class="text-center" width="8%">{{ number_format($item->fokliad, 2) }}</td> 
+                                                <td class="text-center" width="10%">{{ number_format($item->debit_total, 2) }}</td> 
+                                                {{-- <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td>  --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -414,18 +418,22 @@
                 })
             });
 
-            $('#destroy').on('click', function(e) {           
-                    if($(this).is(':checked',true))  
-                        {
-                            $(".sub_destroy").prop('checked', true);  
-                        } else {  
-                            $(".sub_destroy").prop('checked',false);  
-                        }  
-            }); 
+            // $('#destroy').on('click', function(e) {  
+            // $('#stamp').on('click', function(e) {          
+            //         if($(this).is(':checked',true))  
+            //             {
+            //                 // $(".sub_destroy").prop('checked', true);  
+            //                 $(".sub_chk").prop('checked', true); 
+            //             } else {  
+            //                 // $(".sub_destroy").prop('checked',false);  
+            //                 $(".sub_chk").prop('checked',false); 
+            //             }  
+            // }); 
             $('.Destroystamp').on('click', function(e) {
                 // alert('oo');
                 var allValls = [];
-                $(".sub_destroy:checked").each(function () {
+                // $(".sub_destroy:checked").each(function () {
+                $(".sub_chk:checked").each(function () {
                     allValls.push($(this).attr('data-id'));
                 });
                 if (allValls.length <= 0) {
@@ -465,7 +473,8 @@
                                         data: 'ids='+join_selected_values,
                                         success:function(data){ 
                                                 if (data.status == 200) {
-                                                    $(".sub_destroy:checked").each(function () {
+                                                    // $(".sub_destroy:checked").each(function () {
+                                                    $(".sub_chk:checked").each(function () {
                                                         $(this).parents("tr").remove();
                                                     });
                                                     Swal.fire({

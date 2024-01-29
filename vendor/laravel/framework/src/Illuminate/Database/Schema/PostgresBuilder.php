@@ -54,18 +54,6 @@ class PostgresBuilder extends Builder
     }
 
     /**
-     * Get the user-defined types that belong to the database.
-     *
-     * @return array
-     */
-    public function getTypes()
-    {
-        return $this->connection->getPostProcessor()->processTypes(
-            $this->connection->selectFromWriteConnection($this->grammar->compileTypes())
-        );
-    }
-
-    /**
      * Get all of the table names for the database.
      *
      * @deprecated Will be removed in a future Laravel version.
@@ -163,8 +151,6 @@ class PostgresBuilder extends Builder
     /**
      * Get all of the type names for the database.
      *
-     * @deprecated Will be removed in a future Laravel version.
-     *
      * @return array
      */
     public function getAllTypes()
@@ -182,27 +168,20 @@ class PostgresBuilder extends Builder
     public function dropAllTypes()
     {
         $types = [];
-        $domains = [];
 
-        $schemas = $this->grammar->escapeNames($this->getSchemas());
+        foreach ($this->getAllTypes() as $row) {
+            $row = (array) $row;
 
-        foreach ($this->getTypes() as $type) {
-            if (! $type['implicit'] && in_array($this->grammar->escapeNames([$type['schema']])[0], $schemas)) {
-                if ($type['type'] === 'domain') {
-                    $domains[] = $type['schema'].'.'.$type['name'];
-                } else {
-                    $types[] = $type['schema'].'.'.$type['name'];
-                }
-            }
+            $types[] = reset($row);
         }
 
-        if (! empty($types)) {
-            $this->connection->statement($this->grammar->compileDropAllTypes($types));
+        if (empty($types)) {
+            return;
         }
 
-        if (! empty($domains)) {
-            $this->connection->statement($this->grammar->compileDropAllDomains($domains));
-        }
+        $this->connection->statement(
+            $this->grammar->compileDropAllTypes($types)
+        );
     }
 
     /**
@@ -222,40 +201,6 @@ class PostgresBuilder extends Builder
         );
 
         return $this->connection->getPostProcessor()->processColumns($results);
-    }
-
-    /**
-     * Get the indexes for a given table.
-     *
-     * @param  string  $table
-     * @return array
-     */
-    public function getIndexes($table)
-    {
-        [, $schema, $table] = $this->parseSchemaAndTable($table);
-
-        $table = $this->connection->getTablePrefix().$table;
-
-        return $this->connection->getPostProcessor()->processIndexes(
-            $this->connection->selectFromWriteConnection($this->grammar->compileIndexes($schema, $table))
-        );
-    }
-
-    /**
-     * Get the foreign keys for a given table.
-     *
-     * @param  string  $table
-     * @return array
-     */
-    public function getForeignKeys($table)
-    {
-        [, $schema, $table] = $this->parseSchemaAndTable($table);
-
-        $table = $this->connection->getTablePrefix().$table;
-
-        return $this->connection->getPostProcessor()->processForeignKeys(
-            $this->connection->selectFromWriteConnection($this->grammar->compileForeignKeys($schema, $table))
-        );
     }
 
     /**

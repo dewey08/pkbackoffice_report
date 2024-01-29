@@ -207,15 +207,15 @@ class Account603Controller extends Controller
                     ,sum(if(op.icode IN("3001412","3001417"),sum_price,0)) as debit_toa
                     ,sum(if(op.icode IN("3010829","3011068","3010864","3010861","3010862","3010863","3011069","3011012","3011070"),sum_price,0)) as debit_refer
  
-                    from hos.ipt ip
-                    LEFT OUTER JOIN hos.an_stat a ON ip.an = a.an
-                    LEFT OUTER JOIN hos.patient pt on pt.hn=a.hn
-                    LEFT OUTER JOIN hos.pttype ptt on a.pttype=ptt.pttype
-                    LEFT OUTER JOIN hos.pttype_eclaim ec on ec.code=ptt.pttype_eclaim_id
-                    LEFT OUTER JOIN hos.ipt_pttype ipt ON ipt.an = a.an
-                    LEFT OUTER JOIN hos.opitemrece op ON ip.an = op.an
-                    LEFT OUTER JOIN hos.s_drugitems d on d.icode = op.icode 
-                    LEFT OUTER JOIN hos.vn_stat v on v.vn = a.vn
+                    from ipt ip
+                    LEFT OUTER JOIN an_stat a ON ip.an = a.an
+                    LEFT OUTER JOIN patient pt on pt.hn=a.hn
+                    LEFT OUTER JOIN pttype ptt on a.pttype=ptt.pttype
+                    LEFT OUTER JOIN pttype_eclaim ec on ec.code=ptt.pttype_eclaim_id
+                    LEFT OUTER JOIN ipt_pttype ipt ON ipt.an = a.an
+                    LEFT OUTER JOIN opitemrece op ON ip.an = op.an
+                    LEFT OUTER JOIN s_drugitems d on d.icode = op.icode 
+                    LEFT OUTER JOIN vn_stat v on v.vn = a.vn
                     WHERE a.dchdate BETWEEN "' . $startdate . '" AND "' . $enddate . '"
                     AND ipt.pttype IN(SELECT pttype FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050102.603" AND opdipd ="IPD")
                     AND a.income-a.rcpt_money-a.discount_money <> 0
@@ -234,7 +234,7 @@ class Account603Controller extends Controller
                             'ptname'             => $value->ptname,
                             'pttype'             => $value->pttype,
                             'vstdate'            => $value->vstdate,
-                            'regdate'            => $value->regdate,
+                            'rxdate'             => $value->regdate,
                             'dchdate'            => $value->dchdate,
                             'acc_code'           => $value->code,
                             'account_code'       => $value->account_code,
@@ -578,6 +578,17 @@ class Account603Controller extends Controller
             'startdate'         =>     $startdate,
             'enddate'           =>     $enddate,
             'datashow'          =>     $datashow, 
+        ]);
+    }
+
+    public function account_603_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
     // public function account_602_edit(Request $request, $id)

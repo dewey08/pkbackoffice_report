@@ -2,6 +2,7 @@
 
 namespace Laravel\Prompts;
 
+use Closure;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
@@ -26,7 +27,7 @@ class SelectPrompt extends Prompt
         array|Collection $options,
         public int|string|null $default = null,
         public int $scroll = 5,
-        public mixed $validate = null,
+        public ?Closure $validate = null,
         public string $hint = '',
         public bool|string $required = true,
     ) {

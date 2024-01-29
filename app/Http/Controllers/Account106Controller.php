@@ -913,8 +913,46 @@ class Account106Controller extends Controller
             $datnow_ddd = '10'; 
         }elseif ($datnow_ddd_ == '11') {
             $datnow_ddd = '11'; 
+        }elseif ($datnow_ddd_ == '12') {
+            $datnow_ddd = '12'; 
+        }elseif ($datnow_ddd_ == '13') {
+            $datnow_ddd = '13'; 
+        }elseif ($datnow_ddd_ == '14') {
+            $datnow_ddd = '14'; 
+        }elseif ($datnow_ddd_ == '15') {
+            $datnow_ddd = '15'; 
+        }elseif ($datnow_ddd_ == '16') {
+            $datnow_ddd = '16'; 
+        }elseif ($datnow_ddd_ == '17') {
+            $datnow_ddd = '17'; 
+        }elseif ($datnow_ddd_ == '18') {
+            $datnow_ddd = '18'; 
+        }elseif ($datnow_ddd_ == '19') {
+            $datnow_ddd = '19'; 
+        }elseif ($datnow_ddd_ == '20') {
+            $datnow_ddd = '20'; 
+        }elseif ($datnow_ddd_ == '21') {
+            $datnow_ddd = '21'; 
+        }elseif ($datnow_ddd_ == '22') {
+            $datnow_ddd = '22'; 
+        }elseif ($datnow_ddd_ == '23') {
+            $datnow_ddd = '23'; 
+        }elseif ($datnow_ddd_ == '24') {
+            $datnow_ddd = '24'; 
+        }elseif ($datnow_ddd_ == '25') {
+            $datnow_ddd = '25'; 
+        }elseif ($datnow_ddd_ == '26') {
+            $datnow_ddd = '26'; 
+        }elseif ($datnow_ddd_ == '27') {
+            $datnow_ddd = '27'; 
+        }elseif ($datnow_ddd_ == '28') {
+            $datnow_ddd = '28'; 
+        }elseif ($datnow_ddd_ == '29') {
+            $datnow_ddd = '29'; 
+        }elseif ($datnow_ddd_ == '30') {
+            $datnow_ddd = '30'; 
         } else {
-            $datnow_ddd = '12';
+            $datnow_ddd = '31';
         }
         
         
@@ -957,6 +995,8 @@ class Account106Controller extends Controller
         $date_vstd = date('D'); 
         $date_vstdd = date_create($dataedit->vstdate);
         $datnow_vstddd_ =  date_format($date_vstdd, "d");
+
+        // dd($datnow_vstddd_);
         if ($datnow_vstddd_ == '1') {
             $datnow_vstddd = '๑';
         } else if ($datnow_vstddd_ == '2') {
@@ -979,8 +1019,46 @@ class Account106Controller extends Controller
             $datnow_vstddd = '๑๐';
         } else if ($datnow_vstddd_ == '11') {
             $datnow_vstddd = '๑๑';
-        } else {
+        } else if ($datnow_vstddd_ == '12') {
             $datnow_vstddd = '๑๒';
+        } else if ($datnow_vstddd_ == '13') {
+            $datnow_vstddd = '๑๓';
+        } else if ($datnow_vstddd_ == '14') {
+            $datnow_vstddd = '๑๔';
+        } else if ($datnow_vstddd_ == '15') {
+            $datnow_vstddd = '๑๕';
+        } else if ($datnow_vstddd_ == '16') {
+            $datnow_vstddd = '๑๖';
+        } else if ($datnow_vstddd_ == '17') {
+            $datnow_vstddd = '๑๗';
+        } else if ($datnow_vstddd_ == '18') {
+            $datnow_vstddd = '๑๘';
+        } else if ($datnow_vstddd_ == '19') {
+            $datnow_vstddd = '๑๙';
+        } else if ($datnow_vstddd_ == '20') {
+            $datnow_vstddd = '๒๐';
+        } else if ($datnow_vstddd_ == '21') {
+            $datnow_vstddd = '๒๑';
+        } else if ($datnow_vstddd_ == '22') {
+            $datnow_vstddd = '๒๒';
+        } else if ($datnow_vstddd_ == '23') {
+            $datnow_vstddd = '๒๓';
+        } else if ($datnow_vstddd_ == '24') {
+            $datnow_vstddd = '๒๔';
+        } else if ($datnow_vstddd_ == '25') {
+            $datnow_vstddd = '๒๕';
+        } else if ($datnow_vstddd_ == '26') {
+            $datnow_vstddd = '๒๖';
+        } else if ($datnow_vstddd_ == '27') {
+            $datnow_vstddd = '๒๗';
+        } else if ($datnow_vstddd_ == '28') {
+            $datnow_vstddd = '๒๘';
+        } else if ($datnow_vstddd_ == '29') {
+            $datnow_vstddd = '๒๙';
+        } else if ($datnow_vstddd_ == '30') {
+            $datnow_vstddd = '๓๐';
+        } else {
+            $datnow_vstddd = '๓๑';
         }
         // dd($datnow_vstddd);
         $date_vstm = date('M'); 
@@ -1115,6 +1193,18 @@ class Account106Controller extends Controller
         $pdf->Output();
 
         exit;
+    }
+
+
+    public function account_106_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
+        ]);
     }
     
  

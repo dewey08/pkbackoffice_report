@@ -5,14 +5,11 @@ namespace Illuminate\Database\Schema;
 use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Database\Connection;
-use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use LogicException;
 
 class Builder
 {
-    use Macroable;
-
     /**
      * The database connection instance.
      *
@@ -215,16 +212,6 @@ class Builder
     }
 
     /**
-     * Get the user-defined types that belong to the database.
-     *
-     * @return array
-     */
-    public function getTypes()
-    {
-        throw new LogicException('This database driver does not support user-defined types.');
-    }
-
-    /**
      * Get all of the table names for the database.
      *
      * @deprecated Will be removed in a future Laravel version.
@@ -352,36 +339,6 @@ class Builder
 
         return $this->connection->getPostProcessor()->processColumns(
             $this->connection->selectFromWriteConnection($this->grammar->compileColumns($table))
-        );
-    }
-
-    /**
-     * Get the indexes for a given table.
-     *
-     * @param  string  $table
-     * @return array
-     */
-    public function getIndexes($table)
-    {
-        $table = $this->connection->getTablePrefix().$table;
-
-        return $this->connection->getPostProcessor()->processIndexes(
-            $this->connection->selectFromWriteConnection($this->grammar->compileIndexes($table))
-        );
-    }
-
-    /**
-     * Get the foreign keys for a given table.
-     *
-     * @param  string  $table
-     * @return array
-     */
-    public function getForeignKeys($table)
-    {
-        $table = $this->connection->getTablePrefix().$table;
-
-        return $this->connection->getPostProcessor()->processForeignKeys(
-            $this->connection->selectFromWriteConnection($this->grammar->compileForeignKeys($table))
         );
     }
 

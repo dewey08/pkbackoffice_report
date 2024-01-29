@@ -106,7 +106,7 @@
             <div class="row">
                 <div class="col-md-3">                               
                     <div class="nav flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <div class="card p-4 card-ucs">
+                        <div class="card p-4 card_pink">
                             <h4 class="card-title" style="color:rgb(10, 151, 85)">STM DETAIL UCS OPD 216</h4>
                             <div class="table-responsive">
                                 <table id="example" class="table table-striped table-bordered "
@@ -141,7 +141,7 @@
                         <div class="tab-pane fade show active" id="v-pills-ucs" role="tabpanel" aria-labelledby="v-pills-ucs-tab">
                             <div class="row"> 
                                 <div class="col-md-12">
-                                    <div class="card p-4 card-ucs">
+                                    <div class="card p-4 card_pink">
                                         <h4 class="card-title" style="color:rgb(10, 151, 85)">STM DETAIL UCS IPD :::: >> {{$STMDoc}}</h4>
                                         <div class="table-responsive">
                                             {{-- <table id="example2" class="table table-striped table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;"> --}}

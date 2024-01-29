@@ -144,7 +144,7 @@ class TestResponse implements ArrayAccess
     {
         $message = $this->statusMessageWithDetails($status, $actual = $this->getStatusCode());
 
-        PHPUnit::assertSame($status, $actual, $message);
+        PHPUnit::assertSame($actual, $status, $message);
 
         return $this;
     }
@@ -1205,28 +1205,26 @@ class TestResponse implements ArrayAccess
 
         foreach (Arr::wrap($errors) as $key => $value) {
             PHPUnit::assertArrayHasKey(
-                $resolvedKey = (is_int($key)) ? $value : $key,
+                (is_int($key)) ? $value : $key,
                 $sessionErrors,
-                "Failed to find a validation error in session for key: '{$resolvedKey}'".PHP_EOL.PHP_EOL.$errorMessage
+                "Failed to find a validation error in session for key: '{$value}'".PHP_EOL.PHP_EOL.$errorMessage
             );
 
-            foreach (Arr::wrap($value) as $message) {
-                if (! is_int($key)) {
-                    $hasError = false;
+            if (! is_int($key)) {
+                $hasError = false;
 
-                    foreach (Arr::wrap($sessionErrors[$key]) as $sessionErrorMessage) {
-                        if (Str::contains($sessionErrorMessage, $message)) {
-                            $hasError = true;
+                foreach (Arr::wrap($sessionErrors[$key]) as $sessionErrorMessage) {
+                    if (Str::contains($sessionErrorMessage, $value)) {
+                        $hasError = true;
 
-                            break;
-                        }
+                        break;
                     }
+                }
 
-                    if (! $hasError) {
-                        PHPUnit::fail(
-                            "Failed to find a validation error for key and message: '$key' => '$message'".PHP_EOL.PHP_EOL.$errorMessage
-                        );
-                    }
+                if (! $hasError) {
+                    PHPUnit::fail(
+                        "Failed to find a validation error for key and message: '$key' => '$value'".PHP_EOL.PHP_EOL.$errorMessage
+                    );
                 }
             }
         }

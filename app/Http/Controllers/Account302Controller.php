@@ -223,8 +223,11 @@ class Account302Controller extends Controller
             $acc_debtor = DB::connection('mysql2')->select('
                 SELECT a.vn,a.an,a.hn,pt.cid,concat(pt.pname,pt.fname," ",pt.lname) fullname
                 ,a.regdate as admdate,a.dchdate as dchdate,v.vstdate,op.income as income_group
-                ,ipt.pttype,ptt.max_debt_money,ec.code,ec.ar_ipd as account_code
-                ,ec.name as account_name,ifnull(ec.ar_ipd,"") pang_debit
+                ,ipt.pttype,ptt.max_debt_money
+                ,ec.code
+                ,ec.ar_ipd as account_code
+                ,ec.name as account_name
+                ,ifnull(ec.ar_ipd,"") pang_debit
                 ,a.income as income ,a.uc_money,a.rcpt_money as cash_money,a.discount_money
                 ,a.income-a.rcpt_money-a.discount_money as looknee_money
                 
@@ -233,22 +236,25 @@ class Account302Controller extends Controller
                 ,sum(if(op.icode IN("1560016","1540073","1530005","1540048","1620015","1600012","1600015"),sum_price,0)) as debit_drug
                 ,sum(if(op.icode IN("3001412","3001417"),sum_price,0)) as debit_toa
                 ,sum(if(op.icode IN("3010829","3011068","3010864","3010861","3010862","3010863","3011069","3011012","3011070"),sum_price,0)) as debit_refer
-                from hos.ipt ip
-                LEFT JOIN hos.an_stat a ON ip.an = a.an
+                from ipt ip
+                LEFT JOIN an_stat a ON ip.an = a.an
                 LEFT JOIN patient pt on pt.hn=a.hn
                 LEFT JOIN pttype ptt on a.pttype=ptt.pttype
                 LEFT JOIN pttype_eclaim ec on ec.code=ptt.pttype_eclaim_id
-                LEFT JOIN hos.ipt_pttype ipt ON ipt.an = a.an
-                LEFT JOIN hos.opitemrece op ON ip.an = op.an
-                LEFT JOIN hos.vn_stat v on v.vn = a.vn
+                LEFT JOIN ipt_pttype ipt ON ipt.an = a.an
+                LEFT JOIN opitemrece op ON ip.an = op.an
+                LEFT JOIN vn_stat v on v.vn = a.vn
                 WHERE a.dchdate BETWEEN "' . $startdate . '" AND "' . $enddate . '"
                
                 AND ipt.pttype IN (SELECT pttype FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050101.302")
                 GROUP BY a.an;
             ');
+            // ,ec.code
+            // ,ec.ar_ipd as account_code
+            // ,ec.name as account_name
             // AND ipt.pttype = "A7"
             foreach ($acc_debtor as $key => $value) {
-                    $check = Acc_debtor::where('an', $value->an)->where('account_code','1102050101.302')->whereBetween('dchdate', [$startdate, $enddate])->count();
+                    $check = Acc_debtor::where('an', $value->an)->where('account_code','1102050101.302')->count();
                     if ($check == 0) {
                         Acc_debtor::insert([
                             'hn'                 => $value->hn,
@@ -258,7 +264,7 @@ class Account302Controller extends Controller
                             'ptname'             => $value->fullname,
                             'pttype'             => $value->pttype,
                             'vstdate'            => $value->vstdate,
-                            'regdate'            => $value->admdate,
+                            'rxdate'             => $value->admdate,
                             'dchdate'            => $value->dchdate,
                             'acc_code'           => $value->code,
                             'account_code'       => $value->account_code,

@@ -418,6 +418,17 @@ class Account801Controller extends Controller
             'enddate'       =>     $enddate
         ]);
     }
+
+    public function account_801_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
+        ]);
+    }
     
 
  }

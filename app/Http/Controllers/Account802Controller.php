@@ -224,7 +224,7 @@ class Account802Controller extends Controller
             ');
     
             foreach ($acc_debtor as $key => $value) {
-                        $check = Acc_debtor::where('an', $value->an)->where('account_code','1102050102.802')->whereBetween('dchdate', [$startdate, $enddate])->count();
+                        $check = Acc_debtor::where('an', $value->an)->where('account_code','1102050102.802')->count();
                         if ($check == 0) {
                             Acc_debtor::insert([
                                 'hn'                 => $value->hn,
@@ -428,6 +428,16 @@ class Account802Controller extends Controller
             'datashow'         =>     $datashow,
             'startdate'        =>     $startdate,
             'enddate'          =>     $enddate
+        ]);
+    }
+    public function account_802_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
     

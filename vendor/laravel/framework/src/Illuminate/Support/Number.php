@@ -46,21 +46,11 @@ class Number
      *
      * @param  int|float  $number
      * @param  string|null  $locale
-     * @param  int|null  $after
-     * @param  int|null  $until
      * @return string
      */
-    public static function spell(int|float $number, ?string $locale = null, ?int $after = null, ?int $until = null)
+    public static function spell(int|float $number, ?string $locale = null)
     {
         static::ensureIntlExtensionIsInstalled();
-
-        if (! is_null($after) && $number <= $after) {
-            return static::format($number, locale: $locale);
-        }
-
-        if (! is_null($until) && $number >= $until) {
-            return static::format($number, locale: $locale);
-        }
 
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::SPELLOUT);
 
@@ -144,12 +134,12 @@ class Number
     }
 
     /**
-     * Convert the number to its human-readable equivalent.
+     * Convert the number to its human readable equivalent.
      *
-     * @param  int|float  $number
+     * @param  int  $number
      * @param  int  $precision
      * @param  int|null  $maxPrecision
-     * @return bool|string
+     * @return string
      */
     public static function abbreviate(int|float $number, int $precision = 0, ?int $maxPrecision = null)
     {
@@ -157,13 +147,12 @@ class Number
     }
 
     /**
-     * Convert the number to its human-readable equivalent.
+     * Convert the number to its human readable equivalent.
      *
-     * @param  int|float  $number
+     * @param  int  $number
      * @param  int  $precision
      * @param  int|null  $maxPrecision
-     * @param  bool  $abbreviate
-     * @return bool|string
+     * @return string
      */
     public static function forHumans(int|float $number, int $precision = 0, ?int $maxPrecision = null, bool $abbreviate = false)
     {
@@ -183,13 +172,13 @@ class Number
     }
 
     /**
-     * Convert the number to its human-readable equivalent.
+     * Convert the number to its human readable equivalent.
      *
-     * @param  int|float  $number
+     * @param  int  $number
      * @param  int  $precision
      * @param  int|null  $maxPrecision
      * @param  array  $units
-     * @return string|false
+     * @return string
      */
     protected static function summarize(int|float $number, int $precision = 0, ?int $maxPrecision = null, array $units = [])
     {
@@ -204,8 +193,8 @@ class Number
         }
 
         switch (true) {
-            case floatval($number) === 0.0:
-                return $precision > 0 ? static::format(0, $precision, $maxPrecision) : '0';
+            case $number === 0:
+                return '0';
             case $number < 0:
                 return sprintf('-%s', static::summarize(abs($number), $precision, $maxPrecision, $units));
             case $number >= 1e15:
@@ -217,19 +206,6 @@ class Number
         $number /= pow(10, $displayExponent);
 
         return trim(sprintf('%s%s', static::format($number, $precision, $maxPrecision), $units[$displayExponent] ?? ''));
-    }
-
-    /**
-     * Clamp the given number between the given minimum and maximum.
-     *
-     * @param  int|float  $number
-     * @param  int|float  $min
-     * @param  int|float  $max
-     * @return int|float
-     */
-    public static function clamp(int|float $number, int|float $min, int|float $max)
-    {
-        return min(max($number, $min), $max);
     }
 
     /**
@@ -267,9 +243,7 @@ class Number
     protected static function ensureIntlExtensionIsInstalled()
     {
         if (! extension_loaded('intl')) {
-            $method = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
-
-            throw new RuntimeException('The "intl" PHP extension is required to use the ['.$method.'] method.');
+            throw new RuntimeException('The "intl" PHP extension is required to use this method.');
         }
     }
 }

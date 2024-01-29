@@ -145,7 +145,7 @@
                 </div>
                 <div class="col"></div> 
                 <div class="col-md-2 text-end">
-                    <a href="{{url('upstm_all')}}" class="ladda-button btn-pill btn btn-primary d-shadow me-2 ms-4" data-style="expand-left">
+                    <a href="{{url('upstm_ofc_opd')}}" class="ladda-button btn-pill btn btn-primary d-shadow me-2 ms-4" data-style="expand-left">
                         <span class="ladda-label"> <i class="far fa-arrow-alt-circle-left text-primary text-white me-2"></i>Back</span>
                         <span class="ladda-spinner"></span>
                     </a> 
@@ -189,7 +189,7 @@
             
                 <div class="col-md-8">
                     <div class="card p-4 card-ofc">
-                        <h4 class="card-title" style="color:rgb(10, 151, 85)">STM DETAIL OFC TI :::: >> {{$STMDoc}}</h4>
+                        <h4 class="card-title" style="color:rgb(10, 151, 85)">STM DETAIL OFC OPD :::: >> {{$STMDoc}}</h4>
                         <div class="table-responsive">
                             
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"

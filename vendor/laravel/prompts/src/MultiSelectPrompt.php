@@ -2,6 +2,7 @@
 
 namespace Laravel\Prompts;
 
+use Closure;
 use Illuminate\Support\Collection;
 
 class MultiSelectPrompt extends Prompt
@@ -41,8 +42,8 @@ class MultiSelectPrompt extends Prompt
         array|Collection $default = [],
         public int $scroll = 5,
         public bool|string $required = false,
-        public mixed $validate = null,
-        public string $hint = '',
+        public ?Closure $validate = null,
+        public string $hint = ''
     ) {
         $this->options = $options instanceof Collection ? $options->all() : $options;
         $this->default = $default instanceof Collection ? $default->all() : $default;

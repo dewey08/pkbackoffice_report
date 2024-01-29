@@ -873,7 +873,7 @@ class Ofc401Controller extends Controller
                     SELECT vv.hcode HCODE ,v.hn HN ,v.an AN ,vv.spclty CLINIC ,vv.cid PERSON_ID ,DATE_FORMAT(v.vstdate,"%Y%m%d") DATE_SERV
                     ,d.icode DID ,concat(d.`name`," ",d.strength," ",d.units) DIDNAME ,v.qty AMOUNT ,round(v.unitprice,2) DRUGPRIC
                     ,"0.00" DRUGCOST ,d.did DIDSTD ,d.units UNIT ,concat(d.packqty,"x",d.units) UNIT_PACK ,v.vn SEQ
-                    ,oo.presc_reason DRUGREMARK ,d.drugusage PA_NO ,"" TOTCOPAY ,if(v.item_type="H","2","1") USE_STATUS
+                    ,oo.presc_reason DRUGREMARK ,"" PA_NO ,"" TOTCOPAY ,if(v.item_type="H","2","1") USE_STATUS
                     ,"" TOTAL ,"" as SIGCODE ,"" as SIGTEXT ,"" PROVIDER,v.vstdate
                     FROM opitemrece v
                     LEFT OUTER JOIN drugitems d on d.icode = v.icode
@@ -889,7 +889,7 @@ class Ofc401Controller extends Controller
                     SELECT pt.hcode HCODE ,v.hn HN ,v.an AN ,v1.spclty CLINIC ,pt.cid PERSON_ID ,DATE_FORMAT((v.vstdate),"%Y%m%d") DATE_SERV
                     ,d.icode DID ,concat(d.`name`," ",d.strength," ",d.units) DIDNAME ,sum(v.qty) AMOUNT ,round(v.unitprice,2) DRUGPRIC
                     ,"0.00" DRUGCOST ,d.did DIDSTD ,d.units UNIT ,concat(d.packqty,"x",d.units) UNIT_PACK ,v.vn SEQ
-                    ,oo.presc_reason DRUGREMARK ,d.drugusage PA_NO ,"" TOTCOPAY ,if(v.item_type="H","2","1") USE_STATUS
+                    ,oo.presc_reason DRUGREMARK ,"" PA_NO ,"" TOTCOPAY ,if(v.item_type="H","2","1") USE_STATUS
                     ,"" TOTAL,"" as SIGCODE,"" as SIGTEXT,""  PROVIDER,v.vstdate
                     FROM opitemrece v
                     LEFT OUTER JOIN drugitems d on d.icode = v.icode
@@ -901,6 +901,7 @@ class Ofc401Controller extends Controller
                     AND d.did is not null AND v.qty<>"0"
                     GROUP BY v.an,d.icode,USE_STATUS;              
                 ');
+                // d.drugusage PA_NO
                 // oo.nhso_authorize_code PA_NO
                 // ,d.sks_drug_code as SIGCODE
                 // ,d.sks_dfs_text as SIGTEXT

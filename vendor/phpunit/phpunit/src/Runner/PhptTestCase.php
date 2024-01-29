@@ -193,6 +193,8 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
                 $this->filename,
                 true,
                 TestStatus::unknown(),
+                [],
+                [],
             );
         }
 

@@ -223,7 +223,7 @@ class Account202Controller extends Controller
         //  AND ec.ar_ipd = "1102050101.202"
          foreach ($acc_debtor as $key => $value) {
                 if ($value->debit >0) {                 
-                     $check = Acc_debtor::where('an', $value->an)->where('account_code', '1102050101.202')->whereBetween('dchdate', [$startdate, $enddate])->count();
+                     $check = Acc_debtor::where('an', $value->an)->where('account_code', '1102050101.202')->count();
                      if ($check == 0) {
 
                         // if ($value->debit_instument > 0 || $value->debit_drug > 0 || $value->debit_toa > 0 || $value->debit_refer > 0) {
@@ -237,7 +237,7 @@ class Account202Controller extends Controller
                                 'ptname'             => $value->ptname,
                                 'pttype'             => $value->pttype,
                                 'vstdate'            => $value->vstdate,
-                                'regdate'            => $value->admdate,
+                                'rxdate'             => $value->admdate,
                                 'dchdate'            => $value->dchdate,
                                 'acc_code'           => $value->code,
                                 'account_code'       => $value->account_code,
@@ -670,6 +670,16 @@ class Account202Controller extends Controller
              'year'              =>     $year,
          ]);
      }
+     public function account_202_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
+        ]);
+    }
     
    
  

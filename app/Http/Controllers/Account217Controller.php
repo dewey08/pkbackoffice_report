@@ -233,7 +233,7 @@ class Account217Controller extends Controller
         // AND op.icode IN(SELECT icode from pkbackoffice.acc_setpang_type WHERE icode IN(SELECT icode FROM pkbackoffice.acc_setpang_type WHERE pang ="1102050101.217"))
         foreach ($acc_debtor as $key => $value) {
             if ($value->debit > 0) {
-                $check = Acc_debtor::where('an', $value->an)->where('account_code', '1102050101.217')->whereBetween('dchdate', [$startdate, $enddate])->count();
+                $check = Acc_debtor::where('an', $value->an)->where('account_code', '1102050101.217')->count();
                 if ($check == 0) {
                     Acc_debtor::insert([
                         'hn'                 => $value->hn,
@@ -244,7 +244,7 @@ class Account217Controller extends Controller
                         'pttype'             => $value->pttype,
                         'hospmain'           => $value->hospmain,
                         'vstdate'            => $value->vstdate,
-                        'regdate'            => $value->regdate,
+                        'rxdate'             => $value->regdate,
                         'dchdate'            => $value->dchdate,
                         'acc_code'           => $value->code,
                         'account_code'       => $value->account_code,
@@ -714,6 +714,16 @@ class Account217Controller extends Controller
             'enddate'           =>     $enddate,
             'data'              =>     $data, 
             
+        ]);
+    }
+    public function account_217_destroy(Request $request)
+    {
+        $id = $request->ids; 
+        $data = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
+            Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();
+                  
+        return response()->json([
+            'status'    => '200'
         ]);
     }
  

@@ -123,9 +123,7 @@ class CtrepController extends Controller
     public function ct_rep(Request $request)
     {
         $startdate = $request->startdate;
-        $enddate = $request->enddate;
-
-        
+        $enddate = $request->enddate; 
  
         $date = date('Y-m-d');
         $y = date('Y') + 543;
@@ -170,10 +168,13 @@ class CtrepController extends Controller
                     SELECT a_ct_scan_id,vn,hn,cid,order_date,order_time,order_date_time,request_date,ptname,xray_list,confirm_all,department,department_code
                     ,department_name,pttype,ptty_spsch,xray_order_number,xray_price,total_price,department_list,priority_name,STMdoc,user_id,active
                     FROM a_ct_scan 
-                    WHERE request_date BETWEEN "' . $newDate . '" AND "' . $date . '" 
+                    WHERE request_date BETWEEN "2023-12-01" AND "2023-12-31" 
+                  
                     GROUP BY vn
                     ORDER BY request_date ASC
                 '); 
+                // AND active = "N"
+                // WHERE request_date BETWEEN "' . $newDate . '" AND "' . $date . '" 
                 // $data['datashow'] = DB::connection('mysql')->select('SELECT * FROM a_ct WHERE vstdate BETWEEN "' . $newDate . '" AND "' . $date . '" ORDER BY vstdate DESC');
                 // $data['datashow'] = DB::connection('mysql')->select('SELECT * FROM a_ct_scan WHERE order_date BETWEEN "' . $newDate . '" AND "' . $date . '" ORDER BY order_date_time DESC'); 
                 // AND (xray_list LIKE "CX%" OR xray_list LIKE "CT%")
@@ -239,7 +240,7 @@ class CtrepController extends Controller
                         LEFT JOIN xray_head xt on xt.vn = x.an 
                         LEFT OUTER JOIN xray_priority y on y.xray_priority_id = xh.xray_priority_id 
                         WHERE x.request_date BETWEEN "' . $startdate . '" AND "' . $enddate . '" 
-                        AND (xi.xray_items_name LIKE "CT%") 
+                        AND (xi.xray_items_group ="3") 
 
                          
                 ');
@@ -294,13 +295,14 @@ class CtrepController extends Controller
                     }                    
                 } 
                 $data_ct_visit = DB::connection('mysql2')->select('
-                    SELECT o.vn,o.an,o.hn,o.vstdate,concat(p.pname," ",p.fname," ",p.lname) as ptname,concat(s.name," ",s.strength," ",s.units) as xray_list ,o.qty,o.paidst,o.unitprice,o.sum_price
+                    SELECT o.vn,o.an,o.hn,o.vstdate,concat(p.pname," ",p.fname," ",p.lname) as ptname,concat(s.name," ",s.strength," ",s.units) as xray_list ,o.qty,o.paidst,o.unitprice,o.sum_price,op.cc
                     FROM opitemrece o  
                     LEFT OUTER JOIN s_drugitems s on s.icode=o.icode  
                     LEFT OUTER JOIN patient p on p.hn=o.hn  
                     LEFT JOIN vn_stat v on v.vn = o.vn 
+                    LEFT OUTER JOIN opdscreen op on op.vn = v.vn
                     WHERE o.vstdate BETWEEN "' . $startdate . '" AND "' . $enddate . '"
-                    AND s.name LIKE "CT%" AND (o.an="" or o.an is null)
+                    AND s.income = "08" AND (o.an="" or o.an is null)
                     ORDER BY o.item_no
                 '); 
                 foreach ($data_ct_visit as $key => $v_visit) {
@@ -317,6 +319,7 @@ class CtrepController extends Controller
                             'paidst'              => $v_visit->paidst,
                             'unitprice'           => $v_visit->unitprice, 
                             'sum_price'           => $v_visit->sum_price,  
+                            'cc'                  => $v_visit->cc,  
                             'user_id'             => Auth::user()->id
                         ]); 
                     } else {
@@ -331,6 +334,7 @@ class CtrepController extends Controller
                             'paidst'              => $v_visit->paidst,
                             'unitprice'           => $v_visit->unitprice, 
                             'sum_price'           => $v_visit->sum_price,  
+                            'cc'                  => $v_visit->cc,  
                             'user_id'             => Auth::user()->id
                         ]); 
                     }

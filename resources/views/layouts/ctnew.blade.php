@@ -187,6 +187,7 @@ background-repeat: no-repeat;
                 <!-- ========== Left Sidebar Start ========== -->
                 <div class="vertical-menu ">
                     {{-- <div data-simplebar class="h-300">  --}}
+                        <div data-simplebar class="h-100 nom6">
                         <!--- Sidemenu -->
                         <div id="sidebar-menu">
                             <!-- Left Menu Start -->
@@ -231,7 +232,7 @@ background-repeat: no-repeat;
                             </ul>
                         </div>
                         <!-- Sidebar -->
-                    {{-- </div> --}}
+                    </div>
                 </div>
                  <!-- ============================================================== -->
                 <!-- Start right Content here -->

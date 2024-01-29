@@ -58,6 +58,12 @@
                .is-hide{
                display:none;
                }
+               .inputaccs{                 
+                 border: none;
+                 box-shadow: 0 0 10px pink;
+                 border:solid 1px #80acfd;
+                 border-radius: 40px;
+             }  
     </style>
     
     <div class="tabs-animation">
@@ -90,9 +96,9 @@
                         data-date-language="th-th" value="{{ $enddate }}"/>  
                 </div>  --}}
                 <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                    <input type="text" class="form-control cardacc" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' autocomplete="off"
+                    <input type="text" class="form-control inputaccs" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' autocomplete="off"
                      data-provide="datepicker" data-date-autoclose="true" data-date-language="th-th" value="{{ $startdate }}"/>
-                    <input type="text" class="form-control cardacc" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' autocomplete="off"
+                    <input type="text" class="form-control inputaccs" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' autocomplete="off"
                     data-provide="datepicker" data-date-autoclose="true" data-date-language="th-th" value="{{ $enddate }}"/>
                     
                     {{-- <button type="button" class="me-2 btn-icon btn-shadow btn-dashed btn btn-outline-primary" id="Pulldata">
@@ -148,7 +154,7 @@
                                             <th class="text-center">pttype</th> 
                                             <th class="text-center">spsch</th>  
                                             <th class="text-center">ลูกหนี้</th> 
-                                            <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>   
+                                            {{-- <th class="text-center"><input type="checkbox" class="dcheckbox" name="destroy" id="destroy"> </th>    --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,7 +180,7 @@
                                                 <td class="text-center" style="color:rgb(73, 147, 231)" width="5%">{{ $item->pttype }}</td>  
                                                 <td class="text-center" style="color:rgb(216, 95, 14)" width="5%">{{ $item->subinscl }}</td>  
                                                 <td class="text-center" width="10%">{{ number_format($item->debit_total, 2) }}</td> 
-                                                <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td> 
+                                                {{-- <td class="text-center" width="5%"> <input type="checkbox" class="dcheckbox sub_destroy" data-id="{{$item->acc_debtor_id}}"></td>  --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -364,7 +370,7 @@
             $('.Destroystamp').on('click', function(e) {
                 // alert('oo');
                 var allValls = [];
-                $(".sub_destroy:checked").each(function () {
+                $(".sub_chk:checked").each(function () {
                     allValls.push($(this).attr('data-id'));
                 });
                 if (allValls.length <= 0) {
@@ -404,7 +410,7 @@
                                         data: 'ids='+join_selected_values,
                                         success:function(data){ 
                                                 if (data.status == 200) {
-                                                    $(".sub_destroy:checked").each(function () {
+                                                    $(".sub_chk:checked").each(function () {
                                                         $(this).parents("tr").remove();
                                                     });
                                                     Swal.fire({
