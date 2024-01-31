@@ -2474,7 +2474,7 @@ Route::middleware(['type'])->group(function(){
   Route::match(['get','post'],'plan_control_sub_lgo',[App\Http\Controllers\PlanController::class, 'plan_control_sub_lgo'])->name('p.plan_control_sub_lgo');//
   Route::match(['get','post'],'plan_control_sub_orther',[App\Http\Controllers\PlanController::class, 'plan_control_sub_orther'])->name('p.plan_control_sub_orther');//
 
-  Route::match(['get','post'],'plan_control_subhos',[App\Http\Controllers\PlanController::class, 'plan_control_sub'])->name('p.plan_control_sub');//
+  Route::match(['get','post'],'plan_control_subhos',[App\Http\Controllers\PlanController::class, 'plan_control_subhos'])->name('p.plan_control_subhos');//
   Route::match(['get','post'],'plan_control_subhos_pp',[App\Http\Controllers\PlanController::class, 'plan_control_subhos_pp'])->name('p.plan_control_subhos_pp');//
   Route::match(['get','post'],'plan_control_subhos_uc',[App\Http\Controllers\PlanController::class, 'plan_control_subhos_uc'])->name('p.plan_control_subhos_uc');//
   Route::match(['get','post'],'plan_control_subhos_lgo',[App\Http\Controllers\PlanController::class, 'plan_control_subhos_lgo'])->name('p.plan_control_subhos_lgo');//

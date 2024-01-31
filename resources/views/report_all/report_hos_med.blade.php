@@ -1352,7 +1352,7 @@
                                     </div>
                                 </div>
                         @elseif ($id == 56)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                {{-- <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
@@ -1385,7 +1385,7 @@
                                             </div> 
                                         </div> 
                                     </div>
-                                </div>
+                                </div> --}}
                         @elseif ($id == 57)
                                 <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
                                     @csrf 
@@ -1502,8 +1502,61 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            <th width="3%" class="text-center">ลำดับ</th>
+                                                            <th class="text-center">vn</th>
+                                                            <th class="text-center">hn</th>
+                                                            <th class="text-center">เลขบัตรประชาชน</th>
+                                                            <th class="text-center">vstdate</th>
+                                                            <th class="text-center">อายุ</th>
+                                                            <th class="text-center">ชื่อ - นามสกุล</th> 
+                                                            <th class="text-center">pdx</th>
+                                                            <th class="text-center">dx0</th>
+                                                            <th class="text-center">dx1</th>
+                                                            <th class="text-center">dx2</th>
+                                                            <th class="text-center">dx3</th>
+                                                            <th class="text-center">dx4</th>
+                                                            <th class="text-center">dx5</th>                           
+                                                            <th class="text-center">op0</th>
+                                                            <th class="text-center">op1</th>
+                                                            <th class="text-center">op2</th>
+                                                            <th class="text-center">op3</th>
+                                                            <th class="text-center">op4</th>
+                                                            <th class="text-center">op5</th>
+                                                            <th class="text-center">shortname</th>                                                                                                                       
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item58) 
+                                                            <tr>                                                  
+                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item58->vn }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->hn }}</td>
+                                                                <td class="text-center" width="5%">{{ $item58->cid }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->vstdate }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->age_y }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->fullname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->pdx }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->dx0 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->dx1 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->dx2 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->dx3 }}</td>>
+                                                                <td class="text-center" width="3%">{{ $item58->dx4 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->dx5 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->op0 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->op1 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->op2 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->op3 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->op4 }}</td>>
+                                                                <td class="text-center" width="3%">{{ $item58->op5 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item58->shortname }}</td>
+                                                                                                                                                                                             
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
