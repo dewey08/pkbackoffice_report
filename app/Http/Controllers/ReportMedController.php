@@ -472,7 +472,15 @@ class ReportMedController extends Controller
 
         }elseif($id == '59'){
             $data['datashow'] = DB::connection('mysql2')->select('
-                    SELECT  
+                    SELECT v.hn,v.vn,v.vstdate,concat(p.pname,p.fname," ",p.lname) as ptname,v.age_y,s.name as sexname
+                    from vn_stat v 
+                    left outer join patient p on p.hn=v.hn 
+                    left outer join icd101 i on i.code in (pdx,dx0,dx1,dx2,dx3,dx4,dx5) 
+                    LEFT OUTER JOIN sex s on s.code=p.sex
+                    where v.vstdate between "'.$startdate.'" and "'.$enddate.'" 
+                    and i.code between "J440" and "J449" 
+                    group by v.vn
+                    order by v.vstdate 
             ');
             $data['report_name'] = DB::connection('mysql')->table('report_hos')->where('report_hos_id', '=',59)->first();
 
@@ -485,13 +493,31 @@ class ReportMedController extends Controller
             
         }elseif($id == '61'){
             $data['datashow'] = DB::connection('mysql2')->select('
-                    SELECT 
+                    SELECT a.hn,a.regdate,a.dchdate,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                    left outer join icd101 i2 on i2.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)
+                    where a.dchdate between "'.$startdate.'" and "'.$enddate.'" 
+                    AND (SELECT i1.code BETWEEN "T620" AND "T620")
+                    AND (SELECT i2.code BETWEEN "K720" AND "K729")
+                    group by a.an
+                    ORDER BY a.regdate
             ');
             $data['report_name'] = DB::connection('mysql')->table('report_hos')->where('report_hos_id', '=',61)->first();
 
         }elseif($id == '62'){
             $data['datashow'] = DB::connection('mysql2')->select('
-                    SELECT 
+                    SELECT a.hn,a.regdate,a.dchdate,a.an,concat(p.pname,p.fname," ",p.lname) as ptname,a.age_y,a.pdx,dx0,dx1,dx2,dx3,dx4,dx5
+                    from an_stat a 
+                    left outer join ipt t on t.an=a.an 
+                    left outer join patient p on p.hn=a.hn
+                    left outer join icd101 i1 on i1.code in (a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5)  
+                    where a.dchdate between "'.$startdate.'" and "'.$enddate.'" 
+                    AND (SELECT i1.code = "T620")
+                    group by a.an
+                    ORDER BY a.regdate
             ');
             $data['report_name'] = DB::connection('mysql')->table('report_hos')->where('report_hos_id', '=',62)->first();
 
