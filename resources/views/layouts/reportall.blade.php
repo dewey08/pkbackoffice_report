@@ -259,7 +259,7 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                             <ul class="sub-menu" aria-expanded="true"> 
                                 <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (OPD)</a>
                                     <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="{{ url('report_1') }}">รายงาน</a> </li>
+                                        <li><a href="{{ url('report_opd') }}">รายงาน</a> </li>
                                     </ul>
                                 </li>
                                  

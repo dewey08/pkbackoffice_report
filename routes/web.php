@@ -2949,7 +2949,9 @@ Route::match(['get','post'],'report_db',[App\Http\Controllers\ReportMedControlle
 Route::match(['get','post'],'report_med',[App\Http\Controllers\ReportMedController::class, 'report_med'])->name('re.report_med');
 Route::match(['get','post'],'report_hos_med/{id}',[App\Http\Controllers\ReportMedController::class, 'report_hos_med'])->name('re.report_hos_med');
  
- 
+Route::match(['get','post'],'report_db',[App\Http\Controllers\ReportOpdController::class, 'report_db'])->name('re.report_db');
+Route::match(['get','post'],'report_opd',[App\Http\Controllers\ReportOpdController::class, 'report_opd'])->name('re.report_opd');
+Route::match(['get','post'],'report_hos_opd/{id}',[App\Http\Controllers\ReportOpdController::class, 'report_hos_opd'])->name('re.report_hos_opd'); 
 
 
 });
