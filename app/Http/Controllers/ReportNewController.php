@@ -156,6 +156,7 @@ class ReportNewController extends Controller
                 GROUP BY a.an 
                 ORDER BY v.refer_date 
             '); 
+            
         }elseif($id == '2') {
             $data['datashow'] = DB::connection('mysql2')->select('
                     SELECT d.hn,d.death_date,concat(p.pname,p.fname," ",p.lname) as ptname,s.name as sexname,a.age_y,
@@ -672,26 +673,26 @@ class ReportNewController extends Controller
         ]);
     }
 
-    public function report_hos_01(Request $request)
-    {
-        $startdate = $request->startdate;
-        $enddate = $request->enddate;
-        $data['users']     = User::get();  
-        $data['d_claim']   = DB::connection('mysql')->select('
-            SELECT d.vn,d.hn,d.an,d.cid,d.ptname,d.vstdate,d.pttype,d.sum_price,s.rep_a,s.tranid_c,s.price1_k,s.income_ad,s.pp_gep_ae,s.claim_true_af,s.claim_false_ag,s.cash_money_ah
-            ,s.pay_ai,s.IPCS_ao,s.IPCS_ORS_ap,s.OPCS_aq,s.PACS_ar,s.INSTCS_as,s.OTCS_at,s.PP_au,s.DRUG_av,s.errorcode_m
-            FROM d_claim d
-            LEFT OUTER JOIN d_ofc_rep s ON s.hn_d = d.hn AND s.vstdate_i = d.vstdate
-            WHERE d.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'"
-            ORDER BY s.tranid_c DESC
-        '); 
+    // public function report_hos_01(Request $request)
+    // {
+    //     $startdate = $request->startdate;
+    //     $enddate = $request->enddate;
+    //     $data['users']     = User::get();  
+    //     $data['d_claim']   = DB::connection('mysql')->select('
+    //         SELECT d.vn,d.hn,d.an,d.cid,d.ptname,d.vstdate,d.pttype,d.sum_price,s.rep_a,s.tranid_c,s.price1_k,s.income_ad,s.pp_gep_ae,s.claim_true_af,s.claim_false_ag,s.cash_money_ah
+    //         ,s.pay_ai,s.IPCS_ao,s.IPCS_ORS_ap,s.OPCS_aq,s.PACS_ar,s.INSTCS_as,s.OTCS_at,s.PP_au,s.DRUG_av,s.errorcode_m
+    //         FROM d_claim d
+    //         LEFT OUTER JOIN d_ofc_rep s ON s.hn_d = d.hn AND s.vstdate_i = d.vstdate
+    //         WHERE d.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'"
+    //         ORDER BY s.tranid_c DESC
+    //     '); 
 
 
-        return view('report_all.report_hos',$data,[
-            'startdate'     =>     $startdate,
-            'enddate'       =>     $enddate, 
-        ]);
-    }
+    //     return view('report_all.report_hos',$data,[
+    //         'startdate'     =>     $startdate,
+    //         'enddate'       =>     $enddate, 
+    //     ]);
+    // }
     
     
     

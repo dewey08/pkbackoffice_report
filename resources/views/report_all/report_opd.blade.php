@@ -243,7 +243,7 @@
                
                 // alert(plan_control_id);
                         Swal.fire({
-                        title: 'ข่อยบ่อทันเฮ็ดเด้อพี่น้องงงงงงง ?',
+                        title: 'บ่อทันเฮ็ดแล้วเด้อพี่น้องงงงงงง ?',
                         text: "รอก่อน",
                         icon: 'warning',
                         showCancelButton: true,

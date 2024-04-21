@@ -36,6 +36,7 @@
            @keyframes sp-anime {
            100% { 
                transform: rotate(390deg); 
+               
            }
            }
            .is-hide{

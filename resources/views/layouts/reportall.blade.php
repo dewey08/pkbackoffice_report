@@ -257,14 +257,6 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                                  
                             </ul>
                             <ul class="sub-menu" aria-expanded="true"> 
-                                <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (OPD)</a>
-                                    <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="{{ url('report_opd') }}">รายงาน</a> </li>
-                                    </ul>
-                                </li>
-                                 
-                            </ul>
-                            <ul class="sub-menu" aria-expanded="true"> 
                                 <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (MED)</a>
                                     <ul class="sub-menu" aria-expanded="true">
                                         <li><a href="{{ url('report_med') }}">รายงาน</a> </li>
@@ -273,9 +265,17 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                                  
                             </ul>
                             <ul class="sub-menu" aria-expanded="true"> 
+                                <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (OPD)</a>
+                                    <ul class="sub-menu" aria-expanded="true">
+                                        <li><a href="{{ url('report_opd') }}">รายงาน</a> </li>
+                                    </ul>
+                                </li>
+                                 
+                            </ul>                            
+                            <ul class="sub-menu" aria-expanded="true"> 
                                 <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (SX)</a>
                                     <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="{{ url('report_1') }}">รายงาน</a> </li>
+                                        <li><a href="{{ url('report_sx') }}">รายงาน</a> </li>
                                     </ul>
                                 </li>
                                  
@@ -295,26 +295,25 @@ $permiss_rep_money = StaticController::permiss_rep_money($iduser);
                                     </ul>
                                 </li>
                                  
-                            </ul>
+                            </ul>                            
                             <ul class="sub-menu" aria-expanded="true"> 
-                                <li><a href="javascript: void(0);" class="has-arrow">ตัวชี้วัดสำคัญใน (NURSE)</a>
+                                <li><a href="javascript: void(0);" class="has-arrow">เภสัชกรรม (RX)</a>
                                     <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="{{ url('report_1') }}">รายงาน</a> </li>
-                                    </ul>
-                                </li>
-                                 
-                            </ul>
-                            <ul class="sub-menu" aria-expanded="true"> 
-                                <li><a href="javascript: void(0);" class="has-arrow">เภสัชกรรม</a>
-                                    <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="{{ url('report_1') }}">รายงาน</a> </li>
+                                        <li><a href="{{ url('report_rx') }}">รายงาน</a> </li>
                                     </ul>
                                 </li>
                                  
                             </ul>
                         </li>
-  
-
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="fa-solid fa-file-pen text-danger"></i>
+                                <span>Setting</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ url('report_setting') }}">เพิ่มรายงานตัวชี้วัด</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
