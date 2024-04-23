@@ -131,6 +131,8 @@ class ReportOpdController extends Controller
             WHERE d.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'"
             ORDER BY s.tranid_c DESC
         '); 
+
+ 
         $data['report_med']   = DB::connection('mysql')->select(
             'SELECT * FROM report_hos WHERE report_hos_id ="'.$id.'" and report_department_sub = "39"' );
         
@@ -154,8 +156,9 @@ class ReportOpdController extends Controller
             $data['report_name'] = DB::connection('mysql')->table('report_hos')->where('report_hos_id', '=',65)->first();
                    
         }elseif($id == '66') {
+            // dd($id);
             $data['datashow'] = DB::connection('mysql2')->select('
-                    SELECT s.spclty,s.name AS ประเภทแผนกผู้ป่วย,COUNT(DISTINCT(v.hn)) AS คน,COUNT(v.vn) AS ครั้ง
+                    SELECT *
                     FROM vn_stat v
                     LEFT JOIN spclty s ON s.spclty = v.spclty
                     WHERE v.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'"
@@ -164,8 +167,9 @@ class ReportOpdController extends Controller
                     GROUP BY s.name
                     ORDER BY s.spclty  
             ');
+            // SELECT s.spclty,s.name AS ประเภทแผนกผู้ป่วย,COUNT(DISTINCT(v.hn)) AS "คน",COUNT(v.vn) AS "ครั้ง"
             $data['report_name'] = DB::connection('mysql')->table('report_hos')->where('report_hos_id', '=',66)->first();
-                   
+            // dd($data['datashow']);      
         }elseif($id == '67') {
             $data['datashow'] = DB::connection('mysql2')->select('
                     SELECT m.clinic,c.name AS Clinic_name,COUNT(DISTINCT(v.hn)) AS คน,COUNT(v.vn) AS ครั้ง
@@ -564,28 +568,6 @@ class ReportOpdController extends Controller
         ]);
     }
 
-    // public function report_hos_01(Request $request)
-    // {
-    //     $startdate = $request->startdate;
-    //     $enddate = $request->enddate;
-    //     $data['users']     = User::get();  
-    //     $data['d_claim']   = DB::connection('mysql')->select('
-    //         SELECT d.vn,d.hn,d.an,d.cid,d.ptname,d.vstdate,d.pttype,d.sum_price,s.rep_a,s.tranid_c,s.price1_k,s.income_ad,s.pp_gep_ae,s.claim_true_af,s.claim_false_ag,s.cash_money_ah
-    //         ,s.pay_ai,s.IPCS_ao,s.IPCS_ORS_ap,s.OPCS_aq,s.PACS_ar,s.INSTCS_as,s.OTCS_at,s.PP_au,s.DRUG_av,s.errorcode_m
-    //         FROM d_claim d
-    //         LEFT OUTER JOIN d_ofc_rep s ON s.hn_d = d.hn AND s.vstdate_i = d.vstdate
-    //         WHERE d.vstdate BETWEEN "'.$startdate.'" and "'.$enddate.'"
-    //         ORDER BY s.tranid_c DESC
-    //     '); 
-
-
-    //     return view('report_all.report_hos',$data,[
-    //         'startdate'     =>     $startdate,
-    //         'enddate'       =>     $enddate, 
-    //     ]);
-    // }
-    
-    
     
  
 }

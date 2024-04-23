@@ -95,7 +95,7 @@
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX) </h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -154,8 +154,7 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
                                                             <th width="3%" class="text-center">ลำดับ</th>
@@ -171,27 +170,27 @@
                                                             <th class="text-center">dx3</th>
                                                             <th class="text-center">dx4</th>
                                                             <th class="text-center">dx5</th>
-                                                            <th class="text-center">dctype</th> 
+                                                            <th class="text-center">dctype</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
                                                         @foreach ($datashow as $item92) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="2%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->hn }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->an }}</td> 
-                                                                <td class="text-start"  width="3%">{{ $item92->ptname }}</td>
-                                                                <td class="text-start"  width="3%">{{ $item92->sexname }}</td>  
+                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item92->hn }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->an }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->sexname }}</td>
                                                                 <td class="text-center" width="3%">{{ $item92->age_y }}</td>
                                                                 <td class="text-center" width="3%">{{ $item92->pdx }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->dx0 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->dx1 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->dx2 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->dx3 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item92->dx4 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item92->dx0 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->dx1 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->dx2 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->dx3 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item92->dx4 }}</td>
                                                                 <td class="text-center" width="3%">{{ $item92->dx5 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item92->dctype }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item92->dctype }}</td>                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -200,13 +199,12 @@
                                         </div> 
                                     </div>
                                 </div>
-
-                        {{-- @elseif ($id == 93)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                        @elseif ($id == 93)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -235,36 +233,40 @@
                                                             <th width="3%" class="text-center">ลำดับ</th>
                                                             <th class="text-center">hn</th>
                                                             <th class="text-center">an</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th>
-                                                            <th class="text-center">อายุ</th> 
-                                                            <th class="text-center">pdx</th> 
+                                                            <th class="text-center">ptname</th>
+                                                            <th class="text-center">sexname</th>
+                                                            <th class="text-center">age_y</th>
+                                                            <th class="text-center">pdx</th>
                                                             <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx1</th>
                                                             <th class="text-center">dx2</th>
                                                             <th class="text-center">dx3</th>
                                                             <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th> 
+                                                            <th class="text-center">dx5</th>
+                                                            <th class="text-center">dctype</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item37) 
+                                                        @foreach ($datashow as $item93) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="5%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item37->hn }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->an }}</td> 
-                                                                <td class="text-start"  width="5%">{{ $item37->ptname }}</td>  
-                                                                <td class="text-center" width="5%">{{ $item37->age_y }}</td>
-                                                                <td class="text-center" width="5%">{{ $item37->pdx }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx0 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx1 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx2 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx3 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx4 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item37->dx5 }}</td> 
+                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item93->hn }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->an }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->sexname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->age_y }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->pdx }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item93->dx0 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dx1 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dx2 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dx3 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dx4 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dx5 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item93->dctype }}</td>    
                                                             </tr>
                                                         @endforeach
-                                                    </tbody>
+                                                    </tbody> 
                                                 </table>
                                             </div> 
                                         </div> 
@@ -272,11 +274,11 @@
                                 </div>
                                 
                         @elseif ($id == 94)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                        <div class="col-md-4">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -299,41 +301,43 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
                                                             <th width="3%" class="text-center">ลำดับ</th>
                                                             <th class="text-center">hn</th>
                                                             <th class="text-center">an</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th>
-                                                            <th class="text-center">อายุ</th> 
-                                                            <th class="text-center">pdx</th> 
+                                                            <th class="text-center">ptname</th>
+                                                            <th class="text-center">sexname</th>
+                                                            <th class="text-center">age_y</th>
+                                                            <th class="text-center">pdx</th>
                                                             <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>  
+                                                            <th class="text-center">dx1</th>
                                                             <th class="text-center">dx2</th>
                                                             <th class="text-center">dx3</th>
                                                             <th class="text-center">dx4</th>
                                                             <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th> 
+                                                            <th class="text-center">dctype</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item38) 
+                                                        @foreach ($datashow as $item94) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="5%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item38->hn }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->an }}</td> 
-                                                                <td class="text-start"  width="5%">{{ $item38->ptname }}</td>  
-                                                                <td class="text-center" width="5%">{{ $item38->age_y }}</td>
-                                                                <td class="text-center" width="5%">{{ $item38->pdx }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx0 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx1 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx2 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx3 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx4 }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item38->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item38->name }}</td> 
+                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item94->hn }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->an }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->ptname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->sexname }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->age_y }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->pdx }}</td> 
+                                                                <td class="text-center" width="3%">{{ $item94->dx0 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dx1 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dx2 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dx3 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dx4 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dx5 }}</td>
+                                                                <td class="text-center" width="3%">{{ $item94->dctype }}</td>  
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -343,46 +347,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 95)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                {{-- <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 96)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (OPD)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -408,19 +377,14 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">Total an</th>
-                                                            <th class="text-center">Total hn</th>
                                                              
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item40) 
+                                                        @foreach ($datashow as $item95) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="5%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item40->an }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item40->hn }}</td>                                                                 
+                                                                  
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -428,13 +392,13 @@
                                             </div> 
                                         </div> 
                                     </div>
-                                </div>
-                        @elseif ($id == 97)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                </div> --}}
+                        @elseif ($id == 96)
+                                <form action="{{ url('report_hos_opd/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -461,18 +425,64 @@
                                                     <thead>
                                                         <tr>                                          
                                                             <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">Total an</th>
-                                                            <th class="text-center">Total hn</th>
-                                                             
+                                                            <th class="text-center">totalHN</th>
+                                                            <th class="text-center">AdmitDate</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item41) 
+                                                        @foreach ($datashow as $item96) 
+                                                        <tr>                                                  
+                                                            <td class="text-center" width="3%">{{ $i++ }}</td> 
+                                                            <td class="text-center" width="3%">{{ $item96->totalHN }}</td>
+                                                            <td class="text-center" width="3%">{{ $item96->AdmitDate }}</td>     
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>   
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        {{--@elseif ($id == 97)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item97) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="5%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item40->an }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item40->hn }}</td>                                                                 
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -482,11 +492,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 98)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -512,56 +522,28 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">อายุ</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item42) 
+                                                        @foreach ($datashow as $item98) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item42->hn }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item42->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item42->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item42->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item42->name }}</td>                                                                                                                                 
+                                                                
                                                             </tr>
                                                         @endforeach
-                                                    </tbody>
+                                                    </tbody>  
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 99)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -587,56 +569,28 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">อายุ</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item43) 
+                                                        @foreach ($datashow as $item99) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item43->hn }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item43->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item43->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item43->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item43->name }}</td>                                                                                                                                 
+                                                                
                                                             </tr>
                                                         @endforeach
-                                                    </tbody>
+                                                    </tbody>  
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 100)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -662,24 +616,14 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">icd10</th>
-                                                            <th class="text-center">age</th>                                                            
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item44) 
+                                                        @foreach ($datashow as $item100) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item44->hn }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item44->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item44->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item44->icd10 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item44->age }}</td>                                                                                                                               
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -689,11 +633,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 101)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -719,42 +663,14 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>                                                            
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item45) 
+                                                        @foreach ($datashow as $item101) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item45->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item45->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item45->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item45->name }}</td>                                                                                                                               
+                                                                <
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -764,11 +680,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 102)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -791,19 +707,31 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item102) 
+                                                            <tr>                                                  
+                                                                
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 103)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -826,45 +754,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>                                                            
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item47) 
+                                                        @foreach ($datashow as $item103) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item47->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item47->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item47->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item47->name }}</td>                                                                                                                               
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -874,11 +774,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 104)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -901,45 +801,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>                                                            
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item48) 
+                                                        @foreach ($datashow as $item104) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item48->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item48->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item48->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item48->name }}</td>                                                                                                                               
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -949,11 +821,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 105)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -976,47 +848,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">ชื่อ - สกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>
-                                                            <th class="text-center">death_date</th>                                                             
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item49) 
+                                                        @foreach ($datashow as $item105) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item49->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->regdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dchdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item49->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item49->dx5 }}</td>
-                                                                <td class="text-center" width="5%">{{ $item49->name }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item49->death_date }}</td>                                                                                                                             
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1026,11 +868,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 106)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1053,19 +895,31 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item106) 
+                                                            <tr>                                                  
+                                                                
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div> 
                                         </div> 
                                     </div>
                                 </div>
                         @elseif ($id == 107)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1088,49 +942,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">vn</th>
-                                                            <th class="text-center">ptname</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">vstdate</th>
-                                                            <th class="text-center">vsttime</th>
-                                                            <th class="text-center">refer_date</th>
-                                                            <th class="text-center">refer_time</th>
-                                                            <th class="text-center">ovstost</th>
-                                                            <th class="text-center">referhos</th>
-                                                            <th class="text-center">timerefer</th>                                                            
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item51) 
+                                                        @foreach ($datashow as $item107) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item51->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->vn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->dx3 }}</td>>
-                                                                <td class="text-center" width="5%">{{ $item51->vstdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->vsttime }}</td>                                                                
-                                                                <td class="text-center" width="3%">{{ $item51->refer_date }}</td>
-                                                                <td class="text-center" width="3%">{{ $item51->refer_time }}</td>
-                                                                <td class="text-center" width="5%">{{ $item51->ovstost }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item51->referhos }}</td>
-                                                                <td class="text-center" width="5%">{{ $item51->timerefer }}</td>                                                                                                                              
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1140,11 +962,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 108)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1170,48 +992,14 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">vn</th>
-                                                            <th class="text-center">vstdate</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th>
-                                                            <th class="text-center">age_y</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">vsttime</th>
-                                                            <th class="text-center">refer_time</th>
-                                                            <th class="text-center">refer_date</th>
-                                                            <th class="text-center">ovstost</th>
-                                                            <th class="text-center">referhos</th>                                                            
+                                                                                                     
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item52) 
+                                                        @foreach ($datashow as $item108) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item52->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->vn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->vstdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->dx3 }}</td>>
-                                                                <td class="text-center" width="3%">{{ $item52->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->dx5 }}</td>                                                                
-                                                                <td class="text-center" width="3%">{{ $item52->vsttime }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->refer_time }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->refer_date }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item52->ovstost }}</td>
-                                                                <td class="text-center" width="3%">{{ $item52->referhos }}</td>                                                                                                                              
+                                                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1221,268 +1009,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 109)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 110)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    <thead>
-                                                        <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">จำนวน hn</th>
-                                                                                                                        
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item54) 
-                                                            <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item54->totalHN }}</td>                                                                                                                                                                                             
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 111)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    <thead>
-                                                        <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">จำนวน hn</th>
-                                                                                                                        
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item55) 
-                                                            <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item55->totalHN }}</td>                                                                                                                                                                                             
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 112)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 113)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    <thead>
-                                                        <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th>
-                                                            <th class="text-center">อายุ</th>
-                                                            <th class="text-center">เพศ</th>
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>
-                                                            <th class="text-center">name</th>                                                            
-                                                            <th class="text-center">op0</th>
-                                                            <th class="text-center">op1</th>
-                                                            <th class="text-center">op2</th>
-                                                            <th class="text-center">op3</th>
-                                                            <th class="text-center">op4</th>
-                                                            <th class="text-center">op5</th>
-                                                            <th class="text-center">op6</th>                                                                                                                       
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item57) 
-                                                            <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item57->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->an }}</td>
-                                                                <td class="text-center" width="5%">{{ $item57->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->sexname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->dx5 }}</td>                                                                
-                                                                <td class="text-center" width="3%">{{ $item57->name }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op5 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item57->op6 }}</td>                                                                
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 114)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1508,54 +1039,249 @@
                                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">vn</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">เลขบัตรประชาชน</th>
-                                                            <th class="text-center">vstdate</th>
-                                                            <th class="text-center">อายุ</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th> 
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>                           
-                                                            <th class="text-center">op0</th>
-                                                            <th class="text-center">op1</th>
-                                                            <th class="text-center">op2</th>
-                                                            <th class="text-center">op3</th>
-                                                            <th class="text-center">op4</th>
-                                                            <th class="text-center">op5</th>
-                                                            <th class="text-center">shortname</th>                                                                                                                       
+                                                                                              
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item58) 
+                                                        @foreach ($datashow as $item109) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item58->vn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->hn }}</td>
-                                                                <td class="text-center" width="5%">{{ $item58->cid }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->vstdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->fullname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->dx5 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->op5 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item58->shortname }}</td>                                                            
+                                                                
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 110)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                                                               
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item110) 
+                                                            <tr>                                                  
+                                                                                                              
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 111)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                                                       
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item111) 
+                                                            <tr>                                                  
+                                                                                                     
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 112)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                                                 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item112) 
+                                                            <tr>                                                  
+                                                                                                
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 113)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                                                  
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item113) 
+                                                            <tr>                                                  
+                                                                                                
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        @elseif ($id == 114)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-3">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                                                       
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        @foreach ($datashow as $item114) 
+                                                            <tr>                                                  
+                                                                                                     
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1565,11 +1291,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 115)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1592,29 +1318,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">vn</th>
-                                                            <th class="text-center">vstdate</th>
-                                                            <th class="text-center">ชื่อ - นามสกุล</th>
-                                                            <th class="text-center">อายุ</th>
-                                                            <th class="text-center">เพศ</th>                                                                                                                                                                                  
+                                                                                     
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item59) 
+                                                        @foreach ($datashow as $item115) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item59->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item59->vn }}</td>
-                                                                <td class="text-center" width="5%">{{ $item59->vstdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item59->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item59->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item59->sexname }}</td>                                                                                                                                
+                                                                                                    
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1624,11 +1338,11 @@
                                     </div>
                                 </div>
                         @elseif ($id == 116)
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
                                     @csrf 
                                     <div class="row"> 
                                         <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
                                             <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
                                         </div>
                                         <div class="col"></div>
@@ -1651,78 +1365,17 @@
                                     <div class="col-xl-12"> 
                                         <div class="card cardreport"> 
                                             <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
-                                                    
-                                                </table>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                </div>
-                        @elseif ($id == 117) --}}
-                                <form action="{{ url('report_hos_med/'.$id) }}" method="GET">
-                                    @csrf 
-                                    <div class="row"> 
-                                        <div class="col-md-3">
-                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (MED)</h5>
-                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
-                                        </div>
-                                        <div class="col"></div>
-                                        <div class="col-md-1 text-end mt-2">วันที่</div>
-                                        <div class="col-md-4 text-end">
-                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
-                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
-                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
-                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
-                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
-                                                    เรียกข้อมูล
-                                                </button>    
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-xl-12"> 
-                                        <div class="card cardreport"> 
-                                            <div class="table-responsive p-4"> 
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap myTable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
                                                     <thead>
                                                         <tr>                                          
-                                                            <th width="3%" class="text-center">ลำดับ</th>
-                                                            <th class="text-center">hn</th>
-                                                            <th class="text-center">regdate</th>
-                                                            <th class="text-center">dchdate</th>
-                                                            <th class="text-center">an</th>
-                                                            <th class="text-center">ชื่อ-นามสกุล</th>
-                                                            <th class="text-center">อายุ</th> 
-                                                            <th class="text-center">pdx</th>
-                                                            <th class="text-center">dx0</th>
-                                                            <th class="text-center">dx1</th>
-                                                            <th class="text-center">dx2</th>
-                                                            <th class="text-center">dx3</th>
-                                                            <th class="text-center">dx4</th>
-                                                            <th class="text-center">dx5</th>                                                                                        
+                                                                                      
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item61) 
+                                                        @foreach ($datashow as $item116) 
                                                             <tr>                                                  
-                                                                <td class="text-center" width="3%">{{ $i++ }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item61->hn }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->regdate }}</td>
-                                                                <td class="text-center" width="5%">{{ $item61->dchdate }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->an }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->ptname }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->age_y }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->pdx }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx0 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx1 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx2 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx3 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx4 }}</td>
-                                                                <td class="text-center" width="3%">{{ $item61->dx5 }}</td>                                                            
+                                                                                                     
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1730,9 +1383,50 @@
                                             </div> 
                                         </div> 
                                     </div>
+                                </div> --}}
+                        @elseif ($id == 117)
+                                <form action="{{ url('report_hos_sx/'.$id) }}" method="GET">
+                                    @csrf 
+                                    <div class="row"> 
+                                        <div class="col-md-6">
+                                            <h5 class="card-title" style="color:blueviolet">ตัวชี้วัดสำคัญใน (SX)</h5>
+                                            <p class="card-title-desc">{{$report_name->report_hos_name}}</p>
+                                        </div>
+                                        <div class="col"></div>
+                                        <div class="col-md-1 text-end mt-2">วันที่</div>
+                                        <div class="col-md-4 text-end">
+                                            <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
+                                                <input type="text" class="form-control cardreport" name="startdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $startdate }}" required/>
+                                                <input type="text" class="form-control cardreport" name="enddate" placeholder="End Date" id="datepicker2" data-date-container='#datepicker1' data-provide="datepicker" data-date-autoclose="true" autocomplete="off"
+                                                    data-date-language="th-th" value="{{ $enddate }}"/>                     
+                                                <button type="submit" class="btn-icon btn-shadow btn-dashed btn btn-outline-primary cardreport">
+                                                    <i class="fa-solid fa-file-circle-plus text-primary me-2"></i>
+                                                    เรียกข้อมูล
+                                                </button>    
+                                            </div>  
+                                        </div> 
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xl-12"> 
+                                        <div class="card cardreport"> 
+                                            <div class="table-responsive p-4"> 
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;"> 
+                                                    <thead>
+                                                        <tr>                                          
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div> 
+                                        </div> 
+                                    </div>
                                 </div>
-                        
-                                                                               
                         @else 
                             ("กรุณาเลือกรายงาน")
                         @endif                      

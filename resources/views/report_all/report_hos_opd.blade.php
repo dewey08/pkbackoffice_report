@@ -230,28 +230,8 @@
                                                             <th class="text-center">wardname</th> 
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <?php $i = 1; ?>
-                                                        @foreach ($datashow as $item3) 
-                                                            <tr>                                                  
-                                                                <td class="text-center" width="2%">{{ $i++ }}</td>                                                 
-                                                                <td class="text-center" width="5%">{{ $item3->hn}} </td> 
-                                                                <td class="text-center" width="2%">{{ $item3->death_date }}</td> 
-                                                                <td class="text-start"  width="5%">{{ $item3->ptname }}</td> 
-                                                                <td class="text-start"  width="5%">{{ $item3->sexname }}</td>                                                
-                                                                <td class="text-center" width="3%">{{ $item3->death_diag_1 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item3->death_diag_2 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item3->death_diag_3 }}</td> 
-                                                                <td class="text-center" width="3%">{{ $item3->death_diag_4 }}</td> 
-                                                                <td class="text-start"  width="4%">{{ $item3->name }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item3->regdate }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item3->dchdate }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item3->admdate }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item3->firstward }}</td> 
-                                                                <td class="text-center" width="5%">{{ $item3->wardname }}</td>  
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
+                                                    
+                                                    </tbody> 
                                                 </table>
                                             </div> 
                                         </div> 
@@ -1550,7 +1530,7 @@
                                                                 <td class="text-center" width="3%">{{$item85->t2}}</td>
                                                                 <td class="text-center" width="5%">{{$item85->t1}}</td>
                                                                 <td class="text-center" width="3%">{{$item85->age_y}}</td>
-                                                                <td class="text-center" width="5%">{{$item85->regdate>}}</td>                                
+                                                                <td class="text-center" width="5%">{{$item85->regdate}}</td>                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -1623,7 +1603,7 @@
                                                                 <td class="text-center" width="3%">{{$item86->t2}}</td>
                                                                 <td class="text-center" width="5%">{{$item86->t1}}</td>
                                                                 <td class="text-center" width="3%">{{$item86->age_y}}</td>
-                                                                <td class="text-center" width="5%">{{$item86->regdate>}}</td>                                
+                                                                <td class="text-center" width="5%">{{$item86->regdate}}</td>                                
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

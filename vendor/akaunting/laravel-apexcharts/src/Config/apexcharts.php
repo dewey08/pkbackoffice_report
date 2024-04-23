@@ -4,10 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Font Options
+    | ApexCharts Default Options
     |--------------------------------------------------------------------------
     |
-    | Here you may specify font family and font color.
+    | Here you may define the default options that will be applied to all
+    | ApexCharts rendered using this package. To learn more about each
+    | available option, check the official ApexCharts documentation.
+    |
+    | https://apexcharts.com/docs/options/
     |
     */
 
@@ -23,7 +27,7 @@ return [
             'zoom' => [
                 'enabled' => true,
             ],
-            'fontFamily' => 'Nunito',
+            'fontFamily' => 'inherit',
             'foreColor' => '#373d3f',
         ],
 
